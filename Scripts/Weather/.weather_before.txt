@@ -1,5 +1,0 @@
-Temperature: 21 C
-Relative Humidity: 73%
-Wind: from the W (260 degrees) at 5 KPH
-Weather: light rain with thunder; Cumulonimbus clouds observed
-Sky conditions: mostly cloudy
