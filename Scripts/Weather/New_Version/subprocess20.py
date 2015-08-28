@@ -1,13 +1,12 @@
 #!/usr/bin/env python
 __author__ = "Mpho Mphego"
-__version__ = "$Revision: 1.1 $"
+__version__ = "$Revision: 1.2 $"
 __description__ = "Voice enabled Smart Alarm with weather, news and coffee notifier"
 __date__ = "$Date: 2015/01/31 14:55 $"
 __copyright__ = "Copyright (c) 2015 Mpho Mphego"
 __url__ = "mpho112.wordpress.com"
 __license__ = "Python"
-## run pip install gTTS
-#https://pypi.python.org/pypi/gTTS/1.0.3
+
 import subprocess
 import time
 import os
@@ -25,7 +24,7 @@ name = ''
 head = 'wget -q -U Mozilla '
 tail = '.mp3 '
 # end
-end = ' Thats all for now.  Have a nice day.  ' 
+end = ' Thats all for now.  Have a nice day.  '
 ##################################################
 """
 GPIO.setwarnings(False)
@@ -46,7 +45,7 @@ wad = wad.replace('"', '').strip()
 wad = wad.replace("'", '').strip()
 
 # If you want to say with pure FOSS projects, use festival instead of google tts by uncommenting out the line below AND commenting out EVERYTHING else
-# print subprocess.check_output("echo " + wad + " | festival --tts ", shell=True) 
+# print subprocess.check_output("echo " + wad + " | festival --tts ", shell=True)
 
 # Google voice only accepts 100 characters or less, so split into chunks
 shorts = []
@@ -76,7 +75,7 @@ try:
 # festival is now called in case of error reaching Google
 except subprocess.CalledProcessError:
   print subprocess.check_output("echo " + wad + " | festival --tts ", shell=True)
-  
+
 # Cleanup any mp3 files created in this directory.
 print 'cleaning up now'
 #print subprocess.call ('sudo rm /mnt/ram/*.mp3', shell=True)
