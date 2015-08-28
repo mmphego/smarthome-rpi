@@ -31,21 +31,14 @@ try:
 
     # reads current weather
     wtr = 'Weather conditions for today are ' + str(conditions) + ' with a current temperature of ' + str(current)
-except urllib2.HTTPError, e:
-    wtr = 'Failed to connect to Open Weather Map.  '
-except urllib2.URLError, e:
-    wtr = 'Failed to connect to Open Weather Map.  '
 except Exception:
     wtr = 'Failed to connect to Open Weather Map.  '
-
-#print wtr
-
 
 try:
     forecast_api  = urllib2.urlopen(request_2)
     response_2 = forecast_api.read()
     response_2_dictionary = json.loads(response_2)
-#    print response_2_dictionary
+
     todays_low = response_2_dictionary['list'][0]['temp']['night']
     todays_high = response_2_dictionary['list'][0]['temp']['day']
 
@@ -54,10 +47,6 @@ try:
 
     frc = ' a low of ' + str(todays_low) + ' and a high of  ' + str(todays_high) + ' .  '
 
-except urllib2.HTTPError, e:
-    frc = 'Failed to connect to Open Weather Map.  '
-except urllib2.URLError, e:
-    frc = 'Failed to connect to Open Weather Map.  '
 except Exception:
     frc = 'Failed to connect to Open Weather Map.  '
 
