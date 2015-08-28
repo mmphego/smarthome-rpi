@@ -12,8 +12,10 @@ import json
 import decimal
 
 request = urllib2.Request('http://api.openweathermap.org/data/2.5/weather?id=964137&units=metric')
+request_2 = urllib2.Request('http://api.openweathermap.org/data/2.5/forecast/daily?id=964137&units=metric')
+
 #http://api.openweathermap.org/data/2.5/weather?id=964137&units=metric
-try: 
+try:
     weather_api = urllib2.urlopen(request)
     response = weather_api.read()
     response_dictionary = json.loads(response)
@@ -26,14 +28,6 @@ try:
     current = round(current,1)
     current_low = round(current_low,1)
     current_high = round(current_high,1)
-#    print current
-#    f=open('/home/pi/test.txt','wb')    
-#    f.write(str(current))
-#    f.close()
-
-#    print current_low
-#    print current_high
-#    print conditions
 
     # reads current weather
     wtr = 'Weather conditions for today are ' + str(conditions) + ' with a current temperature of ' + str(current)
@@ -46,9 +40,8 @@ except Exception:
 
 #print wtr
 
-request_2 = urllib2.Request('http://api.openweathermap.org/data/2.5/forecast/daily?id=964137&units=metric')
 
-try: 
+try:
     forecast_api  = urllib2.urlopen(request_2)
     response_2 = forecast_api.read()
     response_2_dictionary = json.loads(response_2)
@@ -58,8 +51,8 @@ try:
 
     todays_low = round(todays_low,1)
     todays_high = round(todays_high,1)
-    
-    frc = '  with a low of ' + str(todays_low) + ' and a high of  ' + str(todays_high) + ' .  '
+
+    frc = ' a low of ' + str(todays_low) + ' and a high of  ' + str(todays_high) + ' .  '
 
 except urllib2.HTTPError, e:
     frc = 'Failed to connect to Open Weather Map.  '
@@ -68,6 +61,4 @@ except urllib2.URLError, e:
 except Exception:
     frc = 'Failed to connect to Open Weather Map.  '
 
-print frc
-
-
+print wtr, frc
