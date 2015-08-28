@@ -6,8 +6,7 @@ __date__ = "$Date: 2015/01/31 14:55 $"
 __copyright__ = "Copyright (c) 2015 Mpho Mphego"
 __url__ = "mpho112.wordpress.com"
 __license__ = "Python"
-## run pip install gTTS
-#https://pypi.python.org/pypi/gTTS/1.0.3
+
 import subprocess
 import time
 import os
