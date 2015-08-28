@@ -18,16 +18,16 @@ from get_url_weather9 import wtr, frc
 from get_url_news8 import news
 try:
     from gtts import gTTS
-except:
-    print "Failed to import module"
+except ImportError:
+    import pip
+    pip.main(['install', 'gTTS'])
 
 coffeemaker = 4 #GPIO0
 count = 1
-# your name goes here:
-name = ''
+
 # end
 end = ' Thats all for now.  Have a nice day.  '
-##################################################
+
 """
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
@@ -37,7 +37,7 @@ time.sleep(0.1)
 """
 
 # Turn all of the parts into a single string
-words = (gmt + name + day + wtr + frc + news + end)
+words = (gmt + day + wtr + frc + news + end)
 # strip any quotation marks
 words = words.replace('"', '').strip().split('. ')
 
@@ -51,13 +51,10 @@ try:
 
 # festival is now called in case of error reaching Google
 except subprocess.CalledProcessError:
-  print subprocess.check_output("echo " + words + " | festival --tts ", shell=True)
+    subprocess.check_output("echo " + words + " | festival --tts ", shell=True)
 
 # Cleanup any mp3 files created in this directory.
-print 'cleaning up now'
-print subprocess.call ('sudo rm *.mp3', shell=True)
-#Run Get weather bash script
-#os.system("bash /home/pi/Scripts/Weather/Get_weather.sh")
+subprocess.call ('sudo rm *.mp3', shell=True)
 """
 # Enabling GPIO for relay switch to turn on coffee maker
 GPIO.output(coffeemaker, True)
