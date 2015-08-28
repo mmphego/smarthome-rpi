@@ -25,9 +25,6 @@ coffeemaker = 4 #GPIO0
 count = 1
 # your name goes here:
 name = ''
-# key to getting text to speech
-head = 'wget -q -U Mozilla '
-tail = '.mp3 '
 # end
 end = ' Thats all for now.  Have a nice day.  '
 ##################################################
@@ -40,57 +37,25 @@ time.sleep(0.1)
 """
 
 # Turn all of the parts into a single string
-#wad = (gmt + name + day + wtr + end)
-#wad = (gmt + name + day + wtr + frc + btc + stck + news + end)
-wad = (gmt + name + day + wtr + frc + news + end)
-print wad
+words = (gmt + name + day + wtr + frc + news + end)
 
 # strip any quotation marks
-wad = wad.replace('"', '').strip()
-wad = wad.replace("'", '').strip()
+words = words.replace('"', '').strip().split('. ')
 
-# If you want to say with pure FOSS projects, use festival instead of google tts by uncommenting out the line below AND commenting out EVERYTHING else
-# print subprocess.check_output("echo " + wad + " | festival --tts ", shell=True)
-
-# Google voice only accepts 100 characters or less, so split into chunks
-shorts = []
-for chunk in wad.split('. '):
-#for chunk in wad.split('.  '):
-    shorts.extend(textwrap.wrap(chunk, 100))
-#list comprehension
-
-import IPython;IPython.embed()
 try:
-    for i,v in enumerate(shorts):
-        tts = gTTS(text=v, lang='en')
-        tts.save('{}.mp3'.format(i))
-except:
-    print 'Error'
-
-# Send shorts to Google and return mp3s
-#try:
-  #for sentence in shorts:
-## UK Female Voice
-    #sendthis = sentence.join(['"http://translate.google.com/translate_tts?tl=en&q=', '" -O ~/'])
-##    sendthis = sentence.join(['"http://translate.google.com/translate_tts?tl=en&q=', '" -O /mnt/ram/'])
-## US Female Voice
-##    sendthis = sentence.join(['"http://translate.google.com/translate_tts?&tl=en-US&ie=UTF-8&q=', '" -O /mnt/ram/'])
-    #print(head + sendthis + str(count).zfill(2) + str(tail))
-    #print subprocess.check_output (head + sendthis + str(count).zfill(2) + str(tail), shell=True)
-    #count = count + 1
-
-
+    for i,line in enumerate(words):
+        tts = gTTS(text=line, lang='en')
+        tts.save('.{}.mp3'.format(i))
 # Play the mp3s returned
-#  print subprocess.call ('mpg123 -h 10 -d 11 /mnt/ram/*.mp3', shell=True)
-  print subprocess.call ('mpg123 -h 10 -d 11 *.mp3', shell=True)
+    print subprocess.call ('mpg123 -h 10 -d 11 *.mp3', shell=True)
 
 # festival is now called in case of error reaching Google
 except subprocess.CalledProcessError:
-  print subprocess.check_output("echo " + wad + " | festival --tts ", shell=True)
+  print subprocess.check_output("echo " + words + " | festival --tts ", shell=True)
 
 # Cleanup any mp3 files created in this directory.
 print 'cleaning up now'
-#print subprocess.call ('sudo rm /mnt/ram/*.mp3', shell=True)
+print subprocess.call ('sudo rm *.mp3', shell=True)
 #print subprocess.call ('sudo rm /home/pi/Scripts/Weather/New_Version/*.pyc', shell=True)
 #Run Get weather bash script
 #os.system("bash /home/pi/Scripts/Weather/Get_weather.sh")
