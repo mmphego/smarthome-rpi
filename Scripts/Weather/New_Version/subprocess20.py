@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 __author__ = "Mpho Mphego"
-__version__ = "$Revision: 1.1 $"
+__version__ = "$Revision: 1.2 $"
 __description__ = "Voice enabled Smart Alarm with weather, news and coffee notifier"
 __date__ = "$Date: 2015/01/31 14:55 $"
 __copyright__ = "Copyright (c) 2015 Mpho Mphego"
@@ -26,7 +26,7 @@ coffeemaker = 4 #GPIO0
 count = 1
 
 # end
-end = ' Thats all for now.  Have a nice day.  '
+end = ' Thats all for now. Have a nice day. Good bye!'
 
 """
 GPIO.setwarnings(False)
