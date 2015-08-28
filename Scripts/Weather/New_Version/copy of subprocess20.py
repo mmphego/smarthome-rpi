@@ -38,16 +38,16 @@ time.sleep(0.1)
 
 # Turn all of the parts into a single string
 words = (gmt + name + day + wtr + frc + news + end)
-
 # strip any quotation marks
 words = words.replace('"', '').strip().split('. ')
 
 try:
     for i,line in enumerate(words):
         tts = gTTS(text=line, lang='en')
-        tts.save('.{}.mp3'.format(i))
-# Play the mp3s returned
-    print subprocess.call ('mpg123 -h 10 -d 11 *.mp3', shell=True)
+        tts.save('{}.mp3'.format(i))
+    # Play the mp3s returned
+    [subprocess.call ('mpg123 {}.mp3'.format(mp3_file), shell=True)
+                        for mp3_file in range(i)]
 
 # festival is now called in case of error reaching Google
 except subprocess.CalledProcessError:
@@ -56,12 +56,12 @@ except subprocess.CalledProcessError:
 # Cleanup any mp3 files created in this directory.
 print 'cleaning up now'
 print subprocess.call ('sudo rm *.mp3', shell=True)
-#print subprocess.call ('sudo rm /home/pi/Scripts/Weather/New_Version/*.pyc', shell=True)
 #Run Get weather bash script
 #os.system("bash /home/pi/Scripts/Weather/Get_weather.sh")
-
+"""
 # Enabling GPIO for relay switch to turn on coffee maker
-#GPIO.output(coffeemaker, True)
+GPIO.output(coffeemaker, True)
 # Time can be dependent on the make and model of the coffee maker.
 time.sleep(600)
-#GPIO.output(coffeemaker, False)
+GPIO.output(coffeemaker, False)
+"""
