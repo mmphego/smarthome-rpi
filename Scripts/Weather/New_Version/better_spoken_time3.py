@@ -1,14 +1,12 @@
 #!/usr/bin/env python
 __author__ = "Mpho Mphego"
-__version__ = "$Revision: 1.1 $"
+__version__ = "$Revision: 1.2 $"
 __description__ = "Better Time"
-__date__ = "$Date: 2015/01/30 12:47$"
 __copyright__ = "Copyright (c) 2015 Mpho Mphego"
 __url__ = "mpho112.wordpress.com"
 __license__ = "Python"
 
 import time
-
 
 if int(time.strftime("%d")) == 1:  suffixed = 'first'
 if int(time.strftime("%d")) == 2:  suffixed = 'second'
