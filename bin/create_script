@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#BASH script to generate BASH scripts
+ 
+echo "What do you want to call your BASH script?"
+read RESPONSE
+ 
+echo "#!/bin/bash" | tee ~/tmp/$RESPONSE.sh
+echo "# Filename:$RESPONSE.sh" | tee -a ~/tmp/$RESPONSE.sh
+echo "# Script written by Mpho Mphego Marion Island SANSA Engineer 2014-2015" | tee -a ~/tmp/$RESPONSE.sh
+ 
+sudo chmod +x ~/tmp/$RESPONSE.sh
+ 
+sudo ln -s ~/tmp/$RESPONSE.sh ~/bin/$RESPONSE.sh
+sudo chmod +x ~/bin/$RESPONSE.sh
+ 
+gedit ~/tmp/$RESPONSE.sh

@@ -1,0 +1,20 @@
+#Install Whisper
+
+pushd whisper
+sudo python setup.py install
+popd
+Install Carbon
+
+#By default, everything will be installed in /opt/graphite
+
+#To install carbon:
+
+pushd carbon
+python setup.py install 
+popd
+
+#Configure Carbon
+
+pushd /opt/graphite/conf
+cp carbon.conf.example carbon.conf
+cp storage-schemas.conf.example storage-schemas.conf

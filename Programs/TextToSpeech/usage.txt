@@ -1,0 +1,2 @@
+sudo apt-get install libttspico-utils
+pico2wave -w look.wav "I can see you're really upset about this." && aplay look.wav

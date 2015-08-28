@@ -1,0 +1,1000 @@
+ 1003  sudo du -h share --max-depth=1 
+ 1004  ls /tmp/
+ 1005  du -h /tmp/
+ 1006  cd /var/www/
+ 1007  ls
+ 1008  sudo nano index.php
+ 1009  cat Scripts/Temp_Relay_Cont/Python/Rpi_I2C_Ard.py 
+ 1010  ls
+ 1011  df -h
+ 1012  crontab -l
+ 1013  ls
+ 1014  sudo reboot
+ 1015  crontab -l
+ 1016  cd /var/cache/apt/archives/
+ 1017  ls
+ 1018  rsync -truv * /home/pi/Apts/archives/
+ 1019  sudo rm -r *
+ 1020  df -h
+ 1021  ls
+ 1022  cd ..
+ 1023  ls
+ 1024  cd ..
+ 1025  ls
+ 1026  cd
+ 1027  ls
+ 1028  cd Desktop/
+ 1029  ls
+ 1030  cd ..
+ 1031  ls
+ 1032  uptime
+ 1033  ps aux
+ 1034  ps aux | grep py
+ 1035  ps aux | grep .py
+ 1036  ls
+ 1037  sudo mv  download.jpg logo.png /var/www/Images/
+ 1038  cd /var/www/
+ 1039  l
+ 1040  sudo chown www-data:www-data *
+ 1041  sudo chown -Rv www-data:www-data *
+ 1042  cd 
+ 1043  cd Scripts/Website/
+ 1044  ls
+ 1045  nano Webserver.py
+ 1046  ps aux | grep Webse
+ 1047  sudo kill 23623
+ 1048  nano Webserver.py
+ 1049  ls /etc/init.d/
+ 1050  ls /etc/init/
+ 1051  sudo /etc/init/webserverCrawler.conf restart
+ 1052  sudo service /etc/init/webserverCrawler.conf restart
+ 1053  sudo service /etc/init/webserverCrawler restart
+ 1054  sudo service webserverCrawler restart
+ 1055  nano Webserver.py
+ 1056  sudo service webserverCrawler restart
+ 1057  nano Webserver.py
+ 1058  sudo service webserverCrawler restart
+ 1059  nano Webserver.py
+ 1060  sudo service webserverCrawler restart
+ 1061  nano Webserver.py
+ 1062  sudo service webserverCrawler restart
+ 1063  nano Webserver.py
+ 1064  sudo service webserverCrawler restart
+ 1065  nano Webserver.py
+ 1066  sudo service webserverCrawler restart
+ 1067  upgrade
+ 1068  ls
+ 1069  sudo apt-get dist-upgrade
+ 1070  sudo apt-get -y  dist-upgrade
+ 1071  upgrade
+ 1072  update
+ 1073  upgrade
+ 1074  sudo apt-get -y  dist-upgrade
+ 1075  crontab -l
+ 1076  rsync -truv /var/cache/apt/archives/* /home/pi/Apts/archives/
+ 1077  df -h
+ 1078  sudo apt-get autoclean
+ 1079  sudo apt-get clean
+ 1080  df
+ 1081  nano Webserver.py
+ 1082  cd Scripts/Website/
+ 1083  nano Webserver.py
+ 1084  sudo service webserverCrawler restart
+ 1085  cd /var/www/Images/
+ 1086  ls
+ 1087  sudo wget -o download.jpg http://www.homeplusautomation.ca/images/home_plus_automation_logo_header.png
+ 1088  l
+ 1089  sudo wget -O download.jpg http://www.homeplusautomation.ca/images/home_plus_automation_logo_header.png
+ 1090  ls
+ 1091  sudo rm home_plus_automation_logo_header.png 
+ 1092  sudo wget -O download.jpg http://www.homeplusautomation.ca/images/home_plus_automation_logo_header.png
+ 1093  ls
+ 1094  screen
+ 1095  ls
+ 1096  cat test 
+ 1097  sudo rm test 
+ 1098  ls
+ 1099  sudo rm logo.png 
+ 1100  ls
+ 1101  cd ..
+ 1102  ls
+ 1103  ls /dev
+ 1104  install empathy
+ 1105  upgrade
+ 1106  ls
+ 1107  df -h
+ 1108  screen -x
+ 1109  ls
+ 1110  cd Logs/
+ 1111  ls
+ 1112  ls -lh
+ 1113  ls
+ 1114  cd
+ 1115  cd Scripts/
+ 1116  ls
+ 1117  cat ClosetDoorWarning/WaitClosetDoor.py 
+ 1118  cat PresenceDetector/
+ 1119  cat PresenceDetector/PresenceDetector.py
+ 1120  cat Smart_DoorBell/WaitDoorbell.py
+ 1121  cat Data_Logger/TempDataLog.py 
+ 1122  cd TextToSpeech/
+ 1123  ks
+ 1124  ls
+ 1125  cd ..
+ 1126  mv TextToSpeech ../Programs/
+ 1127  ls
+ 1128  ls VoiceControl/
+ 1129  ls VoiceControl/VoicePi/
+ 1130  cat VoiceControl/VoicePi/README 
+ 1131  l
+ 1132  nano /etc/sudoers
+ 1133  sudo nano /etc/sudoers
+ 1134  shutdown 
+ 1135  sudo nano /etc/sudoers
+ 1136  shutdown 
+ 1137  reboot
+ 1138  ls /run/initctl 
+ 1139  cat /run/initctl 
+ 1140  sudo cat /run/initctl 
+ 1141  uptime
+ 1142  ps aux | grep py
+ 1143  ps aux | grep Web
+ 1144  sudo reboot
+ 1145  cd Programs/
+ 1146  l
+ 1147  git clone https://github.com/jasperproject/jasper-client.git
+ 1148  cd Scripts/
+ 1149  cd Website/
+ 1150  ls
+ 1151  ps aux | grep Web
+ 1152  sudo service webserverCrawler restart
+ 1153  sudo service webserverCrawler status
+ 1154  sudo service webserverCrawler start
+ 1155  sudo nano /etc/init
+ 1156  sudo nano /etc/init/webserverCrawler.conf 
+ 1157  sudo su
+ 1158  service --status-all
+ 1159  ps aux | grep py
+ 1160  crontab -e
+ 1161  sudo service webserverCrawler restart
+ 1162  cd /etc/init
+ 1163  ls
+ 1164  ls /var/lib/
+ 1165  cd ../init.d/
+ 1166  ls
+ 1167  cat README 
+ 1168  l
+ 1169  cat sudo
+ 1170  ls
+ 1171  cat apache2 
+ 1172  ls
+ 1173  service 
+ 1174  service --full-restart
+ 1175  ls
+ 1176  man service
+ 1177  cd ..
+ 1178  cd init
+ 1179  unrecognized serviceks
+ 1180  ls
+ 1181  lh
+ 1182  ls -lh
+ 1183  cat rpiCrawler.conf 
+ 1184  cat udpCrawler.conf 
+ 1185  ps aux | grep UD
+ 1186  ps aux | grep UDP
+ 1187  ls
+ 1188  ps aux
+ 1189  ls
+ 1190  cat indoorTempCrawler.conf 
+ 1191  ps aux | grep roomTemp
+ 1192  ps aux | grep room
+ 1193  ps aux | grep sh
+ 1194  ls
+ 1195  nano cellDetect
+ 1196  nano cellDetect.conf 
+ 1197  sudo service indoorTempCrawler start
+ 1198  sudo service indoorTempCrawler stat
+ 1199  sudo service indoorTempCrawler start
+ 1200  sudo service indoorTempCrawler stop
+ 1201  sudo service indoorTempCrawler start
+ 1202  install upstart
+ 1203  cd
+ 1204  nano .bashrc
+ 1205  install upstart
+ 1206  . .bashrc
+ 1207  install upstart
+ 1208  man upstart
+ 1209  sudo service indoorTempCrawler start
+ 1210  sudo reboot
+ 1211  ps aux 
+ 1212  ps aux | grep py
+ 1213  cd Apts/
+ 1214  l
+ 1215  cat install_apts.txt 
+ 1216  sudo dpkg --get-selections > Installed_Applications.txt
+ 1217  cat Installed_Applications.txt 
+ 1218  cat Installed_Applications.txt | less
+ 1219  upgrade
+ 1220  ls
+ 1221  cd Scripts/Website/
+ 1222  l
+ 1223  cat Webserver.py
+ 1224  l
+ 1225  cd
+ 1226  l
+ 1227  ls lh Logs/
+ 1228  ls -lh Logs/
+ 1229  sudo apt-get install lirc -y
+ 1230  man lirc
+ 1231  man lircd
+ 1232  man lircmd
+ 1233  man lirccd
+ 1234  man lircrcd
+ 1235  cd Programs/
+ 1236  git clone https://github.com/jasperproject/jasper-client.git
+ 1237  ls
+ 1238  git clone https://github.com/jasperproject/jasper-client.git
+ 1239  lh
+ 1240  ls -lh
+ 1241  du -h --max-depth=1
+ 1242  git clone https://github.com/jasperproject/jasper-client.git
+ 1243  git pull https://github.com/jasperproject/jasper-client.git
+ 1244  cd jasper-client/
+ 1245  git pull https://github.com/jasperproject/jasper-client.git
+ 1246  l
+ 1247  cat jasper.py 
+ 1248  sudo nano /etc/modules 
+ 1249  You have to modify two files before you can start testing the receiver and IR LED. I modified these files based on a thread I found on the RaspberryPi forums. If you would like to read more about these changes please check out the LIRC GPIO driver for homebrew adapter thread. In particular, read through the posts by rudiratlos on page five, as he posts his configuration files.
+ 1250  sudo nano /etc/lirc/hardware.conf 
+ 1251  sudo nano /boot/config.txt
+ 1252  ls
+ 1253  cd Scripts/
+ 1254  ls
+ 1255  mkdir Lirc
+ 1256  cd Lirc/
+ 1257  ls
+ 1258  nano configurations
+ 1259  ls
+ 1260  cd ..
+ 1261  ls
+ 1262  ls -lh
+ 1263  rm 1
+ 1264  ls
+ 1265  ls -lh
+ 1266  cd Weather/
+ 1267  ls
+ 1268  cd New_Version/
+ 1269  L
+ 1270  l
+ 1271  cat subprocess20.py 
+ 1272  nano subprocess20.py 
+ 1273  man mpg123
+ 1274  echo " wad " | festival --tts
+ 1275  echo " Hello my name is  " | festival --tts
+ 1276  cd ../..
+ 1277  l
+ 1278  cd VoiceControl/
+ 1279  ls
+ 1280  ls VoicePi/
+ 1281  cat VoicePi/README 
+ 1282  ls
+ 1283  mkdir Google_tts_API
+ 1284  cd Google_tts_API/
+ 1285  ls
+ 1286  nano tts.py
+ 1287  chmod +x tts.py 
+ 1288  ls
+ 1289  python tts.py 
+ 1290  l
+ 1291  aplay data.mp3 
+ 1292  nano tts.py 
+ 1293  ls
+ 1294  git@github.com:hungtruong/Google-Translate-TTS.git
+ 1295  ssh git@github.com:hungtruong/Google-Translate-TTS.git
+ 1296  rsync -truv git@github.com:hungtruong/Google-Translate-TTS.git .
+ 1297  wget https://github.com/hungtruong/Google-Translate-TTS/archive/master.zip
+ 1298  ls
+ 1299  unzip master.zip 
+ 1300  ls
+ 1301  cd Google-Translate-TTS-master/
+ 1302  ls
+ 1303  cat __init__.py 
+ 1304  nano GoogleTTS.py 
+ 1305  python GoogleTTS.py 
+ 1306  python GoogleTTS.py -l ja -o konnichiwa_bitches.mp3 -s こんにちは
+ 1307  l
+ 1308  aplay konnichiwa_bitches.mp3 
+ 1309  mplayer konnichiwa_bitches.mp3 
+ 1310  mplayer out.mp3 
+ 1311  l
+ 1312  cd ..
+ 1313  l
+ 1314  mplayer data.mp3 
+ 1315  ls ../
+ 1316  ls ../../
+ 1317  ls ../../Weather/
+ 1318  ls ../../Smart_DoorBell/
+ 1319  aplay ../../Smart_DoorBell/DoorNotify.wav 
+ 1320  cat ../../Smart_DoorBell/DoorBellLogger.py 
+ 1321  ls
+ 1322  cd Google-Translate-TTS-master/
+ 1323  ls
+ 1324  python GoogleTTS.py -o konnichiwa_bitches.mp3 -s "Someone is ringing the doorbell. Go Check"
+ 1325  mplayer konnichiwa_bitches.mp3 
+ 1326  python GoogleTTS.py -o konnichiwa_bitches.mp3 -s "Someone is ringing the doorbell. Please Go Check"
+ 1327  mplayer konnichiwa_bitches.mp3 
+ 1328  cat ../../Smart_DoorBell/DoorBellLogger.py 
+ 1329  cat ../../../Smart_DoorBell/DoorBellLogger.py 
+ 1330  ls ../../../Smart_DoorBell/
+ 1331  python GoogleTTS.py -o DoorNotify.wav -s "Someone is ringing the doorbell. Please Go Check"
+ 1332  ls
+ 1333  aplay DoorNotify.wav 
+ 1334  mplayer DoorNotify.wav 
+ 1335  mpg12 DoorNotify.wav 
+ 1336  mpg123 DoorNotify.wav 
+ 1337  mv DoorNotify.wav ../../../Smart_DoorBell/
+ 1338  ls ../../../Smart_DoorBell/
+ 1339  mplayer ../../../Smart_DoorBell/DoorNotify.wav 
+ 1340  nano ../../../Smart_DoorBell/DoorBellLogger.py 
+ 1341  nano ../../../Smart_DoorBell/WaitDoorbell.py
+ 1342  cd ../../../Smart_DoorBell/
+ 1343  ls
+ 1344  mv DoorNotify.wav DoorNotify.mp3
+ 1345  cd -
+ 1346  ls
+ 1347  ls ../../../Smart_DoorBell/
+ 1348  ls ../../../
+ 1349  ls ../../../ClosetDoorWarning/
+ 1350  aplay ../../../ClosetDoorWarning/no_rain_warning.wav 
+ 1351  cat ../../../ClosetDoorWarning/WaitClosetDoor.py 
+ 1352  cat ../../../ClosetDoorWarning/weatherWarning.py 
+ 1353  history 
+ 1354  history | grep pico
+ 1355  l
+ 1356  rm *.mp3
+ 1357  ls
+ 1358  aplay ../../../ClosetDoorWarning/no_rain_warning.wav 
+ 1359  python GoogleTTS.py -o no_rain_warning.mp3 -s "The weather looks very good today." && mpg123 no_rain_warning.mp3
+ 1360  aplay ../../../ClosetDoorWarning/rain_warning.wav 
+ 1361  python GoogleTTS.py -o rain_warning.mp3 -s "It looks like it is going to rain today, you should carry an umbrella." && mpg123 rain_warning.mp3
+ 1362  mpg123 rain_warning.mp3 
+ 1363  python GoogleTTS.py -o rain_warning.mp3 -s "It looks like it is going to rain today. You should carry an umbrella." && mpg123 rain_warning.mp3
+ 1364  aplay ../../../ClosetDoorWarning/rain_warning2.wav 
+ 1365  python GoogleTTS.py -o light_rain_warning.mp3 -s "The is going to be light rain today. But it should clear out later." && mpg123 light_rain_warning.mp3
+ 1366  ls
+ 1367  mplayer light_rain_warning.mp3 
+ 1368  ls
+ 1369  aplay ../../../ClosetDoorWarning/rain_warning2.wav 
+ 1370  mv *.mp3 ../../../ClosetDoorWarning/
+ 1371  ls
+ 1372  cd ../../../ClosetDoorWarning/
+ 1373  ls
+ 1374  rm *.wav
+ 1375  ls
+ 1376  ls -lh
+ 1377  rm out.mp3 
+ 1378  ls
+ 1379  cat WaitClosetDoor.py 
+ 1380  ls
+ 1381  nano weatherWarning.py 
+ 1382  ls
+ 1383  cat WaitClosetDoor.py 
+ 1384  ls
+ 1385  mpg123 *.mp3
+ 1386  ls
+ 1387  mpg123 *.mp3 >> /dev/null
+ 1388  mpg123 *.mp3 >> /dev/null 2&>1
+ 1389  nano weatherWarning.py 
+ 1390  ls
+ 1391  cd -
+ 1392  ls
+ 1393  cd ..
+ 1394  ls
+ 1395  cd We
+ 1396  cd Weather/
+ 1397  ls
+ 1398  aplay noInternet.wav 
+ 1399  cd New_Version/
+ 1400  ls
+ 1401  nano get_url_weather9.py
+ 1402  python get_url_weather9.py
+ 1403  ls
+ 1404  nano get_url_weather9.py
+ 1405  ls ../
+ 1406  ls ../WeatherAlarm.py 
+ 1407  cat ../WeatherAlarm.py 
+ 1408  cat ../Get_weather.sh 
+ 1409  cat ../../Data_Logger/TempDataLog.py 
+ 1410  ls
+ 1411  nano get_url_weather9.py
+ 1412  python get_url_weather9.py
+ 1413  cat ~/test.txt 
+ 1414  nano get_url_weather9.py
+ 1415  cat ../../VoiceControl/Google_tts_API/tts.py 
+ 1416  nano get_url_weather9.py
+ 1417  python get_url_weather9.py
+ 1418  l
+ 1419  cat ~/test.txt 
+ 1420  nano get_url_weather9.py
+ 1421  cat ../../VoiceControl/Google_tts_API/tts.py 
+ 1422  nano get_url_weather9.py
+ 1423  python get_url_weather9.py
+ 1424  cat ~/test.txt 
+ 1425  nano get_url_weather9.py
+ 1426  python get_url_weather9.py
+ 1427  cat ~/test.txt 
+ 1428  nano get_url_weather9.py
+ 1429  cat ../../ClosetDoorWarning/weatherWarning.py 
+ 1430  nano get_url_weather9.py
+ 1431  ls
+ 1432  cd ..
+ 1433  ls
+ 1434  nano Get_weather.sh 
+ 1435  ls
+ 1436  cat WeatherAlarm.py 
+ 1437  ls
+ 1438  ls pkg/
+ 1439  ls New_Version/
+ 1440  ls
+ 1441  cd New_Version/
+ 1442  ls
+ 1443  nano subprocess20.py 
+ 1444  ls ../Get_weather.sh 
+ 1445  cat ../Get_weather.sh 
+ 1446  bash /home/pi/Scripts/Weather/Get_weather.sh 
+ 1447  nano /home/pi/Scripts/Weather/Get_weather.sh 
+ 1448  nano /home/pi/Scripts/Weather/.weather_after.txt 
+ 1449  nano subprocess20.py 
+ 1450  ls
+ 1451  nano subprocess20.py 
+ 1452  cd ../../
+ 1453  ls
+ 1454  cd ClosetDoorWarning/
+ 1455  ;s
+ 1456  ls
+ 1457  cat WaitClosetDoor.py 
+ 1458  cat weatherWarning.py 
+ 1459  ls
+ 1460  ./weatherWarning.py 
+ 1461  nano weatherWarning.py 
+ 1462  ./weatherWarning.py 
+ 1463  nano weatherWarning.py 
+ 1464  ./weatherWarning.py 
+ 1465  nano weatherWarning.py 
+ 1466  ./weatherWarning.py 
+ 1467  ls
+ 1468  cd ..
+ 1469  ls
+ 1470  cd Weather/
+ 1471  ls
+ 1472  cd New_Version/
+ 1473  ls
+ 1474  ./subprocess20.py 
+ 1475  nano subprocess20.py 
+ 1476  ./subprocess20.py 
+ 1477  /usr/bin/python
+ 1478  ./subprocess20.py 
+ 1479  nano subprocess20.py 
+ 1480  cat ../.weather.py 
+ 1481  nano subprocess20.py 
+ 1482  ./subprocess20.py 
+ 1483  python subprocess20.py 
+ 1484  crontab -l
+ 1485  sudo nano /etc/fstab
+ 1486  sudo python subprocess20.py 
+ 1487  ls /mnt/ram/
+ 1488  ls -lha /mnt/ram/
+ 1489  df -h
+ 1490  df 
+ 1491  ls
+ 1492  cat get_url_weather9.py
+ 1493  cat subprocess20.py 
+ 1494  bash /home/pi/Scripts/Weather/Get_weather.sh
+ 1495  nano subprocess20.py 
+ 1496  l
+ 1497  nano subprocess20.py 
+ 1498  l
+ 1499  crontab -e
+ 1500  cat /home/pi/Scripts/Weather/WeatherAlarm.py
+ 1501  crontab -e
+ 1502  l
+ 1503  ls -lh
+ 1504  rm *.pyc
+ 1505  nano subprocess20.py 
+ 1506  pwd
+ 1507  nano subprocess20.py 
+ 1508  ls
+ 1509  crontab -l
+ 1510  sudo python /home/pi/Scripts/Weather/New_Version/subprocess20.py
+ 1511  ls
+ 1512  nano subprocess20.py 
+ 1513  l
+ 1514  nano get_url_news8.py 
+ 1515  nano better_spoken_time3.py 
+ 1516  nano get_url_weather9.py 
+ 1517  ls
+ 1518  nano subprocess20.py 
+ 1519  sudo python /home/pi/Scripts/Weather/New_Version/subprocess20.py
+ 1520  nano subprocess20.py 
+ 1521  nano ~/test.py
+ 1522  nano subprocess20.py 
+ 1523  nano ~/test.py
+ 1524  nano subprocess20.py 
+ 1525  nano ~/test.py
+ 1526  python ~/test.py
+ 1527  nano ~/test.py
+ 1528  cd
+ 1529  nano test.py
+ 1530  python ~/test.py
+ 1531  nano test.py
+ 1532  python ~/test.py
+ 1533  nano test.py
+ 1534  python ~/test.py
+ 1535  nano test.py
+ 1536  python ~/test.py
+ 1537  nano test.py
+ 1538  python ~/test.py
+ 1539  nano test.py
+ 1540  python ~/test.py
+ 1541  nano test.py
+ 1542  python ~/test.py
+ 1543  nano test.py
+ 1544  python ~/test.py
+ 1545  cd -
+ 1546  l
+ 1547  nano subprocess20.py 
+ 1548  sudo python subprocess20.py 
+ 1549  nano subprocess20.py 
+ 1550  sudo python subprocess20.py 
+ 1551  nano get_url_weather9.py 
+ 1552  ls
+ 1553  nano get_url_news8.py
+ 1554  nano better_spoken_time3.py
+ 1555  ls
+ 1556  sudo python subprocess20.py 
+ 1557  nano subprocess20.py 
+ 1558  sudo python subprocess20.py 
+ 1559  ls
+ 1560  crontab -l
+ 1561  nano subprocess20.py 
+ 1562  echo date
+ 1563  echo `date`
+ 1564  echo `date` && sudo python subprocess20.py && echo `date`
+ 1565  ls
+ 1566  cat Link.txt 
+ 1567  cd 
+ 1568  ls
+ 1569  rm test.*
+ 1570  ls
+ 1571  ls bin/
+ 1572  ls
+ 1573  cd /usr/bin/
+ 1574  ls
+ 1575  ls ~/bin
+ 1576  mv ~/bin/* .
+ 1577  ls home_auto 
+ 1578  ls
+ 1579  cd 
+ 1580  ls
+ 1581  rm -r bin/
+ 1582  ls
+ 1583  home_auto 1
+ 1584  home_auto 11
+ 1585  home_auto 1
+ 1586  ls
+ 1587  cd Logs/
+ 1588  ls
+ 1589  cat indoorTemp.txt 
+ 1590  cat Temp_Data_Log.txt 
+ 1591  ls
+ 1592  rm indoorTemp.txt 
+ 1593  sudo rm indoorTemp.txt 
+ 1594  ls
+ 1595  ;s
+ 1596  ls
+ 1597  crontab -l
+ 1598  crontab -e
+ 1599  sudo service webserverCrawler restart
+ 1600  l
+ 1601  cat indoorTemp.txt 
+ 1602  cd
+ 1603  l
+ 1604  l Desktop/
+ 1605  l
+ 1606  l Programs/
+ 1607  l
+ 1608  crontab -e
+ 1609  crontab -l
+ 1610  ls
+ 1611  l
+ 1612  ls /etc/init/
+ 1613  cat /etc/init/cellDetect.conf 
+ 1614  cat /home/pi/Scripts/PresenceDetector/PresenceDetector.py
+ 1615  nano /home/pi/Scripts/PresenceDetector/PresenceDetector.py
+ 1616  python /home/pi/Scripts/PresenceDetector/PresenceDetector.py
+ 1617  sudo nano /etc/init/cellDetect.conf 
+ 1618  cat /home/pi/Scripts/PresenceDetector/PresenceDetector.py
+ 1619  ls
+ 1620  crontab -e
+ 1621  sudo service cellDetect status
+ 1622  ls
+ 1623  sudo service cellDetect status
+ 1624  ls
+ 1625  cat /home/pi/Scripts/PresenceDetector/PresenceDetector.py
+ 1626  l
+ 1627  cd Scripts/
+ 1628  l
+ 1629  cd /var/www/Images/
+ 1630  ls
+ 1631  sudo mv download.jpg download.jpg.1
+ 1632  wget -O download.jpg http://offliberty.com/img/wait.gif
+ 1633  wget -O download.gif http://offliberty.com/img/wait.gif
+ 1634  sudo cp download.gif download.jpg
+ 1635  ls
+ 1636  ls -lh
+ 1637  sudo chown -Rv www-data:www-data *
+ 1638  ls
+ 1639  ls -lh
+ 1640  ls
+ 1641  sudo mv download.jpg.1  download.jpg
+ 1642  ls
+ 1643  uptime
+ 1644  ps aux 
+ 1645  install arduino
+ 1646  sudo apt-get install dropbox
+ 1647  search dropbox
+ 1648  sudo apt-cache search dropbox
+ 1649  cd Scripts/Dropbox/Dropbox-Uploader/
+ 1650  ls
+ 1651  nano app-keys
+ 1652  ls
+ 1653  cd Scripts/
+ 1654  cd Weather/
+ 1655  ls
+ 1656  cd New_Version/
+ 1657  ls
+ 1658  nano subprocess20.py 
+ 1659  nano ../../Smart_DoorBell/WaitDoorbell.py
+ 1660  nano subprocess20.py 
+ 1661  nano ../../Smart_DoorBell/WaitDoorbell.py
+ 1662  nano subprocess20.py 
+ 1663  ls
+ 1664  nano get_url_
+ 1665  nano get_url_weather9.py 
+ 1666  nano better_spoken_time3.py 
+ 1667  ./better_spoken_time3.py 
+ 1668  nano better_spoken_time3.py 
+ 1669  cat subprocess20.py 
+ 1670  nano better_spoken_time3.py 
+ 1671  ./better_spoken_time3.py 
+ 1672  nano better_spoken_time3.py 
+ 1673  python better_spoken_time3.py 
+ 1674  nano better_spoken_time3.py 
+ 1675  python better_spoken_time3.py 
+ 1676  nano better_spoken_time3.py 
+ 1677  python better_spoken_time3.py 
+ 1678  nano better_spoken_time3.py 
+ 1679  ls
+ 1680  python better_spoken_time3.py 
+ 1681  nano better_spoken_time3.py 
+ 1682  python better_spoken_time3.py 
+ 1683  nano better_spoken_time3.py 
+ 1684  python better_spoken_time3.py 
+ 1685  cd ../../VoiceControl/Google_tts_API/
+ 1686  ls
+ 1687  nano tts.py 
+ 1688  python tts.py 
+ 1689  l
+ 1690  mplayer data.mp3 
+ 1691  nano tts.py 
+ 1692  python tts.py 
+ 1693  mplayer data.mp3 
+ 1694  nano tts.py 
+ 1695  mplayer data.mp3 
+ 1696  l
+ 1697  cd Google-Translate-TTS-master/
+ 1698  l
+ 1699  ./GoogleTTS.py 
+ 1700  ./GoogleTTS.py -o test.mp3 -s "Good afternoon , It is time to wake up, I am preparing coffee it should be ready in 10 minutes.  it's Saturday January the thirtyfirst, 02 03 PM."
+ 1701  ls
+ 1702  ls -lh
+ 1703  mplayer test.mp3 
+ 1704  cd -
+ 1705  ls
+ 1706  cd ..
+ 1707  ls
+ 1708  cd ../Weather/New_Version/
+ 1709  ls
+ 1710  nano subprocess20.py 
+ 1711  crontab -l
+ 1712  sudo python /home/pi/Scripts/Weather/New_Version/subprocess20.py
+ 1713  nano subprocess20.py 
+ 1714  sudo python /home/pi/Scripts/Weather/New_Version/subprocess20.py
+ 1715  nano subprocess20.py 
+ 1716  nano get_url_news8.py 
+ 1717  python get_url_news8.py 
+ 1718  nano get_url_news8.py 
+ 1719  python get_url_news8.py 
+ 1720  nano get_url_news8.py 
+ 1721  python get_url_news8.py 
+ 1722  nano get_url_news8.py 
+ 1723  nano subprocess20.py 
+ 1724  nano get_url_news8.py 
+ 1725  ls
+ 1726  nano better_spoken_time3.py 
+ 1727  nano get_url_weather9.py 
+ 1728  python get_url_weather9.py 
+ 1729  nano get_url_weather9.py 
+ 1730  fg
+ 1731  python get_url_weather9.py 
+ 1732  nano get_url_weather9.py 
+ 1733  python get_url_weather9.py 
+ 1734  nano get_url_weather9.py 
+ 1735  python get_url_weather9.py 
+ 1736  nano get_url_weather9.py 
+ 1737  python get_url_weather9.py 
+ 1738  nano get_url_weather9.py 
+ 1739  python get_url_weather9.py 
+ 1740  nano get_url_weather9.py 
+ 1741  python get_url_weather9.py 
+ 1742  nano get_url_weather9.py 
+ 1743  python get_url_weather9.py 
+ 1744  sudo python /home/pi/Scripts/Weather/New_Version/subprocess20.py
+ 1745  nano get_url_weather9.py 
+ 1746  l
+ 1747  cat Link.txt 
+ 1748  cd ..
+ 1749  ls
+ 1750  cd ..
+ 1751  ls
+ 1752  sudo apt-get install git-core
+ 1753  ls
+ 1754  mkdir Dropbox
+ 1755  cd Dropbox/
+ 1756  ls
+ 1757  git clone https://github.com/andreafabrizi/Dropbox-Uploader.git
+ 1758  cd Dropbox-Uploader/
+ 1759  ls
+ 1760  ./dropbox_uploader.sh 
+ 1761  nano dropbox_uploader.sh 
+ 1762  ./dropbox_uploader.sh 
+ 1763  nano dropbox_uploader.sh 
+ 1764  ./dropbox_uploader.sh 
+ 1765  ls
+ 1766  upgrade 
+ 1767  ls
+ 1768  uptime
+ 1769  top
+ 1770  ps aux | grep 2722
+ 1771  ls
+ 1772  uptime
+ 1773  shutdown 
+ 1774  ls
+ 1775  uptime
+ 1776  ls
+ 1777  cd Scripts/
+ 1778  ls
+ 1779  cd PresenceDetector/
+ 1780  ls
+ 1781  crontab -l
+ 1782  cat /etc/init/cellDetect.conf 
+ 1783  nano /home/pi/Scripts/PresenceDetector/PresenceDetector.py
+ 1784  cd ../VoiceControl/Google_tts_API/
+ 1785  ls
+ 1786  cd Google-Translate-TTS-master/
+ 1787  ls
+ 1788  ./GoogleTTS.py -o test.mp3 -s "Good afternoon , It is time to wake up, I am preparing coffee it should be ready in 10 minutes.  it's Saturday January the thirtyfirst, 02 03 PM."
+ 1789  ./GoogleTTS.py -o test.mp3 -s "Welcome home. I hope you had a good day at work."
+ 1790  mv test.mp3 Welcome_Home.mp3
+ 1791  mv Welcome_Home.mp3 ../../../PresenceDetector/
+ 1792  cd ../../../PresenceDetector/
+ 1793  ls
+ 1794  mpg123 Welcome_Home.mp3 
+ 1795  ls
+ 1796  nano PresenceDetector.py 
+ 1797  cat PresenceDetectorCheck.py 
+ 1798  cd
+ 1799  ls
+ 1800  shutdown 
+ 1801  ls
+ 1802  screen -x
+ 1803  upgrade 
+ 1804  shutdown 
+ 1805  ls
+ 1806  uptime
+ 1807  crontab -l
+ 1808  crontab -e
+ 1809  ls
+ 1810  upgrade 
+ 1811  update
+ 1812  upgrade 
+ 1813  ls
+ 1814  cd Scripts/
+ 1815  sudo nano /etc/init/webserverCrawler.conf 
+ 1816  cd
+ 1817  cd -
+ 1818  cd We
+ 1819  cd Website/
+ 1820  ls
+ 1821  cd ..
+ 1822  ls
+ 1823  cat Smart_DoorBell/WaitDoorbell.py
+ 1824  ls
+ 1825  uptime
+ 1826  sudo reboot
+ 1827  ls
+ 1828  cd
+ 1829  ls
+ 1830  l
+ 1831  ipython
+ 1832  update && upgrade 
+ 1833  sudo apt-get -y  dist-upgrade
+ 1834  screen -x
+ 1835  screen 
+ 1836  ls
+ 1837  ls Scripts/
+ 1838  uptime
+ 1839  ps aux | grep py
+ 1840  hostname
+ 1841  ip add
+ 1842  cd Scripts/
+ 1843  ls
+ 1844  search 
+ 1845  nano ~/.bash
+ 1846  nano ~/.bashrc
+ 1847  . ~/.bashrc
+ 1848  nano ~/.bashrc
+ 1849  . ~/.bashrc
+ 1850  search avahi
+ 1851  sudo apt-cache search avahi
+ 1852  install avahi-*
+ 1853  install avahi
+ 1854  install avahi-daemon
+ 1855  install pico
+ 1856  search pico
+ 1857  nano ~/.bashrc
+ 1858  . ~/.bashrc
+ 1859  search pico
+ 1860  search avahi
+ 1861  install avahi-dnsconfd avahi-discover
+ 1862  sudo nano /etc/init/webserverCrawler.conf 
+ 1863  nano /home/pi/Scripts/Website/Webserver.py 
+ 1864  sudo reboot
+ 1865  ip add
+ 1866  sudo nano /var/www/index.php
+ 1867  shutdown 
+ 1868  ipython
+ 1869  cat /etc/resolv.conf 
+ 1870  grep search /etc/resolv.conf 
+ 1871  grep search /etc/resolv.conf | cut -f 2 -d ""
+ 1872  grep search /etc/resolv.conf | cut -f 3 -d ""
+ 1873  grep search /etc/resolv.conf | cut -f 3 -d " "
+ 1874  grep search /etc/resolv.conf | cut -f 2 -d " "
+ 1875  echo hostname ;grep search /etc/resolv.conf | cut -f 2 -d " "
+ 1876  echo $hostname ;grep search /etc/resolv.conf | cut -f 2 -d " "
+ 1877  hostname ;grep search /etc/resolv.conf | cut -f 2 -d " "
+ 1878  echo "`hostname`.`grep search /etc/resolv.conf | cut -f 2 -d " "`"
+ 1879  cat /etc/resolv.conf
+ 1880  echo "`hostname`.`grep search /etc/resolv.conf | cut -f 2 -d " "`"
+ 1881  cd Scripts/
+ 1882  cd Website/
+ 1883  ls
+ 1884  nano Webserver.py
+ 1885  ipython
+ 1886  nano Webserver.py
+ 1887  ip add
+ 1888  ipython Webserver.py
+ 1889  ip add
+ 1890  ipython Webserver.py
+ 1891  crontab  -l
+ 1892  cd /var/www/Images/ ; bash get_new_images
+ 1893  ls
+ 1894  ls -lh
+ 1895  sudo chmod 755 weather.png 
+ 1896  cd /var/www/Images/ ; bash get_new_images
+ 1897  sudo chown -R pi:pi ../Images/
+ 1898  cd /var/www/Images/ ; bash get_new_images
+ 1899  sudo chown -R www-data:www-data ../Images/
+ 1900  cd /var/www/Images/ ; bash get_new_images
+ 1901  sudo chown -R pi:pi ../Images/
+ 1902  cd /var/www/Images/ ; bash get_new_images
+ 1903  nano get_new_images 
+ 1904  cd /var/www/Images/ ; bash get_new_images
+ 1905  crontab -l
+ 1906  sudo service webserverCrawler restart
+ 1907  install upstart
+ 1908  sudo service webserverCrawler restart
+ 1909  sudo reboot
+ 1910  crontab -l
+ 1911  sudo service webserverCrawler restart
+ 1912  cd /var/
+ 1913  ls
+ 1914  cd www/
+ 1915  l
+ 1916  ls -lh
+ 1917  sudo chown -R pi:pi ../Images/
+ 1918  sudo chown -R pi:pi Images/
+ 1919  sudo chown -R www-data:www-data Images/
+ 1920  sudo service webserverCrawler restart
+ 1921  top
+ 1922  search graphite
+ 1923  sudo dpkg --get-selections 
+ 1924  sudo dpkg --get-selections | grep grap
+ 1925  sudo dpkg --get-selections | grep carb
+ 1926  install graphite-carbon
+ 1927  update &&install graphite-carbon
+ 1928  ip add
+ 1929  ping www.google.com
+ 1930  ip add
+ 1931  hostname
+ 1932  ping www.google.com
+ 1933  cd
+ 1934  cat /etc/resolv.conf 
+ 1935  sudo reboot
+ 1936  ping www.google.com
+ 1937  sudo nano /etc/network/interfaces
+ 1938  cat /etc/resolv.conf
+ 1939  sudo nano  /etc/resolv.conf
+ 1940  ping www.google.com
+ 1941  update &&install graphite-carbon
+ 1942  actual_z_bls
+ 1943  sudo dpkg --get-selections | grep gra
+ 1944  sudo dpkg --get-selections | grep car
+ 1945  ls
+ 1946  cd Apts/
+ 1947  ls
+ 1948  cd Graphite/
+ 1949  ls
+ 1950  cat carbon_init 
+ 1951  /etc/init.d/carbon start
+ 1952  sudo /etc/init.d/carbon status
+ 1953  sudo /etc/init.d/carbon start
+ 1954  ls /etc/init.d/carbon
+ 1955  cd ..
+ 1956  cd -
+ 1957  ls
+ 1958  cat install
+ 1959  cat installer 
+ 1960  ./install
+ 1961  ./installer 
+ 1962  git pull https://github.com/graphite-project/whisper.git
+ 1963  git pull git@github.com:graphite-project/whisper.git
+ 1964  ls
+ 1965  ls -a
+ 1966  git clone git@github.com:graphite-project/whisper.git
+ 1967  rm -r whisper/
+ 1968  cd whisper/
+ 1969  la
+ 1970  git pull
+ 1971  sudo !
+ 1972  sudo sudo !
+ 1973  sudo git pull
+ 1974  cd ..
+ 1975  cd carbon/
+ 1976  sudo git pull
+ 1977  cd ../
+ 1978  ls
+ 1979  cd graphite-web/
+ 1980  sudo git pull
+ 1981  ls
+ 1982  ./check-dependencies.py 
+ 1983  cd ..
+ 1984  ls
+ 1985  ls 1492384/
+ 1986  ls
+ 1987  cat configer 
+ 1988  sudo bash configer 
+ 1989  ls
+ 1990  cd graphite-web/
+ 1991  ls
+ 1992  sudo python setup.py install
+ 1993  ls
+ 1994  cd ../cas
+ 1995  cd ../carbon/'
+ 1996  cd ../carbon/
+ 1997  sudo python setup.py install
+ 1998  cd ../whisper/
+ 1999  sudo python setup.py install
+ 2000  top
+ 2001  history 
+ 2002  history > history.txt

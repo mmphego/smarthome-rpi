@@ -1,0 +1,5 @@
+Temperature: 16 C
+Relative Humidity: 93%
+Wind: from the NW (320 degrees) at 5 KPH
+Weather: light rain showers; Cumulonimbus clouds observed
+Sky conditions: mostly cloudy

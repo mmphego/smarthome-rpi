@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=OCR Resources
+Exec=sensible-browser http://www.ocr.org.uk/qualifications/by-subject/ict/raspberry-pi/
+Icon=/home/pi/ocr_pi.png
+Terminal=false
+Type=Application
+Categories=Application;Education;
+StartupNotify=true

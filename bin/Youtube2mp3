@@ -1,0 +1,6 @@
+#!/bin/bash
+# Filename:Youtube2mp3.sh
+# Script written by Mpho Mphego Marion Island SANSA Engineer 2014-2015
+echo "Enter youtube URL, replace https:// with http://"
+read URL
+youtube-dl --extract-audio --audio-format mp3 $URL

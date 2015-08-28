@@ -1,0 +1,43 @@
+sudo su
+apt-get install postfix mailutils libsasl2-2 ca-certificates libsasl2-modules
+
+If you do not have postfix installed before, postfix configuration wizard will ask you some questions. Just select your server as Internet Site and for FQDN use something like mail.example.com
+
+Then open your postfix config file:
+nano /etc/postfix/main.cf
+
+and add the following lines and the end of it(ctrl+shift+c and ctrl+shift+v):
+
+relayhost = [smtp.gmail.com]:587
+smtp_sasl_auth_enable = yes
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_sasl_security_options = noanonymous
+smtp_tls_CAfile = /etc/postfix/cacert.pem
+smtp_use_tls = yes
+
+create file and add username and password
+
+nano /etc/postfix/sasl_passwd
+
+add this line and edit
+
+[smtp.gmail.com]:587    USERNAME@gmail.com:PASSWORD
+
+Fix permission and update postfix config to use sasl_passwd file:
+chmod 400 /etc/postfix/sasl_passwd
+postmap /etc/postfix/sasl_passwd
+
+Next, validate certificates to avoid running into error. Just run following command:
+cat /etc/ssl/certs/Thawte_Premium_Server_CA.pem | sudo tee -a /etc/postfix/cacert.pem
+
+Almost there,now reload postfix config for changes to take effect:
+ /etc/init.d/postfix reload
+
+
+Testing
+Checking if mails are sent via Gmail SMTP server
+If you have configured everything correctly, following command should generate a test mail from your server to your mailbox.
+
+echo "Test mail from `id -nu`@`hostname`" | mail -s "Postfix Test Success" xxx@gmail.com
+Make sure the 2-factor authentication is Disabled on Gmail.
+ 
