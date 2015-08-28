@@ -1,1 +1,2 @@
-# Home-Auto-Pi
+HomeAutoPi
+# RPi_Home_Directory

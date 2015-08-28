@@ -1,0 +1,14 @@
+
+[Desktop Entry]
+Name=Pi Store
+Comment=Pi Store
+Exec=pistore-desktop
+Icon=/usr/share/indiecity/pistore/clienticon.xpm
+Terminal=false
+MultipleArgs=false
+Type=Application
+Categories=Application;Other;
+StartupNotify=true
+MimeType=x-scheme-handler/indiecity;
+
+

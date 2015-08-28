@@ -1,0 +1,123 @@
+#!/bin/bash
+# -*- coding: utf-8 -*-
+#
+#  gitrep-create
+#  
+#  The purpose of this script is to generate Github repository via cli instead of going to github.com
+#  Instructions for use: 
+#  1. Install github [debian: sudo apt-get install -y git]
+#  2. Fill in/Enter details
+#     git config --global user.name "Your Name"
+#     git config --global user.email "youremail@domain.com"
+#  3. Generate token on github.com > Settings > Applications > Generate token
+#
+#
+#  Copyright 2015 Mpho Mphego <mpho112@gmail.com>
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+#  
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#  
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+#  MA 02110-1301, USA.
+#  
+
+function progress(){
+echo -n "Please wait..."
+while true
+do
+  echo -n "."
+  sleep 1
+done
+
+}
+
+  #trap "killall background" EXIT
+  repo_name=$1
+  dir_name=`basename $(pwd)`
+  username=`git config github.user` 
+  token=`git config github.token` 
+  WGET="/usr/bin/wget"
+
+
+ if [ "$repo_name" = "" ]; then
+    echo "Repo name (hit enter to use '$dir_name')?"
+    read repo_name
+  fi
+ 
+  if [ "$repo_name" = "" ]; then
+    repo_name=$dir_name
+  fi
+
+  if [ "$username" = "" ]; then
+    echo "Could not find username, run 'git config --global github.user <username>'"
+    invalid_credentials=1
+  fi
+
+  echo Git Username: $username
+
+  if [ "$token" = "" ]; then
+    echo "Could not find token, run 'git config --global github.token <token>'"
+    invalid_credentials=1
+  fi
+
+  echo "Creating Github repository '$repo_name'"
+  progress &
+  myself=$!
+
+  $WGET -q --tries=10 --timeout=5 http://www.google.com -O /tmp/index.google &> /dev/null
+  if [ ! -s /tmp/index.google ];then
+    
+    echo "Check your Internet Connection."
+    kill $myself &> /dev/null
+
+  else
+    curl -u "$username:$token" https://api.github.com/user/repos -d '{"name":"'$repo_name'"}' > /dev/null 2>&1
+#  curl is a unix command (above works on mac too) that retrieves and interacts with URLs. It is commonly already installed.
+#  "-u" is a curl parameter that specifies the user name and password to use for server authentication.
+#  If you just give the user name (as shown in example above) curl will prompt for a password.
+#  If you do not want to have to type in the password, see githubs api documentation on Authentication
+#  "-d" is a curl parameter that allows you to send POST data with the request
+#  You are sending POST data in githubs defined API format
+#  "name" is the only POST data required; I like to also include "description"
+#  I found that it was good to quote all POST data with single quotes ' '
+    kill $myself &> /dev/null
+    echo -n "...done."
+    echo " "
+    echo "Enter 1 to Create new repository."
+    echo "Enter 2 to Push on existing repository."
+    read inputs
+    if [ "$inputs" == "1" ]; then
+      echo "Creating a new repository."
+      echo "#" $repo_name >> README.md
+      git init
+      echo " "
+      git add .
+      echo " "
+      git commit -m "first commit"
+      echo " "
+      git remote add origin git@github.com:$username/$repo_name.git
+      echo " "
+      git push -u origin master
+      echo ".......Done........"
+    fi
+  
+    if [ "$inputs" == "2" ]; then
+      echo "Pushing an existing repository"
+      git remote add origin git@github.com::$username/$repo_name.git
+      echo " "
+      git push -u origin master
+      echo ".......Done........"
+    fi
+    
+  fi 
+
+

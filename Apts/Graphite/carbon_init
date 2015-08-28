@@ -1,0 +1,6 @@
+wget https://raw.github.com/sigsegv42/rpi-ferment/master/scripts/carbon -O /etc/init.d/carbon
+chmod 755 /etc/init.d/carbon
+# set default runlevels for carbon service
+update-rc.d carbon defaults
+# start up carbon
+/etc/init.d/carbon start

@@ -1,0 +1,12 @@
+#!/bin/bash
+#__author__ = "Mpho Mphego"
+#__description__ = "Graphite system crawler: RPi CPU Usage"
+#__version__ = "$Revision: 1.2 $"
+#__date__ = "$Date: 2014/07/12 02:54 $"
+#__url__ = "mpho112.wordpress.com"
+#__copyright__ = "Copyright (c) 2014 Mpho Mphego"
+#__license__ = "Bash"
+
+sleep 30s
+screen -dmS sysCrawler bash -c 'python /home/pi/DataCrawler/sysCrawler.py; exec bash'
+echo "started sysCrawler at `date`" >> /home/pi/Logs/sysCrawler.txt 
