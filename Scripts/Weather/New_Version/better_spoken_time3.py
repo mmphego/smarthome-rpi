@@ -48,7 +48,7 @@ if int(time.strftime("%H")) >= 12:  period = 'afternoon'
 if int(time.strftime("%H")) >= 17:  period = 'evening'
 
 # reads out good morning + my name
-gmt = ('Good ' + period + ', ' + 'It is time to wake up, '
+gmt = ('Good ' + period + ', ' + 'It is time to wakeup, '
     'I am preparing coffee it should be ready in 10 minutes.')
 
 day = " it's " + now + ". "

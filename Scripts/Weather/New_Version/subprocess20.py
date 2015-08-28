@@ -36,10 +36,10 @@ time.sleep(0.1)
 """
 
 # Turn all of the parts into a single string
-words = (gmt + day + wtr + frc + news + end)
+words = str(gmt + day + wtr + frc + news + end)
 # strip any quotation marks
 words = words.replace('"', '').strip().split('. ')
-
+print words
 try:
     for i,line in enumerate(words):
         tts = gTTS(text=line, lang='en')
