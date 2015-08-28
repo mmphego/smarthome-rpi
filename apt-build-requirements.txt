@@ -1,0 +1,5 @@
+git
+python-dev
+mpg123
+python-feedparser 
+festival
