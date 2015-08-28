@@ -9,12 +9,16 @@ __license__ = "Python"
 
 import urllib2
 import json
-import decimal
 
-request = urllib2.Request('http://api.openweathermap.org/data/2.5/weather?id=964137&units=metric')
+# get Id from  http://openweathermap.org/find?q=
+pretoria = '964137'
+cape_town = '3369157'
+
+# Get weather
+request = urllib2.Request('http://api.openweathermap.org/data/2.5/weather?id={}&units=metric'.format(cape_town))
+# Get todays forecast
 request_2 = urllib2.Request('http://api.openweathermap.org/data/2.5/forecast/daily?id=964137&units=metric')
 
-#http://api.openweathermap.org/data/2.5/weather?id=964137&units=metric
 try:
     weather_api = urllib2.urlopen(request)
     response = weather_api.read()
