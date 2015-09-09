@@ -1,5 +1,5 @@
 gTTS
 pygame
 numpy
-nosetests
+nose
 hcsr04sensor
