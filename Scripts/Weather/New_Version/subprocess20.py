@@ -22,7 +22,6 @@ except ImportError:
     pip.main(['install', 'gTTS'])
 
 coffeemaker = 4 #GPIO0
-count = 1
 end = ' Thats all for now. Have a nice day. Good bye!'
 
 GPIO.setwarnings(False)
@@ -35,7 +34,7 @@ time.sleep(0.01)
 words = str(gmt + day + wtr + frc + news + end)
 # strip any quotation marks
 words = words.replace('"', '').strip().split('. ')
-print words
+
 try:
     for i,line in enumerate(words):
         tts = gTTS(text=line, lang='en')
