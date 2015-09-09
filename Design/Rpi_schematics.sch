@@ -125,4 +125,41 @@ Text GLabel 5150 2500 0    39   Output ~ 0
 Coffermaker
 Wire Wire Line
 	5150 2500 5500 2500
+$Comp
+L +3,3V #PWR?
+U 1 1 55F08746
+P 5400 2100
+F 0 "#PWR?" H 5400 2060 30  0001 C CNN
+F 1 "+3,3V" H 5400 2210 30  0000 C CNN
+F 2 "" H 5400 2100 60  0000 C CNN
+F 3 "" H 5400 2100 60  0000 C CNN
+	1    5400 2100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5400 2100 5400 2200
+Wire Wire Line
+	5400 2200 5500 2200
+$Comp
+L +5V #PWR?
+U 1 1 55F0876B
+P 6350 2100
+F 0 "#PWR?" H 6350 2190 20  0001 C CNN
+F 1 "+5V" H 6350 2190 30  0000 C CNN
+F 2 "" H 6350 2100 60  0000 C CNN
+F 3 "" H 6350 2100 60  0000 C CNN
+	1    6350 2100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6350 2100 6350 2300
+Wire Wire Line
+	6350 2200 6300 2200
+Wire Wire Line
+	6350 2300 6300 2300
+Connection ~ 6350 2200
+Text GLabel 6600 2700 2    39   Output ~ 0
+Closet Door Button
+Wire Wire Line
+	6600 2700 6300 2700
 $EndSCHEMATC
