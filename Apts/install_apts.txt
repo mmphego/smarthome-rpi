@@ -1,9 +1,0 @@
-sudo apt-get update 
-sudo apt-get -y upgrade
-# Installing all necesarry apps
-sudo apt-get install -y libboost-dev libboost-regex-dev youtube-dl axel curl xterm libcurl4-gnutls-dev mpg123 flac sox minicom apache2 python-matplotlib python-pip i2c-tools  python-smbus
-# Installing CLI emailing capabilities
-sudo apt-get install postfix mailutils libsasl2-2 ca-certificates libsasl2-modules
-# Apache and all relavent apps
-sudo apt-get install apache2 libapache2-mod-wsgi libapache2-mod-python memcached  python-dev python-cairo-dev python-ldap python-memcache python-pysqlite2 python-pip sqlite3 erlang-os-mon erlang-snmp rabbitmq-server python-setuptools httpd httpd-tools apache2-utils
-

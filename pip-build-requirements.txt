@@ -1,0 +1,5 @@
+gTTS
+pygame
+numpy
+nose
+hcsr04sensor
