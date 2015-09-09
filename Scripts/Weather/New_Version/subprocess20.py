@@ -10,7 +10,7 @@ __license__ = "Python"
 import subprocess
 import time
 import os
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import textwrap
 from better_spoken_time3 import gmt, day
 from get_url_weather9 import wtr, frc
@@ -23,17 +23,13 @@ except ImportError:
 
 coffeemaker = 4 #GPIO0
 count = 1
-
-# end
 end = ' Thats all for now. Have a nice day. Good bye!'
 
-"""
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
-time.sleep(0.1)
+time.sleep(0.01)
 GPIO.setup(coffeemaker, GPIO.OUT)
-time.sleep(0.1)
-"""
+time.sleep(0.01)
 
 # Turn all of the parts into a single string
 words = str(gmt + day + wtr + frc + news + end)
