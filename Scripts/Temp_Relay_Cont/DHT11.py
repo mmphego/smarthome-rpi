@@ -4,7 +4,7 @@ import time
 def bin2dec(string_num):
     return str(int(string_num, 2))
 
-data = []
+
 data_input = 26
 GPIO.setmode(GPIO.BCM)
 
@@ -15,9 +15,13 @@ GPIO.output(data_input,GPIO.LOW)
 time.sleep(0.02)
 
 GPIO.setup(data_input, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-
+data = []
 for i in range(0,500):
     data.append(GPIO.input(data_input))
+
+# test code
+import IPython;IPython.embed()
+data = [GPIO.input(data_input) for i in range(0, 500)]
 
 bit_count = 0
 tmp = 0
