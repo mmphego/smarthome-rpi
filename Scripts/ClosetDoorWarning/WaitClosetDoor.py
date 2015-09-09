@@ -34,11 +34,11 @@ def buttonHandler(channel):
     time.sleep(0.1)
     # GPIO.output(led, False)
 
-# when a falling edge is detected on port 1, regardless of whatever
-# else is happening in the program, the function buttonHandler will be run
-GPIO.add_event_detect(button, GPIO.RISING , callback=buttonHandler, bouncetime=5000)
 
 try:
+    # when a falling edge is detected on port 1, regardless of whatever
+    # else is happening in the program, the function buttonHandler will be run
+    GPIO.add_event_detect(button, GPIO.RISING , callback=buttonHandler, bouncetime=5000)
     print "Waiting for button to be pressed"
     while True:
         time.sleep(10)
