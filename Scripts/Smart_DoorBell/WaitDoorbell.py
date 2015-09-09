@@ -32,14 +32,14 @@ def buttonHandler(channel):
     GPIO.output(led, True)
     time.sleep(1)
     GPIO.output(led, False)
-    os.system("mpg123 /home/pi/Scripts/Smart_DoorBell/DoorNotify.mp3")			
+    os.system("mpg123 /home/pi/Scripts/Smart_DoorBell/DoorNotify.mp3")
     os.system("python /home/pi/Scripts/Smart_DoorBell/DoorBellLogger.py")
     time.sleep(1)
     GPIO.output(led, True)
     time.sleep(1)
     GPIO.output(led, False)
 
-# when a falling edge is detected on port 1, regardless of whatever 
+# when a falling edge is detected on port 1, regardless of whatever
 # else is happening in the program, the function buttonHandler will be run
 GPIO.add_event_detect(button, GPIO.FALLING, callback=buttonHandler, bouncetime=5000)
 
@@ -50,6 +50,6 @@ try:
         continue
 except:
     GPIO.cleanup()       # clean up GPIO on CTRL+C exit
-GPIO.cleanup()           # clean up GPIO on normal exit
-print "Clean up by resetting all GPIO"
-
+finally:
+    print "Clean up by resetting all GPIO"
+    GPIO.cleanup()           # clean up GPIO on normal exit
