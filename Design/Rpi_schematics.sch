@@ -29,16 +29,14 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
-LIBS:Raspberry_PI_B+
 LIBS:Rpi_schematics-cache
-LIBS:raspberry_pi
 EELAYER 27 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "1 aug 2015"
+Date "9 sep 2015"
 Rev ""
 Comp ""
 Comment1 ""
@@ -51,7 +49,7 @@ L CONN_4 P?
 U 1 1 55BCDDBB
 P 4350 4050
 F 0 "P?" V 4300 4050 50  0000 C CNN
-F 1 "CONN_4" V 4400 4050 50  0000 C CNN
+F 1 "DHT11" V 4400 4050 50  0000 C CNN
 F 2 "" H 4350 4050 60  0000 C CNN
 F 3 "" H 4350 4050 60  0000 C CNN
 	1    4350 4050
@@ -111,4 +109,20 @@ Wire Wire Line
 	5500 4100 5450 4100
 Wire Wire Line
 	5450 4100 5450 4200
+Wire Wire Line
+	4700 3900 4850 3900
+Wire Wire Line
+	4850 3900 4850 3750
+Text GLabel 5150 2700 0    39   Output ~ 0
+Door Bell LED
+Wire Wire Line
+	5500 2700 5150 2700
+Text GLabel 6600 3000 2    39   Output ~ 0
+Door Bell Button
+Wire Wire Line
+	6600 3000 6300 3000
+Text GLabel 5150 2500 0    39   Output ~ 0
+Coffermaker
+Wire Wire Line
+	5150 2500 5500 2500
 $EndSCHEMATC
