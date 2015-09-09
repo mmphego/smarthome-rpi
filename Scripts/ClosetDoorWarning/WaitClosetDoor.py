@@ -34,7 +34,6 @@ def buttonHandler(channel):
     time.sleep(0.1)
     # GPIO.output(led, False)
 
-
 try:
     # when a falling edge is detected on port 1, regardless of whatever
     # else is happening in the program, the function buttonHandler will be run
