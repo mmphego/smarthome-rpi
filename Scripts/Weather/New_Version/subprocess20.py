@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 __author__ = "Mpho Mphego"
-__version__ = "$Revision: 1.2 $"
+__version__ = "$Revision: 1.3 $"
 __description__ = "Voice enabled Smart Alarm with weather, news and coffee notifier"
 __date__ = "$Date: 2015/01/31 14:55 $"
 __copyright__ = "Copyright (c) 2015 Mpho Mphego"
@@ -50,10 +50,9 @@ except subprocess.CalledProcessError:
 
 # Cleanup any mp3 files created in this directory.
 subprocess.call ('sudo rm *.mp3', shell=True)
-"""
+
 # Enabling GPIO for relay switch to turn on coffee maker
 GPIO.output(coffeemaker, True)
 # Time can be dependent on the make and model of the coffee maker.
 time.sleep(600)
 GPIO.output(coffeemaker, False)
-"""
