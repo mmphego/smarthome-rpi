@@ -8,15 +8,14 @@ __url__ = "mpho112.wordpress.com"
 __license__ = "Python"
 
 try:
-    from pushover import init, Client
+    from pushover import init, Client, time
 except ImportError:
     import pip
     pip.main(['install', 'python-pushover'])
-import time
 
 # https://pushover.net
-
-init('aBvnvKsL6YSDxDdkDkQehkoGH4m6oo')
-client = Client('uUJ7mE5whHv8273LFF9c38niv1w8gj').send_message(
-    "Hello!, Someone is at the door at {}".format(time.strftime("%c")),
-        title="The is someone at the door.")
+def send_notification():
+    init('aBvnvKsL6YSDxDdkDkQehkoGH4m6oo')
+    client = Client('uUJ7mE5whHv8273LFF9c38niv1w8gj').send_message(
+        "Hello!, Someone is at the door at {}".format(time.ctime()),
+            title="The is someone at the door.")
