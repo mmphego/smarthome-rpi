@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 __author__ = "Mpho Mphego"
-__version__ = "$Revision: 1.2 $"
+__version__ = "$Revision: 1.3 $"
 __description__ = "Voice enabled Smart Alarm with weather, news and coffee notifier"
 __date__ = "$Date: 2015/01/31 14:55 $"
 __copyright__ = "Copyright (c) 2015 Mpho Mphego"
@@ -10,7 +10,7 @@ __license__ = "Python"
 import subprocess
 import time
 import os
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import textwrap
 from better_spoken_time3 import gmt, day
 from get_url_weather9 import wtr, frc
@@ -22,24 +22,19 @@ except ImportError:
     pip.main(['install', 'gTTS'])
 
 coffeemaker = 4 #GPIO0
-count = 1
-
-# end
 end = ' Thats all for now. Have a nice day. Good bye!'
 
-"""
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
-time.sleep(0.1)
+time.sleep(0.01)
 GPIO.setup(coffeemaker, GPIO.OUT)
-time.sleep(0.1)
-"""
+time.sleep(0.01)
 
 # Turn all of the parts into a single string
 words = str(gmt + day + wtr + frc + news + end)
 # strip any quotation marks
 words = words.replace('"', '').strip().split('. ')
-print words
+
 try:
     for i,line in enumerate(words):
         tts = gTTS(text=line, lang='en')
@@ -54,10 +49,9 @@ except subprocess.CalledProcessError:
 
 # Cleanup any mp3 files created in this directory.
 subprocess.call ('sudo rm *.mp3', shell=True)
-"""
+
 # Enabling GPIO for relay switch to turn on coffee maker
 GPIO.output(coffeemaker, True)
 # Time can be dependent on the make and model of the coffee maker.
 time.sleep(600)
 GPIO.output(coffeemaker, False)
-"""
