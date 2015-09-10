@@ -40,3 +40,4 @@ httpd
 httpd-tools
 apache2-utils
 webmin
+alsa-utils

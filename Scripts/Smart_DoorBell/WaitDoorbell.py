@@ -10,6 +10,8 @@ __license__ = "Python"
 import RPi.GPIO as GPIO
 import time
 import os
+from push_notification import send_notification
+from push_notification import send_sms
 
 led = 17 #GPIO0
 button = 24 #GPIO1
@@ -32,6 +34,8 @@ def buttonHandler(channel):
     GPIO.output(led, True)
     time.sleep(1)
     GPIO.output(led, False)
+    send_notification()
+    send_sms()
     os.system("mpg123 /home/pi/Scripts/Smart_DoorBell/DoorNotify.mp3")
     os.system("python /home/pi/Scripts/Smart_DoorBell/DoorBellLogger.py")
     time.sleep(1)
