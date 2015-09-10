@@ -1,7 +1,7 @@
 git
 python-dev
 mpg123
-python-feedparser 
+python-feedparser
 festival
 libboost-dev
 libboost-regex-dev
@@ -12,15 +12,15 @@ xterm
 libcurl4-gnutls-dev
 flac
 sox
-minicom       
+minicom
 apache2
-python-matplotlib 
-i2c-tools  
+python-matplotlib
+i2c-tools
 python-smbus
 postfix
 mailutils
 libsasl2-2
-ca-certificates 
+ca-certificates
 libsasl2-modules
 apache2
 libapache2-mod-wsgi
@@ -41,3 +41,5 @@ httpd-tools
 apache2-utils
 webmin
 alsa-utils
+libjpeg62-dev
+cmake
