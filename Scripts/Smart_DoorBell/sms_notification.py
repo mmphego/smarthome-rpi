@@ -10,5 +10,6 @@ def sendSMS(uname, pword, numbers, sender, message):
         + urllib.urlencode(params))
     return f.read()
 
-resp = sendSMS(username, password, '+27761431543',
-    'RPi', 'The was someone at the door on {}'.format(time.strftime("%c")))
+def send_sms():
+    resp = sendSMS(username, password, '+27761431543',
+        'RPi', 'The was someone at the door on {}'.format(time.strftime("%c")))
