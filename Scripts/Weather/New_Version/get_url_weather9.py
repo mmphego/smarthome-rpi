@@ -8,6 +8,8 @@ __license__ = "Python"
 
 import urllib2
 import json
+import time
+import csv
 
 try:
     # get current city using geo ip location
@@ -29,7 +31,7 @@ except Exception:
     request = urllib2.Request('http://api.openweathermap.org/data/2.5/'
         'weather?q=pretoria&units=metric')
     request_2 = urllib2.Request('http://api.openweathermap.org/data/2.5/'
-        'forecast/daily?q=pretoria&units=metric')
+        'forecast?lat=18.4&lon=-33.9833&cnt=1&units=metric')
 
 try:
     weather_api = urllib2.urlopen(request)
@@ -50,14 +52,13 @@ conditions = response_dictionary['weather'][0]['description']
 current = str(round(current, 1)).replace('.', ' point ')
 current_low = str(round(current_low, 1)).replace('.', ' point ')
 current_high = str(round(current_high, 1)).replace('.', ' point ')
-
 todays_low = response_2_dictionary['list'][0]['main']['temp_min']
 todays_high = response_2_dictionary['list'][0]['main']['temp_max']
 
-todays_low = str(round(todays_low, 1)).replace('.', ' point ')
-todays_high = str(round(todays_high, 1)).replace('.', ' point ')
+todays_low_str = str(round(todays_low, 1)).replace('.', ' point ')
+todays_high_str = str(round(todays_high, 1)).replace('.', ' point ')
 
 wtr = ('Weather conditions for today, ' + conditions +
     ' with a current temperature of ' + current)
-frc = (', a low of ' + todays_low + ' and a high of  '
-    + todays_high + ' .  ')
+frc = (', a low of ' + todays_low_str + ' and a high of  '
+    + todays_high_str + ' .  ')
