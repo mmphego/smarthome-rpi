@@ -8,24 +8,30 @@ __license__ = "Python"
 
 import urllib2
 import json
+import time
+import csv
 
 try:
     # get current city using geo ip location
     geoip = urllib2.Request('http://www.telize.com/geoip')
     geoip_read = urllib2.urlopen(geoip).read()
     geoip_loc = str(json.loads(geoip_read)['city'])
+    geoip_coord = (json.loads(geoip_read)['longitude'],
+        json.loads(geoip_read)['latitude'])
+
     # Get todays weather
     request = urllib2.Request('http://api.openweathermap.org/data/2.5/'
         'weather?q={}&units=metric'.format(geoip_loc))
     # Get forecast
     request_2 = urllib2.Request('http://api.openweathermap.org/data/2.5/'
-        'forecast/daily?q={}&units=metric'.format(geoip_loc))
+        'forecast?lat={}&lon={}&cnt=1&units=metric'
+            .format(geoip_coord[1], geoip_coord[0]))
 
 except Exception:
     request = urllib2.Request('http://api.openweathermap.org/data/2.5/'
         'weather?q=pretoria&units=metric')
     request_2 = urllib2.Request('http://api.openweathermap.org/data/2.5/'
-        'forecast/daily?q=pretoria&units=metric')
+        'forecast?lat=18.4&lon=-33.9833&cnt=1&units=metric')
 
 try:
     weather_api = urllib2.urlopen(request)
@@ -38,7 +44,6 @@ try:
 
 except Exception:
     wtr = 'Failed to connect to Open Weather Map.  '
-
 current = response_dictionary['main']['temp']
 current_low = response_dictionary['main']['temp_min']
 current_high = response_dictionary['main']['temp_max']
@@ -47,14 +52,13 @@ conditions = response_dictionary['weather'][0]['description']
 current = str(round(current, 1)).replace('.', ' point ')
 current_low = str(round(current_low, 1)).replace('.', ' point ')
 current_high = str(round(current_high, 1)).replace('.', ' point ')
+todays_low = response_2_dictionary['list'][0]['main']['temp_min']
+todays_high = response_2_dictionary['list'][0]['main']['temp_max']
 
-todays_low = response_2_dictionary['list'][0]['temp']['night']
-todays_high = response_2_dictionary['list'][0]['temp']['day']
-
-todays_low = str(round(todays_low, 1)).replace('.', ' point ')
-todays_high = str(round(todays_high, 1)).replace('.', ' point ')
+todays_low_str = str(round(todays_low, 1)).replace('.', ' point ')
+todays_high_str = str(round(todays_high, 1)).replace('.', ' point ')
 
 wtr = ('Weather conditions for today, ' + conditions +
     ' with a current temperature of ' + current)
-frc = (', a low of ' + todays_low + ' and a high of  '
-    + todays_high + ' .  ')
+frc = (', a low of ' + todays_low_str + ' and a high of  '
+    + todays_high_str + ' .  ')
