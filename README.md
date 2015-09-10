@@ -1,10 +1,15 @@
 HomeAutoPi
 # RPi_Home_Directory
+        
+======
 
-Installation:
-Do the normal
-    sudo python setup.py install
+## Usage
+* sudo python setup.py install
+* sudo apt-get install $(grep -vE "^\s*#" apt-build-requirements.txt | tr "\n" " ")
+* sudo pip insrall -r pip-build-requirements.txt
 
-Usage:
-        sudo apt-get install $(grep -vE "^\s*#" apt-build-requirements.txt | tr "\n" " ")
-        sudo pip insrall -r pip-build-requirements.txt
+## Contact
+#### Mpho
+* http://mpho112.wordpress.com
+* Twitter: [@mmphego](https://twitter.com/mmphego "mmphego on twitter")
+
