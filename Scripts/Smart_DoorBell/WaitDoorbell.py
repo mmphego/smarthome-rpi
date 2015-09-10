@@ -7,7 +7,7 @@ __copyright__ = "Copyright (c) 2015 Mpho Mphego"
 __url__ = "mpho112.wordpress.com"
 __license__ = "Python"
 
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import time
 import os
 from push_notification import send_notification
