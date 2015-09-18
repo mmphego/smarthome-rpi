@@ -2,6 +2,23 @@ def reading(sensor):
     import time
     import RPi.GPIO as GPIO
 
+   #I replaced both while GPIO.input(ECHO)==0: and ==1;
+
+#with
+
+#GPIO.wait_for_edge(GPIO_ECHO, GPIO.BOTH)
+#start = time.time()
+
+#GPIO.wait_for_edge(GPIO_ECHO, GPIO.BOTH)
+#stop = time.time()
+
+#and initialized with
+
+#GPIO.add_event_detect(GPIO_ECHO, GPIO.BOTH)
+
+#Reducing CPU load significantly.
+
+#I tried using GPIO.RISING the GPIO.FALLING, but some times the device triggers all on its own and can be in the middle of an echo reply.
     # Disable any warning message such as GPIO pins in use
     GPIO.setwarnings(False)
 
