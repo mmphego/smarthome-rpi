@@ -1,3 +1,7 @@
 gTTS
 pygame
 numpy
+python-pushover
+nose
+hcsr04sensor
+
