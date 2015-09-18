@@ -18,7 +18,7 @@ from email_notification import send_mail
 # create logger
 LOGGER = logging.getLogger('Doorbell Logger')
 LOGGER.setLevel(logging.DEBUG) # log all escalated at and above DEBUG
-# add a file handler
+
 fh = logging.FileHandler('Doorbell_Logger.csv')
 fh.setLevel(logging.DEBUG) # ensure all messages are logged to file
 
@@ -29,12 +29,6 @@ fh.setFormatter(frmt)
 # add the Handler to the logger
 LOGGER.addHandler(fh)
 
-# You can now start issuing logging statements in your code
-LOGGER.debug('a debug message')
-LOGGER.info('an info message')
-LOGGER.warn('A Checkout this warning.')
-LOGGER.error('An error writen here.')
-LOGGER.critical('Something very critical happened.')
 led = 17 #GPIO0
 button = 24 #GPIO1
 
@@ -50,6 +44,7 @@ GPIO.output(led, False)
 GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 def send_all_notifications():
+    LOGGER.info('Sending notifications at {}'.format(time.ctime()))
     send_notification()
     send_sms()
     send_mail()
@@ -58,7 +53,7 @@ def send_all_notifications():
 # this will run when an event are detected
 
 def buttonHandler(channel):
-    LOGGER.info("falling edge detected on 18")
+    LOGGER.debug("falling edge detected")
     GPIO.output(led, True)
     send_all_notifications()
     time.sleep(0.5)
@@ -66,9 +61,13 @@ def buttonHandler(channel):
     os.system("mpg123 /home/pi/Scripts/Smart_DoorBell/DoorNotify.mp3")
     os.system("python /home/pi/Scripts/Smart_DoorBell/DoorBellLogger.py")
 
-# when a falling edge is detected on port 1, regardless of whatever
-# else is happening in the program, the function buttonHandler will be run
-GPIO.add_event_detect(button, GPIO.FALLING, callback=buttonHandler, bouncetime=5000)
+try:
+    # when a falling edge is detected on port 1, regardless of whatever
+    # else is happening in the program, the function buttonHandler will be run
+    GPIO.add_event_detect(button, GPIO.FALLING, callback=buttonHandler, bouncetime=5000)
+except Exception:
+    LOGGER.error('Unable to detect falling edge')
+    raise RuntimeError('Unable to detect falling edge')
 
 try:
     LOGGER.debug("Waiting for button to be pressed")
