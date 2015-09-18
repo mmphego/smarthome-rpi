@@ -18,7 +18,7 @@ from email_notification import send_mail
 led = 17 #GPIO0
 button = 24 #GPIO1
 
-GPIO.setwarnings(False)
+GPIO.setwarnings(True)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(led, GPIO.OUT)
 time.sleep(0.1)
