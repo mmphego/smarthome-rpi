@@ -16,11 +16,9 @@ _IP=$(hostname -I) || true
 if [ "$_IP" ]; then
   python /home/pi/Scripts/Whats_My_IP/whats_my_ip.py
 fi
-bash /home/pi/DataCrawler/startCarbon.sh
+#bash /home/pi/DataCrawler/startCarbon.sh
 python /home/pi/Scripts/Data_Logger/TempDataLog.py
 python /home/pi/Scripts/ClosetDoorWarning/WaitClosetDoor.py
 python /home/pi/Scripts/Smart_DoorBell/WaitDoorbell.py 
-python /home/pi/Scripts/Whats_My_IP/whats_my_ip.py
-#bash /home/pi/DataCrawler/sysCrawler
 
 exit 0
