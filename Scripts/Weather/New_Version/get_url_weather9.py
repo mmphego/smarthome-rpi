@@ -9,19 +9,21 @@ __license__ = "Python"
 import urllib2
 import json
 import time
-import csv
+from logger import LOGGER
 
 try:
     # get current city using geo ip location
     geoip = urllib2.Request('http://www.telize.com/geoip')
     geoip_read = urllib2.urlopen(geoip).read()
-    geoip_loc = str(json.loads(geoip_read)['city'])
+    geoip_city = str(json.loads(geoip_read)['city'])
+    geoip_country = str(json.loads(geoip_read)['country_code'])
+    if geoip_country == 'ZA': geoip_country = 'SA'
     geoip_coord = (json.loads(geoip_read)['longitude'],
         json.loads(geoip_read)['latitude'])
 
     # Get todays weather
     request = urllib2.Request('http://api.openweathermap.org/data/2.5/'
-        'weather?q={}&units=metric'.format(geoip_loc))
+        'weather?q={},{}&units=metric'.format(geoip_city, geoip_country))
     # Get forecast
     request_2 = urllib2.Request('http://api.openweathermap.org/data/2.5/'
         'forecast?lat={}&lon={}&cnt=1&units=metric'
@@ -44,10 +46,14 @@ try:
 
 except Exception:
     wtr = 'Failed to connect to Open Weather Map.  '
-current = response_dictionary['main']['temp']
-current_low = response_dictionary['main']['temp_min']
-current_high = response_dictionary['main']['temp_max']
-conditions = response_dictionary['weather'][0]['description']
+try:
+    current = response_dictionary['main']['temp']
+    current_low = response_dictionary['main']['temp_min']
+    current_high = response_dictionary['main']['temp_max']
+    conditions = response_dictionary['weather'][0]['description']
+except KeyError:
+    LOGGER.error('Unable to read links')
+    raise RuntimeError('Unable to read links')
 
 current = str(round(current, 1)).replace('.', ' point ')
 current_low = str(round(current_low, 1)).replace('.', ' point ')
@@ -58,6 +64,7 @@ todays_high = response_2_dictionary['list'][0]['main']['temp_max']
 todays_low_str = str(round(todays_low, 1)).replace('.', ' point ')
 todays_high_str = str(round(todays_high, 1)).replace('.', ' point ')
 
+LOGGER.info('Max:, {}, Min:, {}'.format(todays_high, todays_low))
 wtr = ('Weather conditions for today, ' + conditions +
     ' with a current temperature of ' + current)
 frc = (', a low of ' + todays_low_str + ' and a high of  '
