@@ -5,7 +5,7 @@ import logging
 Tracking events that happen when some software runs
 """
 # create logger
-LOGGER = logging.getLogger('WhatsMy IP Logger')
+LOGGER = logging.getLogger('Whats My IP')
 LOGGER.setLevel(logging.DEBUG) # log all escalated at and above DEBUG
 
 fh = logging.FileHandler('IP_Logger.csv')
