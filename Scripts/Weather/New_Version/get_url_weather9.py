@@ -52,7 +52,9 @@ try:
     current_high = response_dictionary['main']['temp_max']
     conditions = response_dictionary['weather'][0]['description']
 except KeyError:
-    import IPython;IPython.embed()
+    LOGGER.error('Unable to read links')
+    raise RuntimeError('Unable to read links')
+
 current = str(round(current, 1)).replace('.', ' point ')
 current_low = str(round(current_low, 1)).replace('.', ' point ')
 current_high = str(round(current_high, 1)).replace('.', ' point ')
@@ -61,6 +63,7 @@ todays_high = response_2_dictionary['list'][0]['main']['temp_max']
 
 todays_low_str = str(round(todays_low, 1)).replace('.', ' point ')
 todays_high_str = str(round(todays_high, 1)).replace('.', ' point ')
+
 LOGGER.info('Max:, {}, Min:, {}'.format(todays_high, todays_low))
 wtr = ('Weather conditions for today, ' + conditions +
     ' with a current temperature of ' + current)
