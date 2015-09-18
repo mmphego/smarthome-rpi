@@ -44,6 +44,7 @@ def buttonHandler(channel):
     send_all_notifications()
     time.sleep(0.5)
     GPIO.output(led, False)
+    LOGGER.info('The was/is someone at the door')
     os.system("mpg123 /home/pi/Scripts/Smart_DoorBell/DoorNotify.mp3")
     os.system("python /home/pi/Scripts/Smart_DoorBell/DoorBellLogger.py")
 
