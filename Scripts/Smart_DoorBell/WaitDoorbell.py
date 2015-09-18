@@ -30,23 +30,20 @@ GPIO.output(led, False)
 GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 def send_all_notifications():
-    LOGGER.info('Sending notifications at {}'.format(time.ctime()))
+    LOGGER.info('Sending door notifications')
+    GPIO.output(led, True)
     send_notification()
     send_sms()
     send_mail()
+    time.sleep(0.5)
+    GPIO.output(led, False)
+    os.system("mpg123 /home/pi/Scripts/Smart_DoorBell/DoorNotify.mp3")
 
 # define callback functions
 # this will run when an event are detected
-
 def buttonHandler(channel):
-    LOGGER.debug("falling edge detected")
-    GPIO.output(led, True)
+    LOGGER.debug("falling edge detected, sending notifications")
     send_all_notifications()
-    time.sleep(0.5)
-    GPIO.output(led, False)
-    LOGGER.info('The was/is someone at the door')
-    os.system("mpg123 /home/pi/Scripts/Smart_DoorBell/DoorNotify.mp3")
-    os.system("python /home/pi/Scripts/Smart_DoorBell/DoorBellLogger.py")
 
 try:
     # when a falling edge is detected on port 1, regardless of whatever
