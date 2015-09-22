@@ -1,85 +1,3 @@
-nano test.py
-python test.py
-nano test.py
-python test.py
-nano test.py
-python test.py
-nano test.py
-python test.py
-nano test.py
-python test.py
-nano test.py
-python test.py
-nano test.py
-python test.py
-nano test.py
-python test.py
-nano test.py
-python test.py
-nano test.py
-python test.py
-nano test.py
-python test.py
-nano test.py
-python test.py
-nano test.py
-python test.py
-nano test.py
-python test.py
-nano test.py
-python test.py
-nano test.py
-python test.py
-nano test.py
-python test.py
-nano test.py
-python test.py
-nano test.py
-python test.py
-nano test.py
-python test.py
-nano test.py
-python test.py
-nano test.py
-python test.py
-nano test.py
-python test.py
-nano test.py
-nano .weather
-nano .weather.py
-nano test.py
-cat Get_weather.sh 
-pico2wave -w test.wav "It looks like it is going to rain today, you should take along an umbrella. Trust me"
-aplay test.
-aplay test.wav 
-pico2wave -w test.wav "It looks like it is going to rain today, you should take along an umbrella."
-aplay test.wav 
-flite "It looks like it is going to rain today, you should take along an umbrella."
-espeak "It looks like it is going to rain today, you should take along an umbrella."
-sudo apt-get remove espeak
-pico2wave -w test.wav "It looks like it is going to rain today, you should take along an umbrella."
-aplay test.wav 
-nano test.py
-cat /home/pi/Scripts/Weather/.weather_after.txt 
-nano test.py
-python test.py
-nano test.py
-ls
-aplay rain_warning.wav 
-ls
-nano test.py
-python test.py
-ls
-aplay no_rain_warning.wav 
-nano test.py
-python test.py
-nano test.py
-nano .weather_after.txt 
-python test.py
-nano .weather_after.txt 
-nano test.py
-ls
-mv test.py ~/
 rm no_rain_warning.wav rain_warning.wav test.wav 
 ls
 ls build
@@ -1998,3 +1916,87 @@ sudo service webserverCrawler enable
 cd -
 python Webserver.py
 reboot
+update && upgrade
+ls
+du -h --max-depth=1
+ps aux | grep web
+ps aux | grep Web
+sudo nano /etc/init/webserverCrawler.conf 
+ls /home/pi/Scripts/Website/Webserver.py
+cat /home/pi/Scripts/Website/Webserver.py
+/home/pi/Scripts/Website/Webserver.py
+cd /var/www/
+ls
+ls -lh
+ls Images/
+ls -lh Images/
+sudo chmod 777 Images/*
+screen -x
+sudo reboot
+ls
+crontab -e
+crontab -l
+crontab -e
+crontab -l
+bash /var/www/Images/get_new_images
+nano /var/www/Images/get_new_images
+bash /var/www/Images/get_new_images
+ls
+nano /var/www/Images/get_new_images
+bash /var/www/Images/get_new_images
+crontab -l
+sudo service webserverCrawler restart
+ls
+cd /etc/init
+ls
+cat webserverCrawler.conf 
+cat udpCrawler.conf 
+sudo nano webserverCrawler.conf 
+ls -lh
+sudo chown pi:pi webserverCrawler.conf 
+cat udpCrawler.conf 
+ps aux | grep UDP
+ps aux | grep .py
+ls
+cat rpiCrawler.conf 
+cat tempCrawler.conf 
+ps aux | grep temp
+sudo service --status-all
+crontab 
+install upstart
+crontab -l
+sudo service webserverCrawler restart
+sudo reboot
+ls
+uptime
+top
+sudo nano /etc/rc.locall
+sudo nano /etc/rc.local
+sudo reboot
+update && upgrade
+update
+uptime
+sudo nano /etc/rc.local
+sudo reboot
+uptime
+top
+screen 
+uptime
+upgrade
+shutdown
+uptime
+top
+ps fax
+sudo kill 3529 3398 905
+uptime
+ps fax
+sudo nano /etc/rc.local
+ls
+UPTIME
+uptime
+top
+uninsudo apt-get --purge remove
+sudo apt-get --purge remove webmin
+sudo reboot
+uptime
+cat Logs/Temp_Humid.log 
