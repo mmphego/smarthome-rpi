@@ -13,7 +13,7 @@ import os
 import subprocess
 import time
 
-import Adafruit_DHT as dht
+import IPython;IPython.embed()
 
 # find hostname/domain name
 host =  subprocess.Popen("echo `hostname`.`grep search /etc/resolv.conf | cut -f 2 -d ' '`",
@@ -33,12 +33,12 @@ html = """
 <head>
 <meta name='HandheldFriendly' content='true'>
 <meta name='viewport' content='width=device-width, height=device-height, user-scalable=yes'>
-<meta http-equiv='refresh' content ='300; url = http://192.168.9.201:8000/'  charset='UTF-8'>
+<meta http-equiv='refresh' content ='300; url = http://192.168.9.76:8000/'  charset='UTF-8'>
 <TITLE>Mpho's Home Automation Control Center</TITLE>
-<link rel='stylesheet' href='http://192.168.9.201/Images/css/style.css' media='screen' type='text/css' />
+<link rel='stylesheet' href='http://192.168.9.76/Images/css/style.css' media='screen' type='text/css' />
 <style type='text/css'></style></head>
 
-<body background='http://192.168.9.201/Images/stars.jpg';>
+<body background='http://192.168.9.76/Images/stars.jpg';>
         <style>
         h1{
         color:white;
@@ -87,12 +87,12 @@ html = """
         </style>
 
 <span id='Header' style='float:left;height:140px;width:1760px;font-size: 20pt'>
-        <img src='http://192.168.9.201/Images/download.jpg' width='650' height='135' class ='Image'>
+        <img src='http://192.168.9.76/Images/download.jpg' width='650' height='135' class ='Image'>
         <p id='time' style='float:right;'>DATE:      <br>TIME:     <br>DOY:      </p>
         </span>
 
 <span id='Arduino Int Temp' style='height:290px;width:590px;border:2px solid #a1a1a1'>
-        <img src='http://192.168.9.201:8080/render/?width=586&height=290&yMin=50&yMax=&lineMode=connected&hideLegend=true&bgcolor=000000&fgcolor=FFFFFF&minorY=4&title=Arduino%20Internal%20Temp&from=-9hours&fontSize=12&target=rpi.data.internalTemp' class ='Image'>
+        <img src='http://192.168.9.76:8080/render/?width=586&height=290&yMin=50&yMax=&lineMode=connected&hideLegend=true&bgcolor=000000&fgcolor=FFFFFF&minorY=4&title=Arduino%20Internal%20Temp&from=-9hours&fontSize=12&target=rpi.data.internalTemp' class ='Image'>
         </span>
 
 <span id='Arduin' style='height:290px;width:330px;'>
@@ -123,16 +123,16 @@ var varName = xName;
 document.getElementById('curTemp').innerHTML = varName;
 </script>
 
-<script src='http://192.168.9.201/Images/js/jquery.js'></script>
-<script src='http://192.168.9.201/Images/js/index.js'></script>
+<script src='http://192.168.9.76/Images/js/jquery.js'></script>
+<script src='http://192.168.9.76/Images/js/index.js'></script>
 
 <span id='Room Temp' style='height:290px;width:590px;'>
-        <img src='http://192.168.9.201:8080/render/?width=586&height=290&_salt=1420028512.521&yMax=30&minorY=4&lineMode=connected&fgcolor=FFFFFF&bgcolor=000000&colorList=green%2Cred&title=Room%20Temp&from=-9hours&lineWidth=2&fontSize=12&target=rpi.data.roomTemp&vtitle=Temperature(C)&hideLegend=true' class ='Image'>
+        <img src='http://192.168.9.76:8080/render/?width=586&height=290&_salt=1420028512.521&yMax=30&minorY=4&lineMode=connected&fgcolor=FFFFFF&bgcolor=000000&colorList=green%2Cred&title=Room%20Temp&from=-9hours&lineWidth=2&fontSize=12&target=rpi.data.roomTemp&vtitle=Temperature(C)&hideLegend=true' class ='Image'>
         </span>
 
 
 <span id='RPi Temperature' style='height:290px;width:590px;'>
-        <img src='http://192.168.9.201:8080/render/?width=586&height=290&_salt=1419628583.929&minorY=4&from=-9hours&connectedLimit=&fgcolor=FFFFFF&bgcolor=000000&lineWidth=2&title=RPi%20Temp&hideLegend=true&yMax=&fontSize=12&areaMode=first&lineMode=connected&drawNullAsZero=false&graphOnly=false&yStep=&colorList=green&target=rpi.data.internalRPiTemp' class='Image'>
+        <img src='http://192.168.9.76:8080/render/?width=586&height=290&_salt=1419628583.929&minorY=4&from=-9hours&connectedLimit=&fgcolor=FFFFFF&bgcolor=000000&lineWidth=2&title=RPi%20Temp&hideLegend=true&yMax=&fontSize=12&areaMode=first&lineMode=connected&drawNullAsZero=false&graphOnly=false&yStep=&colorList=green&target=rpi.data.internalRPiTemp' class='Image'>
         </span>
 
 <span id='Buttons' style='height:290px;width:330px;font-size: 20pt;border:2px solid #a1a1a1'>
@@ -140,34 +140,34 @@ document.getElementById('curTemp').innerHTML = varName;
 <p><center>
         <TABLE>
             <TR><TD>Kitchen Light       <TD><button type='submit' style='background-color:rgba(255,255,255,0.0); border:none;' name='led1' value='Led 1'>
-                <img src='http://192.168.9.201/Images/on.jpg' width='30' height='30' class ='Image' /></button>
+                <img src='http://192.168.9.76/Images/on.jpg' width='30' height='30' class ='Image' /></button>
 
             <TR><TD>Dining Room Light       <TD><button type='submit' style='background-color:rgba(255,255,255,0.0); border:none;' name='led2' value='Led 2'>
-                <img src='http://192.168.9.201/Images/on.jpg' width='30' height='30' class ='Image' /></button>
+                <img src='http://192.168.9.76/Images/on.jpg' width='30' height='30' class ='Image' /></button>
 
             <TR><TD>Sitting Room Light      <TD><button type='submit' style='background-color:rgba(255,255,255,0.0); border:none;' name='led3' value='Led 3'>
-                <img src='http://192.168.9.201/Images/on.jpg' width='30' height='30' class ='Image' /></button>
+                <img src='http://192.168.9.76/Images/on.jpg' width='30' height='30' class ='Image' /></button>
 
             <TR><TD>Bedroom Light           <TD><button type='submit' style='background-color:rgba(255,255,255,0.0); border:none;' name='led4' value='Led 4'>
-                <img src='http://192.168.9.201/Images/on.jpg' width='30' height='30' class ='Image' /></button>
+                <img src='http://192.168.9.76/Images/on.jpg' width='30' height='30' class ='Image' /></button>
 
             <TR><TD>All Lights                      <TD><button type='submit' style='background-color:rgba(255,255,255,0.0); border:none;' name='led5' value='Led 5'>
-                <img src='http://192.168.9.201/Images/on.jpg' width='30' height='30' class ='Image' /></button>
+                <img src='http://192.168.9.76/Images/on.jpg' width='30' height='30' class ='Image' /></button>
         </TABLE>
 </center>
 </p></form>
 </span>
 <span id='RPi CPU Usage' style='height:290px;width:590px;'>
-        <img src='http://192.168.9.201:8080/render/?width=586&height=290&from=-9hours&fgcolor=FFFFFF&bgcolor=000000&fontSize=13&title=RPi%20CPU&minorY=4&connectedLimit=&hideLegend=true&lineMode=connected&areaMode=stacked&target=carbon.rpi.system.loadAvg_15min&target=carbon.rpi.system.loadAvg_5min&target=carbon.rpi.system.loadAvg_1min' class ='Image'>
+        <img src='http://192.168.9.76:8080/render/?width=586&height=290&from=-9hours&fgcolor=FFFFFF&bgcolor=000000&fontSize=13&title=RPi%20CPU&minorY=4&connectedLimit=&hideLegend=true&lineMode=connected&areaMode=stacked&target=carbon.rpi.system.loadAvg_15min&target=carbon.rpi.system.loadAvg_5min&target=carbon.rpi.system.loadAvg_1min' class ='Image'>
         </span>
 
 </body>
 <span id='Network Bandwidth' style='height:180px;width:820px;'>
-        <img src='http://192.168.9.201:8080/render/?width=810&height=180&_salt=1419807028.849&fgcolor=000000&bgcolor=FFFFFF&hideLegend=true&minorY=4&title=Network%20Speed&from=-9hours&target=collectd.graph_host.interface-eth0.if_packets.rx&target=collectd.graph_host.interface-eth0.if_packets.tx&lineMode=connected&areaMode=stacked' width='815' height='175' class ='Image'>
+        <img src='http://192.168.9.76:8080/render/?width=810&height=180&_salt=1419807028.849&fgcolor=000000&bgcolor=FFFFFF&hideLegend=true&minorY=4&title=Network%20Speed&from=-9hours&target=collectd.graph_host.interface-eth0.if_packets.rx&target=collectd.graph_host.interface-eth0.if_packets.tx&lineMode=connected&areaMode=stacked' width='815' height='175' class ='Image'>
         </span>
 
 <span id='Weather' style='height:180px;width:820px;'>
-<img src='http://192.168.9.201/Images/weather.png' width='815' height='180' class='Image'>
+<img src='http://192.168.9.76/Images/weather.png' width='815' height='180' class='Image'>
 </span>
 <script>
         var currentTime = new Date()
@@ -206,7 +206,7 @@ def application(environ, start_response):
         if (d[0][0]=="led5"): os.system("home_auto 5 > /dev/null 2>&1")
    except IndexError:
         pass
-   htmls = html#.replace('192.168.9.201', host)
+   htmls = html#.replace('192.168.9.76', host)
    response_body = htmls
    status = '200 OK'
 
