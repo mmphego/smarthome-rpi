@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 __author__ = "Mpho Mphego"
-__description__ =
+__description__ = "Real-time notifications on your Android mobile"
 __version__ = "$Revision: 1.0 $"
 __date__ = "$Date: $"
 __copyright__ = "Copyright (c) 2015 Mpho Mphego"
