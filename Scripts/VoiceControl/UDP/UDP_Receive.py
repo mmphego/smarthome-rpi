@@ -8,7 +8,7 @@ sock = socket.socket(socket.AF_INET,   # Internet
 sock.connect(('8.8.8.8', 0))  # connecting to a UDP address doesn't send packets
 UDP_IP = sock.getsockname()[0]
 UDP_PORT = 5005
-print "Listening on IP:{}:{} ".format(UDP_IP, UDP_PORT)
+print "Listening on IP:{}:{}".format(UDP_IP, UDP_PORT)
 
 #sock = socket.socket(socket.AF_INET, # Internet
                       #socket.SOCK_DGRAM) # UDP
