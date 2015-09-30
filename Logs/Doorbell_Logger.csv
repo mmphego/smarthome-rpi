@@ -24,3 +24,23 @@
 2015-09-28 17:33:00,970,Doorbell Logger,INFO,Initiating handshake with pushover
 2015-09-28 17:33:04,114,Doorbell Logger,INFO,Sending SMS notification
 2015-09-28 17:33:04,554,Doorbell Logger,DEBUG,Waiting for button to be pressed
+2015-09-28 18:16:44,439,Doorbell Logger,INFO,Sending Pushover notification
+2015-09-28 18:16:44,447,Doorbell Logger,INFO,Initiating handshake with pushover
+2015-09-28 18:16:47,238,Doorbell Logger,INFO,Sending SMS notification
+2015-09-28 18:16:47,602,Doorbell Logger,DEBUG,Waiting for button to be pressed
+2015-09-29 08:56:52,210,Doorbell Logger,INFO,Sending Pushover notification
+2015-09-29 08:56:52,234,Doorbell Logger,INFO,Initiating handshake with pushover
+2015-09-29 08:56:55,588,Doorbell Logger,INFO,Sending SMS notification
+2015-09-29 08:56:55,941,Doorbell Logger,DEBUG,Waiting for button to be pressed
+2015-09-30 08:32:16,567,Doorbell Logger,INFO,Sending Pushover notification
+2015-09-30 08:32:16,570,Doorbell Logger,INFO,Initiating handshake with pushover
+2015-09-30 08:32:18,646,Doorbell Logger,INFO,Sending SMS notification
+2015-09-30 08:32:18,840,Doorbell Logger,DEBUG,Waiting for button to be pressed
+2015-09-30 10:48:58,668,Doorbell Logger,INFO,Sending Pushover notification
+2015-09-30 10:48:58,671,Doorbell Logger,INFO,Initiating handshake with pushover
+2015-09-30 10:49:06,537,Doorbell Logger,INFO,Sending SMS notification
+2015-09-30 10:49:06,715,Doorbell Logger,DEBUG,Waiting for button to be pressed
+2015-09-30 18:03:33,377,Doorbell Logger,INFO,Sending Pushover notification
+2015-09-30 18:03:33,381,Doorbell Logger,INFO,Initiating handshake with pushover
+2015-09-30 18:03:35,450,Doorbell Logger,INFO,Sending SMS notification
+2015-09-30 18:03:35,636,Doorbell Logger,DEBUG,Waiting for button to be pressed
