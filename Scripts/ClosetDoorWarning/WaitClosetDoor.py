@@ -9,8 +9,7 @@ __license__ = "Python"
 
 import RPi.GPIO as GPIO
 import time
-import os
-from weatherWarning import notification
+import weatherWarning
 from logger import LOGGER
 
 #led = 22 #GPIO0
@@ -31,7 +30,7 @@ GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 # this will run when an event are detected
 def get_notification():
     # GPIO.output(led, True)
-    notification()
+    weatherWarning.notification()
     # GPIO.output(led, False)
     LOGGER.info('Weather updated and user notified')
 
