@@ -1,0 +1,42 @@
+Passive wifi presence detection on Raspberry Pi
+
+http://www.hindawi.com/journals/ijdsn/2013/927940/
+
+
+My bash skills are pretty rudimentary so no doubt there's a more efficient way to do this, and there may be some syntax errors since I copied it out by hand.
+The way this works is as follows:
+1) NOT SHOWN: The script runs every ten seconds or so.
+2) If it's between 7am and 10pm then
+3) Ping my phone's IP address (needs to be static obviously) once with a timeout of 5 seconds and store the result in a file 'devicelist'.
+4) Test for a positive ping result and store it in the variable 'status'.
+5) Compare the current status with the last time it was run.
+6) If the status has changed from the last time we looked then
+7) Check if the status was positive (i.e. phone was found)
+8) and do something appropriate. I have mine set to announce my presence with text-to-speech.
+9) Finally, save the current result to a file 'ishome' so we can compare it next time.
+The time restriction is simply a convenience. Due to occasional network dropouts I found I was being woken up by the apparent presence or absence of my phone being announced. On the whole it works pretty well, but I'd advise against mission-critical use for that reason.
+#!/bin/bash
+# Checks for presence of device and speaks a notification
+
+NOW=$(date +"%s")
+dayBegin=$(date --date="Today 07:00" +"%s")
+dayEnd=$(date --date="Today 22:00" +"%s")
+
+if [ ${NOW} -gt ${dayBegin} ] && [ ${NOW} -lt ${dayEnd} ]; then
+    ping 192.168.1.40 -c 1 -W 5 > /home/pi/devicelist
+    status=$(grep -i -c '1 received' /home/pi/devicelist)
+    prevStatus=$(cat /home/pi/ishome)
+
+    if [ $status = $prevStatus ]; then
+        echo "No change"
+    else
+        if [ $status = "1" ]; then
+            echo "Phone detected"
+        else
+            echo "Phone lost"
+        fi
+    fi
+
+    echo $status > /home/pi/ishome
+fi
+
