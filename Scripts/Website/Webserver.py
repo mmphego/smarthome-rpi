@@ -10,7 +10,6 @@ __license__ = "Python/HTML"
 from wsgiref.simple_server import make_server
 from urlparse import parse_qsl
 import os
-import time
 from html_site import html
 
 
