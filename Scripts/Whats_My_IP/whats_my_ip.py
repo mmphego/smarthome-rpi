@@ -30,7 +30,7 @@ mail_server.login(gmail_user, gmail_password)
 today = datetime.date.today()
 
 arg='ip route list'
-p=subprocess.Popen(arg,shell=True,stdout=subprocess.PIPE)
+p=subprocess.Popen(arg, shell=True, stdout=subprocess.PIPE)
 data = p.communicate()
 split_data = data[0].split()
 ipaddr = split_data[split_data.index('src')+1]
