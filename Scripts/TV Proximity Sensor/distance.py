@@ -1,4 +1,8 @@
-import hcsr04sensor.sensor as sensor
+try:
+    import hcsr04sensor.sensor as sensor
+except ImportError:
+    import pip
+    pip.main(['install', 'hcsr04sensor'])
 
 
 def main():
