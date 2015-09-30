@@ -15,6 +15,10 @@ from logger import LOGGER
 csv_file = '../../Scripts/Weather/New_Version/Weather_Logger.csv'
 
 def get_last_row(csv_filename):
+    """
+    :param csv_filename:
+    :return: None
+    """
     with open(csv_filename, 'rb') as f:
         try:
             return deque(csv.reader(f), 1)[0]
@@ -23,6 +27,10 @@ def get_last_row(csv_filename):
                 ' reading it')
 
 def notification():
+    """
+    Sound notification.
+
+    """
     temp_min = float(get_last_row(csv_file)[-1])
     if temp_min < 10. :
         os.system("mpg123 rain_warning.mp3")
