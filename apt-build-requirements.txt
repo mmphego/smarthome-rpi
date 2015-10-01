@@ -46,3 +46,4 @@ alsa-utils
 libjpeg62-dev
 cmake
 minidlna
+python-pylirc
