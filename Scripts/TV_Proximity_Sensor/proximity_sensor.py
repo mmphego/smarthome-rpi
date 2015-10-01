@@ -19,13 +19,13 @@ class TimerClass(threading.Thread):
         self._temperature = 20  # Celcius for metric, Fahrenheit for imperial
         self._round_to = 1  # report a cleaner rounded output.
 
-    def notification()
+    def notification(self):
         """
         This will sound a siren or notification to move away
         :return: <nothing>
         """
         print 'Notified'
-        Logger.info('Someone was close to the TV.')
+        LOGGER.info('Someone was close to the TV.')
 
     def distance(self):
         """
@@ -46,6 +46,7 @@ class TimerClass(threading.Thread):
             if self.distance() <= self._threshold:
                 print 'Distance {} is fine.'.format(self.distance())
             else:
+                self.notification()
                 print 'Ring notification.'
             self.an_event.wait(.5)
 
