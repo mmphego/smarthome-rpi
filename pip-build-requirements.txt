@@ -4,4 +4,4 @@ numpy
 python-pushover
 nose
 hcsr04sensor
-
+python-lirc

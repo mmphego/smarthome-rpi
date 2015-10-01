@@ -1,4 +1,6 @@
 git
+liblircclient-dev
+libr
 python-dev
 mpg123
 python-feedparser
