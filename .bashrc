@@ -124,6 +124,6 @@ export HISTSIZE PROMPT_COMMAND
 
 shopt -s histappend
 
-if [ "$TERM" != "screen" ]; then
-  screen -xRR
-fi
+#if [ "$TERM" != "screen" ]; then
+#  screen -xRR
+#fi
