@@ -93,6 +93,7 @@ alias upgrade='sudo apt-get --force-yes -y upgrade'
 alias wget='wget -c --tries=1000'
 alias rpi='sudo raspi-config'
 alias top='htop'
+alias kill='sudo kill -9'
 alias uninstall='sudo apt-get --purge remove '
 alias cleanPC='sudo apt-get autoclean && sudo apt-get clean && sudo apt-get autoremove && sudo bash ~/bin/System_Cleaner.sh &&freeRam'
 
