@@ -8,7 +8,6 @@ __license__ = "Python"
 
 import urllib2
 import json
-import time
 from logger import LOGGER
 
 try:
