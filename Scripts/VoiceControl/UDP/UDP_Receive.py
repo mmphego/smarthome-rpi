@@ -8,12 +8,16 @@ sock = socket.socket(socket.AF_INET,   # Internet
 sock.connect(('8.8.8.8', 0))  # connecting to a UDP address doesn't send packets
 UDP_IP = sock.getsockname()[0]
 UDP_PORT = 5005
-print "Listening on IP:{}:{}".format(UDP_IP, UDP_PORT)
 
-#sock = socket.socket(socket.AF_INET, # Internet
-                      #socket.SOCK_DGRAM) # UDP
-sock.bind((UDP_IP, UDP_PORT))
-print "UDP Ready to Receive!"
+print "Listening on IP:{}:{} ".format(UDP_IP, UDP_PORT)
+try:
+    sock = socket.socket(socket.AF_INET, # Internet
+        socket.SOCK_DGRAM) # UDP
+    sock.bind((UDP_IP, UDP_PORT))
+    print "UDP Ready to Receive!"
+except:
+    raise RuntimeError('Unable to start UDP')
+
 while True:
     data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
     print "received message:", data
