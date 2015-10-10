@@ -95,7 +95,10 @@ alias rpi='sudo raspi-config'
 alias top='htop'
 alias kill='sudo kill -9'
 alias uninstall='sudo apt-get --purge remove '
-alias cleanPC='sudo apt-get autoclean && sudo apt-get clean && sudo apt-get autoremove && sudo bash ~/bin/System_Cleaner.sh &&freeRam'
+alias cleanPC='sudo apt-get -y --force-yes autoclean && \
+sudo apt-get -y --force-yes clean && \
+sudo apt-get -y --force-yes autoremove \
+&&  sudo bash ~/bin/System_Cleaner.sh && sudo bash ~/bin/freeRam'
 
 
 #alias ..='cd ..'
