@@ -9,9 +9,7 @@ __license__ = "Python"
 
 import subprocess
 import time
-import os
 import RPi.GPIO as GPIO
-import textwrap
 from better_spoken_time3 import gmt, day
 from get_url_weather9 import wtr, frc
 from get_url_news8 import news

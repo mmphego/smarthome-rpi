@@ -1,4 +1,6 @@
 git
+liblircclient-dev
+libr
 python-dev
 mpg123
 python-feedparser
@@ -43,3 +45,5 @@ webmin
 alsa-utils
 libjpeg62-dev
 cmake
+minidlna
+python-pylirc
