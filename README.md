@@ -10,6 +10,6 @@ HomeAutoPi
 
 ## Contact
 #### Mpho
-* http://mpho112.wordpress.com
+* http://mphomphego.co.za
 * Twitter: [@mmphego](https://twitter.com/mmphego "mmphego on twitter")
 
