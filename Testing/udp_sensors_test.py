@@ -1,4 +1,7 @@
-import androidhelper as android
+try:
+    import android
+except Exception:
+    import androidhelper as android
 import time
 import socket
 
