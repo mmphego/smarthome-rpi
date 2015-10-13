@@ -5,11 +5,11 @@ HomeAutoPi
 
 ## Usage
 * sudo python setup.py install
-* sudo apt-get install $(grep -vE "^\s*#" apt-build-requirements.txt | tr "\n" " ")
-* sudo pip insrall -r pip-build-requirements.txt
+* sudo apt-get install $(grep -vE "^\s*#" Apts/apt-build-requirements.txt | tr "\n" " ")
+* sudo pip insrall -r Apts/pip-build-requirements.txt
 
 ## Contact
 #### Mpho
-* http://mpho112.wordpress.com
+* http://mphomphego.co.za
 * Twitter: [@mmphego](https://twitter.com/mmphego "mmphego on twitter")
 
