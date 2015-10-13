@@ -1,5 +1,5 @@
-import threading
-import subprocess
+import os
+import time
 from logger import LOGGER
 try:
     import hcsr04sensor.sensor as sensor
@@ -8,10 +8,8 @@ except ImportError:
     pip.main(['install', 'hcsr04sensor'])
 
 
-class TimerClass(threading.Thread):
+class TimerClass(object):
     def __init__(self):
-        threading.Thread.__init__(self)
-        self.an_event = threading.Event()
         self._threshold = 20.0
         self._trig_pin = 20
         self._echo_pin = 21
@@ -24,7 +22,7 @@ class TimerClass(threading.Thread):
         This will sound a siren or notification to move away
         :return: <nothing>
         """
-        print 'Notified'
+        os.system('mpg123 close_to_tv.mp3')
         LOGGER.info('Someone was close to the TV.')
 
     def distance(self):
@@ -42,13 +40,12 @@ class TimerClass(threading.Thread):
         return value.distance_metric(raw_measurement)
 
     def run(self):
-        while not self.an_event.is_set():
+        while True:
             if self.distance() <= self._threshold:
-                print 'Distance {} is fine.'.format(self.distance())
-            else:
+                print 'Too close to the TV: {} cm.'.format(self.distance())
                 self.notification()
-                print 'Ring notification.'
-            self.an_event.wait(.5)
+            else:
+                print 'Distance {}cm is fine.'.format(self.distance())
 
 thread = TimerClass()
-thread.start()
+thread.run()
