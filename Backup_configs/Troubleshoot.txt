@@ -1,0 +1,3 @@
+I2C, SPI, I2S, LIRC, PPS, stopped working? Read this.
+
+https://www.raspberrypi.org/forums/viewtopic.php?t=97314

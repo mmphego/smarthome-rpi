@@ -2,6 +2,7 @@
 import socket
 import os
 import time
+from logger  import LOGGER
 
 sock = socket.socket(socket.AF_INET,   # Internet
     socket.SOCK_DGRAM)    # UDP
