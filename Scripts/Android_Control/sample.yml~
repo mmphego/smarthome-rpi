@@ -1,0 +1,39 @@
+---
+# This is a pane, it's just a list of buttons.
+title: Pane 1
+# This is the layout spec version.
+version: 1
+ui:
+  # What you want the button to say.
+- label: Button label 1
+  # A POST HTTP request with an empty body will be issed to URLs.
+  url: http://172.18.20.41:8000/parsing_get.wsgi?led1=Led+1
+- label: Button label 2
+  url: http://myserver/ac_remote/?key=secretkey&button=AC_OFF
+---
+# This is another pane, it works the same as the first one.
+title: Pane 2
+ui:
+- label: Power
+  url: http://myserver/remote/?key=secretkey&button=BTN_POWER
+  # You can specify a width for the button (out of 6).
+  span: 6
+- label: Volume up
+  url: http://myserver/remote/?key=secretkey&button=VOL_UP
+  # This button will take up half a row.
+  span: 3
+- label: Volume down
+  url: http://myserver/remote/?key=secretkey&button=VOL_DOWN
+  span: 3
+- label: Channel up
+  url: http://myserver/remote/?key=secretkey&button=CH_UP
+  span: 3
+- label: Channel down
+  url: http://myserver/remote/?key=secretkey&button=CH_DOWN
+  span: 3
+---
+title: Pane 3
+version: 1
+ui:
+- label: Toggle door
+  url: http://myserver/door_remote/?key=secretkey&toggle=1

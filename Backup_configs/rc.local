@@ -1,0 +1,24 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+# Send the IP address to email
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  python /home/pi/Scripts/Whats_My_IP/whats_my_ip.py
+fi
+#bash /home/pi/DataCrawler/startCarbon.sh
+python /home/pi/Scripts/Data_Logger/TempDataLog.py
+python /home/pi/Scripts/ClosetDoorWarning/WaitClosetDoor.py
+python /home/pi/Scripts/Smart_DoorBell/WaitDoorbell.py 
+
+exit 0

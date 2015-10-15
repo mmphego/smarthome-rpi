@@ -1,15 +1,15 @@
 HomeAutoPi
-# RPi_Home_Directory
+# Raspberry Pi Smart Home Automation Project
         
 ======
 
 ## Usage
 * sudo python setup.py install
-* sudo apt-get install $(grep -vE "^\s*#" apt-build-requirements.txt | tr "\n" " ")
-* sudo pip insrall -r pip-build-requirements.txt
+* sudo apt-get install $(grep -vE "^\s*#" Apts/apt-build-requirements.txt | tr "\n" " ")
+* sudo pip insrall -r Apts/pip-build-requirements.txt
 
 ## Contact
-#### Mpho
-* http://mpho112.wordpress.com
-* Twitter: [@mmphego](https://twitter.com/mmphego "mmphego on twitter")
+#### Mpho Mphego
+* Website: http://mphomphego.co.za
+* Twitter: [@MphoMphego](https://twitter.com/MphoMphego "MphoMphego on twitter")
 

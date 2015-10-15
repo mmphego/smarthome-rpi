@@ -93,7 +93,13 @@ alias upgrade='sudo apt-get --force-yes -y upgrade'
 alias wget='wget -c --tries=1000'
 alias rpi='sudo raspi-config'
 alias top='htop'
-alias cleanPC='sudo apt-get autoclean && sudo apt-get clean && sudo apt-get autoremove && sudo bash ~/bin/System_Cleaner.sh && sudo bash ~/bin/freeRam'
+alias kill='sudo kill -9'
+alias uninstall='sudo apt-get --purge remove '
+alias cleanPC='sudo apt-get -y --force-yes autoclean && \
+sudo apt-get -y --force-yes clean && \
+sudo apt-get -y --force-yes autoremove \
+&&  sudo bash ~/bin/System_Cleaner.sh && sudo bash ~/bin/freeRam'
+
 
 #alias ..='cd ..'
 #alias .='cd -'
@@ -114,3 +120,14 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 export PATH=$PATH:/usr/local/java/bin
+
+unset HISTFILESIZE
+HISTSIZE=5000
+PROMPT_COMMAND="history -a"
+export HISTSIZE PROMPT_COMMAND
+
+shopt -s histappend
+
+#if [ "$TERM" != "screen" ]; then
+#  screen -xRR
+#fi
