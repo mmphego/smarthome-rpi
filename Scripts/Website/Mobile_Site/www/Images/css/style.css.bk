@@ -1,0 +1,73 @@
+body{font-family:helvetica,serif;}
+
+/*  Thermometer  */
+
+#content {
+    width:300px;
+    margin:30px auto;
+    padding:0;
+}
+
+#thermometer {
+    width:70px;
+    height:300px;
+    position: relative;
+}
+
+#thermometer .track {
+    height:280px;
+    top:10px;
+    width:50px;
+    position: relative;
+    margin:0 auto;
+    background: #bfbfbf;
+    background-position: 0 -1px;
+    background-size: 100% 5%;
+    border-radius:3px;
+}
+
+#thermometer .progress {
+    height:0%;
+    width:100%;
+    background: #00f;
+    border-radius:3px;
+    position: absolute;
+    bottom:0;
+    left:0;
+}
+
+#thermometer .goal {
+    position:absolute;
+    top:0;
+    width: 150px;
+}
+
+#thermometer .amount {
+    display: inline-block;
+    padding:0 5px 0 60px;
+    font-family: Trebuchet MS;
+    font-weight: bold;
+    color:#f00;
+    width: 70px;
+}
+
+#thermometer .progress .amount {
+    padding:0 60px 0 5px;
+    position: absolute;
+    border-top:1px solid #333;
+    color:#b1bb1e;
+    right:0;
+}
+
+/* Bottem Button */
+
+.btm-btn{
+    background: #00f;
+    border-radius: 100%;
+    color: #fff;
+    display: inline-block;
+    font-weight: bold;
+    margin: -20px -25px;
+    padding: 33px 38px;
+    text-decoration: none;
+}
