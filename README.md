@@ -1,5 +1,5 @@
 HomeAutoPi
-# RPi_Home_Directory
+# Raspberry Pi Smart Home Automation Project
         
 ======
 
@@ -9,7 +9,7 @@ HomeAutoPi
 * sudo pip insrall -r Apts/pip-build-requirements.txt
 
 ## Contact
-#### Mpho
-* http://mphomphego.co.za
-* Twitter: [@mmphego](https://twitter.com/mmphego "mmphego on twitter")
+#### Mpho Mphego
+* Website: http://mphomphego.co.za
+* Twitter: [@MphoMphego](https://twitter.com/MphoMphego "MphoMphego on twitter")
 
