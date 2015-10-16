@@ -30,6 +30,6 @@ def send_mail():
         server.login(USERNAME,PASSWORD)
         server.sendmail(USERNAME, MAILTO, msg.as_string())
         server.quit()
-    except Exception:
-        LOGGER.error ('Unable to connect to gmail server')
+    except Exception as e:
+        LOGGER.error ('Unable to connect to gmail server: Error {}'.format(e))
         raise RuntimeError ('Unable to connect to gmail server')
