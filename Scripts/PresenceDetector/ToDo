@@ -1,0 +1,4 @@
+
+Use command to find local ip on network
+
+sudo  arp-scan --interface wlan0 -l | grep bc
