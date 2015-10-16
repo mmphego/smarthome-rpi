@@ -1,2 +1,6 @@
-#Multiroom audio - minidlna
-Smoke detector
+#Multiroom audio - minidlna configuration
+Smoke detector - get mq2 sensor
+powermeter - get ct sensor
+get webcam
+get speaker
+make ir led work
