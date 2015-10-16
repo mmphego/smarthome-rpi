@@ -9,17 +9,19 @@ import time
 import subprocess
 
 mac_address = 'bc:6e:64:df:d7:d9'
+mob_ip = None
+while True:
+    process = subprocess.Popen('sudo arp-scan --interface wlan0 -l | grep {} | cut -f 1'.format(mac_address),
+                               shell=True, stdout=subprocess.PIPE, )
+    mob_ip = process.communicate()[0].strip()
+    if mob_ip != '':
+        break
 
-subprocess.call('sudo', 'arp-scan', '--interface', 'wlan0', '-l', '|', 'grep', '{}', '|', 'cut', '-f', '1')
-
-#os.system("gpio mode 7 out")
-while True: # Setup a while loop to wait for a button press
-    if os.system("ping -c 1 172.18.20.209 > /dev/null 2>&1") == 0:# Send command to os
+while True:  # Setup a while loop to wait for a button press
+    if subprocess.call(['ping -c1 {}'.format(mob_ip)], shell=True, stdout=open('/dev/null', 'w')) == 0:
         print "host is detected"
-#        os.system("gpio write 4 0")
-#        break
+
     else:
         print "host unreachable"
-        os.system('sudo service cellDetect start')
     break
-time.sleep(60) # Allow a sleep time of 1 second to reduce CPU usage
+
