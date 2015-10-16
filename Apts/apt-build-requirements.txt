@@ -48,3 +48,4 @@ cmake
 minidlna
 python-pylirc
 fswebcam
+arp-scan
