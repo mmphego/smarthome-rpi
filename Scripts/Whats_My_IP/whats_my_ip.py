@@ -11,8 +11,6 @@ import csv
 import time
 from logger import LOGGER
 from email.mime.text import MIMEText
-from collections import deque
-
 
 # TODO: MM: 2015-10-15: Include button for RPI, send IP upon being pressed
 user = "homeauto112@gmail.com"
@@ -23,14 +21,22 @@ time.sleep(10)
 
 
 def check_ip():
-    with open('../../Logs/IP_Logger.csv', 'rb') as csv_file:
-        Prev_IP = deque(csv.reader(csv_file), 1)[0][-1]
+    Prev_IP = None
+    with open('IP_Logger.csv', 'rb') as csv_file:
+        # check if prev ip exists
+        lines = csv_file.readlines()
+        for i in range(-1, -len(lines) - 1, -1):
+            if "Local IP" in lines[i]:
+                Prev_IP = [x.strip() for x in lines[i].split(',')][-1]
+                break
+            else:
+                continue
 
     Send_IP = Find_IP(user, password, to)
     Send_IP.find_ip()
     New_IP = Send_IP.ip_addr
-    if Prev_IP != New_IP:
-        LOGGER.info('Email send with new ip: {}'.format(New_IP))
+    if New_IP != Prev_IP:
+        LOGGER.info('Email sent with new ip: {}'.format(New_IP))
         Send_IP.send_mail()
     else:
         LOGGER.info("IP Address hasn't changed")
@@ -43,10 +49,16 @@ class Find_IP(object):
         self.sendto = sendto
 
     def _email_config(self):
-        self.mail_server = smtplib.SMTP('smtp.gmail.com', 587)
-        self.mail_server.helo()
-        self.mail_server.starttls()
-        self.mail_server.login(self.gmail_user, self.gmail_password)
+        try:
+            self.mail_server = smtplib.SMTP('smtp.gmail.com', 587)
+            self.mail_server.ehlo()
+            self.mail_server.starttls()
+            self.mail_server.login(self.gmail_user, self.gmail_password)
+
+        except Exception as e:
+            LOGGER.info("Failed to connnect. Error: {}".format(e))
+            exit()
+
 
     def find_ip(self):
         arg = 'ip route list'
@@ -74,7 +86,6 @@ class Find_IP(object):
         msg['To'] = to
         self.mail_server.sendmail(self.gmail_user, [to], msg.as_string())
         self.mail_server.quit()
-
 
 # Run check IP , if changed send email.
 check_ip()

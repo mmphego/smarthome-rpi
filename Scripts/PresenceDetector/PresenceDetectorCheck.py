@@ -5,12 +5,12 @@
 # Created by Mpho Mphego (mpho112@gmail.com)
 # http://pastebin.com/nLkaZ308
 
-# Import the libraries to use time delays, send os commands and access GPIO pins
-
-#import RPi.GPIO as GPIO #module requires root privilages
-# Decided to use WiringPi packages
 import time
-import os
+import subprocess
+
+mac_address = 'bc:6e:64:df:d7:d9'
+
+subprocess.call('sudo', 'arp-scan', '--interface', 'wlan0', '-l', '|', 'grep', '{}', '|', 'cut', '-f', '1')
 
 #os.system("gpio mode 7 out")
 while True: # Setup a while loop to wait for a button press
@@ -23,4 +23,3 @@ while True: # Setup a while loop to wait for a button press
         os.system('sudo service cellDetect start')
     break
 time.sleep(60) # Allow a sleep time of 1 second to reduce CPU usage
-
