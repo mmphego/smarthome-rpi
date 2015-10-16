@@ -6,7 +6,7 @@ except ImportError:
     raise RuntimeError("Unable to import module")
 
 data = list(dht.read_retry(dht.DHT11, 26))
-path = "/home/pi/Logs/Temp_Humid.csv"
+path = "../../Logs/Temp_Humid.csv"
 
 #----------------------------------------------------------------------
 def csv_writer(data, path):
