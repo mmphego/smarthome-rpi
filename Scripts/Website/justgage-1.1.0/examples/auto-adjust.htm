@@ -1,0 +1,66 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>Auto-adjust</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+<!--
+      body {
+        text-align: center;
+      }
+
+      #g1 {
+        width:400px; height:320px;
+        display: inline-block;
+        margin: 1em;
+      }
+
+      #g2, #g3, #g4 {
+        width:100px; height:80px;
+        display: inline-block;
+        margin: 1em;
+      }
+
+      p {
+        display: block;
+        width: 450px;
+        margin: 2em auto;
+        text-align: left;
+      }
+-->
+    </style>
+
+
+  </head>
+  <body>
+    <div id="g1"></div>
+    <div id="g2"></div>
+
+    <script src="../raphael-2.1.4.min.js"></script>
+    <script src="../justgage-1.1.0.min.js"></script>
+    <script>
+      var g1, g2;
+
+      window.onload = function(){
+        var g1 = new JustGage({
+          id: "g1",
+          value: 56,
+          min: 0,
+          max: 100,
+          title: "Temperature",
+          label: "DegC"
+        });
+
+         var g1 = new JustGage({
+          id: "g1",
+          value: 99,
+          min: 0,
+          max: 100,
+          title: "Humidity",
+          label: "%"
+        });
+      };
+    </script>
+  </body>
+</html>
