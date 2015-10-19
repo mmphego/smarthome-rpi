@@ -14,6 +14,14 @@ from logger import LOGGER
 from push_notification import send_notification
 from sms_notification import send_sms
 from email_notification import send_mail
+from pic_notification import take_pic
+
+USERNAME = "homeauto112@gmail.com"
+PASSWORD = "Livhuwani$12"
+MAILTO  = "mpho112@gmail.com"
+SUB = 'Doorbell notification!'
+MESSAGE = 'Someone was at the door at {}'.format(strftime('%b %d %Y'))
+FILE = 'image.jpg'
 
 led = 17 #GPIO0
 button = 24 #GPIO1
@@ -34,7 +42,7 @@ def send_all_notifications():
     GPIO.output(led, True)
     send_notification()
     send_sms()
-    send_mail()
+    send_mail(MAILTO, SUB ,MESSAGE, FILE )
     time.sleep(0.5)
     GPIO.output(led, False)
     os.system("mpg123 /home/pi/Scripts/Smart_DoorBell/DoorNotify.mp3")
