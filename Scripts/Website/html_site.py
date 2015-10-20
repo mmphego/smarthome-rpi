@@ -63,7 +63,7 @@ def html():
             </style>
 
     <span id='Header' style='float:left;height:140px;width:1760px;font-size: 20pt'>
-            <img src='http://IP_Here/Images/download.jpg' width='650' height='135' class ='Image'>
+            <img src='http://IP_Here/Images/download.jpg' width='450' height='135' class ='Image'>
             <p id='time' style='float:right;'>DATE:      <br>TIME:     <br>DOY:      </p>
             </span>
 
