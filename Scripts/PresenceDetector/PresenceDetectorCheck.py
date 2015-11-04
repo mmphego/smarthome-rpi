@@ -4,9 +4,9 @@
 # gpio will remain off
 # Created by Mpho Mphego (mpho112@gmail.com)
 # http://pastebin.com/nLkaZ308
-
-import time
+import os
 import subprocess
+from logger import LOGGER
 
 mac_address = 'bc:6e:64:df:d7:d9'
 mob_ip = None
@@ -19,9 +19,15 @@ while True:
         break
 
 while True:  # Setup a while loop to wait for a button press
+    count = 0
     if subprocess.call(['ping -c1 {}'.format(mob_ip)],
-        shell=True, stdout=open('/dev/null', 'w')) == 0:
-        print "host is detected"
-    else:
-        print "host unreachable"
-    break
+                       shell=True, stdout=open('/dev/null', 'w')) == 0:
+        count += 1
+        if count > 3:
+            count = 0
+            LOGGER.info("Mobile detected: IP ", mob_ip)
+            subprocess.Popen('mpg123 Welcome_Home.mp3', shell=True, stdout=subprocess.PIPE,)
+            # TODO MM 2015/11/04
+            # Switch on lights
+
+            break

@@ -1,4 +1,4 @@
-Passive wifi presence detection on Raspberry Pi
+-Passive wifi presence detection on Raspberry Pi
 
 http://www.hindawi.com/journals/ijdsn/2013/927940/
 
