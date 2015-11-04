@@ -59,7 +59,6 @@ class Find_IP(object):
             LOGGER.info("Failed to connnect. Error: {}".format(e))
             exit()
 
-
     def find_ip(self):
         arg = 'ip route list'
         p = subprocess.Popen(arg, shell=True, stdout=subprocess.PIPE)
@@ -86,6 +85,7 @@ class Find_IP(object):
         msg['To'] = to
         self.mail_server.sendmail(self.gmail_user, [to], msg.as_string())
         self.mail_server.quit()
+
 
 # Run check IP , if changed send email.
 check_ip()
