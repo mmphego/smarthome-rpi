@@ -1,10 +1,12 @@
+__author__ = 'mmphego'
+
 import logging
 
 # create logger
-LOGGER = logging.getLogger('Doorbell Logger')
+LOGGER = logging.getLogger('Presence Logger')
 LOGGER.setLevel(logging.DEBUG) # log all escalated at and above DEBUG
 
-fh = logging.FileHandler('../../Logs/Doorbell_Logger.csv')
+fh = logging.FileHandler('../../Logs/Presence_log.csv')
 fh.setLevel(logging.DEBUG) # ensure all messages are logged to file
 
 # create a formatter and set the formatter for the handler.

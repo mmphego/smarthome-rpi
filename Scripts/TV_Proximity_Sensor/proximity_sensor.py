@@ -1,10 +1,12 @@
 import os
 import time
 from logger import LOGGER
+
 try:
     import hcsr04sensor.sensor as sensor
 except ImportError:
     import pip
+
     pip.main(['install', 'hcsr04sensor'])
 
 
@@ -25,6 +27,13 @@ class TimerClass(object):
         os.system('mpg123 close_to_tv.mp3')
         LOGGER.info('Someone was close to the TV.')
 
+
+    def tv_Off(self):
+        # TODO: MM 2015/11/04
+        # Add IR instructions to switch TV off here
+        LOGGER.info('TV was switched off')
+
+
     def distance(self):
         """
         Gets distance in Centimeter and returns it.
@@ -40,12 +49,26 @@ class TimerClass(object):
         return value.distance_metric(raw_measurement)
 
     def run(self):
+        """
+        :type self: None
+        """
+        self.count = 0
         while True:
             if self.distance() <= self._threshold:
                 print 'Too close to the TV: {} cm.'.format(self.distance())
-                self.notification()
+                self.count += 1
+                if self.count == 3:
+                    self.notification()
+
+                elif self.count > 3:
+                    self.tv_Off()
+                    self.count = 0
+                else :
+                    pass
+
             else:
                 print 'Distance {}cm is fine.'.format(self.distance())
+
 
 thread = TimerClass()
 thread.run()

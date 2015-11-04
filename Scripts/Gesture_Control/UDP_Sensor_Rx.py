@@ -10,8 +10,8 @@ sock.connect(('8.8.8.8', 0))  # connecting to a UDP address doesn't send packets
 # Getting systems IP
 UDP_IP = sock.getsockname()[0]
 UDP_PORT = 5005
-Current_Acc = 0
-Prev_Acc = 0
+Current_Acc = None
+Prev_Acc = None
 sensitivity = 80
 limit = 270
 # RC time constant
@@ -19,28 +19,29 @@ alpha = 0.1
 x_data, y_data, z_data = [None] * 3
 
 LOGGER.info("Listening on IP:{}:{} ".format(UDP_IP, UDP_PORT))
+print("Listening on IP:{}:{} ".format(UDP_IP, UDP_PORT))
 try:
     sock = socket.socket(socket.AF_INET,  # Internet
                          socket.SOCK_DGRAM)  # UDP
     sock.bind((UDP_IP, UDP_PORT))
+    # sock.settimeout(5)
     LOGGER.info("Connected to host.")
+    print("Connected to host.")
 except Exception as e:
     LOGGER.error('Unable to start UDP sockets due to {}.'.format(e))
+    sock.close()
     raise RuntimeError('Unable to start UDP sockets due to {}.'.format(e))
 
 
 def notification():
     """
-
     :rtype : None
     """
     LOGGER.info('Mobile Shaken')
     # call switch relay or whatever here
 
 
-while True:
-    # buffer size is 1024 bytes
-    data, addr = sock.recvfrom(1024)
+def gesture_control():
     x_data, y_data, z_data = eval(data)
     # Sleep for every samples.
     time.sleep(1e-2)
@@ -53,3 +54,27 @@ while True:
         Prev_Acc = Prev_Acc + alpha * delta
         if sensitivity <= Prev_Acc <= limit:
             notification()
+
+def voice_recognition():
+    # TODO MM  2015/11/04
+    # insert code here to switch on lights
+    """
+
+    :rtype : None
+    """
+    pass
+
+while True:
+    # TODO MM 2015/11/04
+    # Combine gesture control and voice recognition
+    # buffer size is 1024 bytes
+    data, addr = sock.recvfrom(1024)
+    # format
+    # data : str containing list
+    # addr : 'xxx.xxx.xxx.xxx'
+    if len(data) == 3:
+        print data
+        gesture_control()
+    if len(data) == 1:
+        print data
+        voice_recognition()
