@@ -6,30 +6,46 @@ __date__ = "$Date: $"
 __copyright__ = "Copyright (c) 2015 Mpho Mphego"
 __license__ = "Python"
 
-
+import os
 import smtplib
-import datetime
-from email.mime.text import MIMEText
+from time import strftime
 from logger import LOGGER
+from pic_notification import take_pic
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEBase import MIMEBase
+from email.MIMEText import MIMEText
+from email import Encoders
 
-USERNAME = "homeauto112@gmail.com"
-PASSWORD = "Livhuwani$12"
-MAILTO  = "mpho112@gmail.com"
 
-def send_mail():
+def send_mail(to, subject, text, attach):
     LOGGER.info ("Sending Email Notification")
-    msg = MIMEText('Someone was at the door at {}'.format(today.strftime('%b %d %Y')))
-    msg['Subject'] = 'Doorbell notification!'
+    take_pic()
+
+    msg = MIMEMultipart()
+
     msg['From'] = USERNAME
     msg['To'] = MAILTO
+    msg['Subject'] = subject
+
+    msg.attach(MIMEText(text))
+
+    part = MIMEBase('application', 'octet-stream')
+    part.set_payload(open(attach, 'rb').read())
+    Encoders.encode_base64(part)
+    part.add_header('Content-Disposition',
+           'attachment; filename="%s"' % os.path.basename(attach))
+    msg.attach(part)
     try:
-        server = smtplib.SMTP('smtp.gmail.com:587')
-        server.ehlo_or_helo_if_needed()
-        server.starttls()
-        server.ehlo_or_helo_if_needed()
-        server.login(USERNAME,PASSWORD)
-        server.sendmail(USERNAME, MAILTO, msg.as_string())
-        server.quit()
-    except Exception:
-        LOGGER.error ('Unable to connect to gmail server')
-        raise RuntimeError ('Unable to connect to gmail server')
+        mailServer = smtplib.SMTP("smtp.gmail.com", 587)
+        mailServer.ehlo()
+        mailServer.starttls()
+        mailServer.ehlo()
+        mailServer.login(USERNAME, PASSWORD)
+        mailServer.sendmail(USERNAME, MAILTO, msg.as_string())
+        # Should be mailServer.quit(), but that crashes...
+    except Exception as e:
+        LOGGER.error ("Failed to connect to email server: Error: {}".format(e))
+        raise RuntimeError("Failed to connect to email server: Error: {}".format(e))
+
+    finally:
+        mailServer.close()

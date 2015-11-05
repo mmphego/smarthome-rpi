@@ -20,7 +20,7 @@ def html():
             color:white;
             font-family:Arial,Helvetica,sans-serif;
             }
-            span{
+            div{
             float:left;
             color:white;
             font-family:Arial,Helvetica,sans-serif;
@@ -65,13 +65,13 @@ def html():
     <span id='Header' style='float:left;height:140px;width:1760px;font-size: 20pt'>
             <img src='http://IP_Here/Images/download.jpg' width='450' height='135' class ='Image'>
             <p id='time' style='float:right;'>DATE:      <br>TIME:     <br>DOY:      </p>
-            </span>
+            </div>
 
-    <span id='Arduino Int Temp' style='height:290px;width:590px;border:2px solid #a1a1a1'>
+    <div id='Arduino Int Temp' style='height:290px;width:590px;border:2px solid #a1a1a1'>
             <img src='http://IP_Here:8080/render/?width=586&height=290&yMin=50&yMax=&lineMode=connected&hideLegend=true&bgcolor=000000&fgcolor=FFFFFF&minorY=4&title=Arduino%20Internal%20Temp&from=-9hours&fontSize=12&target=rpi.data.internalTemp' class ='Image'>
-            </span>
+            </div>
 
-    <span id='Arduin' style='height:290px;width:330px;'>
+    <div id='Arduin' style='height:290px;width:330px;'>
     <center>
             <section>
       <div id='content'>
@@ -92,7 +92,7 @@ def html():
     </div>
     </section>
     </center>
-    </span>
+    </div>
     <script>
     var xName = """ + str(varTemp) + """
     var varName = xName;
@@ -102,16 +102,16 @@ def html():
     <script src='http://IP_Here/Images/js/jquery.js'></script>
     <script src='http://IP_Here/Images/js/index.js'></script>
 
-    <span id='Room Temp' style='height:290px;width:590px;'>
+    <div id='Room Temp' style='height:290px;width:590px;'>
             <img src='http://IP_Here:8080/render/?width=586&height=290&_salt=1420028512.521&yMax=30&minorY=4&lineMode=connected&fgcolor=FFFFFF&bgcolor=000000&colorList=green%2Cred&title=Room%20Temp&from=-9hours&lineWidth=2&fontSize=12&target=rpi.data.roomTemp&vtitle=Temperature(C)&hideLegend=true' class ='Image'>
-            </span>
+            </div>
 
 
-    <span id='RPi Temperature' style='height:290px;width:590px;'>
+    <div id='RPi Temperature' style='height:290px;width:590px;'>
             <img src='http://IP_Here:8080/render/?width=586&height=290&_salt=1419628583.929&minorY=4&from=-9hours&connectedLimit=&fgcolor=FFFFFF&bgcolor=000000&lineWidth=2&title=RPi%20Temp&hideLegend=true&yMax=&fontSize=12&areaMode=first&lineMode=connected&drawNullAsZero=false&graphOnly=false&yStep=&colorList=green&target=rpi.data.internalRPiTemp' class='Image'>
-            </span>
+            </div>
 
-    <span id='Buttons' style='height:290px;width:330px;font-size: 20pt;border:2px solid #a1a1a1'>
+    <div id='Buttons' style='height:290px;width:330px;font-size: 20pt;border:2px solid #a1a1a1'>
     <form method='get' action='parsing_get.wsgi'>
     <p><center>
             <TABLE>
@@ -132,19 +132,19 @@ def html():
             </TABLE>
     </center>
     </p></form>
-    </span>
-    <span id='RPi CPU Usage' style='height:290px;width:590px;'>
+    </div>
+    <div id='RPi CPU Usage' style='height:290px;width:590px;'>
             <img src='http://IP_Here:8080/render/?width=586&height=290&from=-9hours&fgcolor=FFFFFF&bgcolor=000000&fontSize=13&title=RPi%20CPU&minorY=4&connectedLimit=&hideLegend=true&lineMode=connected&areaMode=stacked&target=carbon.rpi.system.loadAvg_15min&target=carbon.rpi.system.loadAvg_5min&target=carbon.rpi.system.loadAvg_1min' class ='Image'>
-            </span>
+            </div>
 
     </body>
-    <span id='Network Bandwidth' style='height:180px;width:820px;'>
+    <div id='Network Bandwidth' style='height:180px;width:820px;'>
             <img src='http://IP_Here:8080/render/?width=810&height=180&_salt=1419807028.849&fgcolor=000000&bgcolor=FFFFFF&hideLegend=true&minorY=4&title=Network%20Speed&from=-9hours&target=collectd.graph_host.interface-eth0.if_packets.rx&target=collectd.graph_host.interface-eth0.if_packets.tx&lineMode=connected&areaMode=stacked' width='815' height='175' class ='Image'>
-            </span>
+            </div>
 
-    <span id='Weather' style='height:180px;width:820px;'>
+    <div id='Weather' style='height:180px;width:820px;'>
     <img src='http://IP_Here/Images/weather.png' width='815' height='180' class='Image'>
-    </span>
+    </div>
     <script>
             var currentTime = new Date()
             var month = currentTime.getMonth() + 1
