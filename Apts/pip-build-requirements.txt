@@ -5,3 +5,5 @@ python-pushover
 nose
 hcsr04sensor
 python-lirc
+'requests[security]'
+plotly
