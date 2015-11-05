@@ -1,12 +1,14 @@
 import os
 import time
-from logger import LOGGER
+try:
+    from logger import LOGGER
+except Exception as e:
+    print '{}'.format(e)
 
 try:
     import hcsr04sensor.sensor as sensor
 except ImportError:
     import pip
-
     pip.main(['install', 'hcsr04sensor'])
 
 
