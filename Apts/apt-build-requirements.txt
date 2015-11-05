@@ -1,4 +1,6 @@
 git
+libffi-dev
+libssl-dev
 liblircclient-dev
 libr
 python-dev
