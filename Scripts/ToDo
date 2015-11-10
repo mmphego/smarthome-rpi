@@ -1,5 +1,5 @@
-#Multiroom audio - minidlna configuration
-Smoke detector - get mq2 sensor
-powermeter - get ct sensor
-get speaker
-make ir led work
+# Multiroom audio - minidlna configuration
+# Smoke detector - Arduino code
+# Powermeter - perhaps use ldr and read power meter
+# get speaker
+# make ir led work
