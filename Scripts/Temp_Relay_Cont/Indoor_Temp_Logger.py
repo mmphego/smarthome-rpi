@@ -3,9 +3,12 @@ import time
 try:
     import Adafruit_DHT as dht
 except ImportError:
-    raise RuntimeError("Unable to import module")
+    import pip
+    pip.main(['install', 'Adafruit_DHT'])
 
-data = list(dht.read_retry(dht.DHT11, 26))
+
+pin = 26
+data = list(dht.read_retry(dht.DHT11, pin))
 path = "../../Logs/Temp_Humid.csv"
 
 #----------------------------------------------------------------------

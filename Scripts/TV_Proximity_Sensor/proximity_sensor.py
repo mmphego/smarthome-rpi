@@ -3,7 +3,7 @@ import time
 try:
     from logger import LOGGER
 except Exception as e:
-    print '{}'.format(e)
+    print 'Failed due to {}'.format(e)
 
 try:
     import hcsr04sensor.sensor as sensor
@@ -34,6 +34,8 @@ class TimerClass(object):
         # TODO: MM 2015/11/04
         # Add IR instructions to switch TV off here
         LOGGER.info('TV was switched off')
+        time.sleep(60)
+        LOGGER.info('TV was switched on')
 
 
     def distance(self):
@@ -65,6 +67,7 @@ class TimerClass(object):
                 elif self.count > 3:
                     self.tv_Off()
                     self.count = 0
+
                 else :
                     pass
 

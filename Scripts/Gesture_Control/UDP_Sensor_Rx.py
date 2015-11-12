@@ -2,6 +2,7 @@
 import socket
 import time
 import numpy as np
+
 from logger import LOGGER
 
 sock = socket.socket(socket.AF_INET,  # Internet
@@ -24,21 +25,13 @@ try:
     sock = socket.socket(socket.AF_INET,  # Internet
                          socket.SOCK_DGRAM)  # UDP
     sock.bind((UDP_IP, UDP_PORT))
-    # sock.settimeout(5)
+    sock.settimeout(30)
     LOGGER.info("Connected to host.")
     print("Connected to host.")
 except Exception as e:
     LOGGER.error('Unable to start UDP sockets due to {}.'.format(e))
     sock.close()
     raise RuntimeError('Unable to start UDP sockets due to {}.'.format(e))
-
-
-def notification():
-    """
-    :rtype : None
-    """
-    LOGGER.info('Mobile Shaken')
-    # call switch relay or whatever here
 
 
 def gesture_control():
@@ -54,19 +47,37 @@ def gesture_control():
         Current_Acc = np.abs((float(x_data ** 2 + y_data ** 2 + z_data ** 2)))
         delta = Current_Acc - Last_Acc
         Prev_Acc = Prev_Acc + alpha * delta
-        print Prev_Acc
         if Prev_Acc >= sensitivity <= limit:
-            notification()
+            LOGGER.info('Mobile Shaken')
             print 'Mobile shaken'
+
 
 def voice_recognition():
     # TODO MM  2015/11/04
     # insert code here to switch on lights
-    """
+    if data == "kitchen light on" or data == "kitchen light off":
+        print data
+        LOGGER.info('Data: {}'.format(data))
 
-    :rtype : None
-    """
-    pass
+    elif data == "dining light on" or data == "dining light off":
+        print data
+        LOGGER.info('Data: {}'.format(data))
+
+    elif data == "bedroom light on" or data == "bedroom light off":
+        print data
+        LOGGER.info('Data: {}'.format(data))
+
+    elif data == "tv room light on" or data == "tv room light off":
+        print data
+        LOGGER.info('Data: {}'.format(data))
+
+    elif data == "all lights on" or data == "all lights on":
+        print data
+        LOGGER.info('Data: {}'.format(data))
+
+    else:
+        print "invalid parameter"
+
 
 while True:
     # TODO MM 2015/11/04
@@ -76,12 +87,9 @@ while True:
     # format
     # data : str containing list
     # addr : 'xxx.xxx.xxx.xxx'
-    #import IPython;IPython.embed()
-    if len(eval(data)) == 3:
-        #print data
+    print len(data)
+    if len(data) > 50:
         gesture_control()
-    if len(eval(data)) == 1:
+    else:
         print data
-        import IPython;IPython.embed()
-
         voice_recognition()
