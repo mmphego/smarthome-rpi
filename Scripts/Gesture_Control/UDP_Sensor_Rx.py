@@ -10,9 +10,9 @@ sock.connect(('8.8.8.8', 0))  # connecting to a UDP address doesn't send packets
 # Getting systems IP
 UDP_IP = sock.getsockname()[0]
 UDP_PORT = 5005
-Current_Acc = None
-Prev_Acc = None
-sensitivity = 80
+
+# Range 30 - 60
+sensitivity = 25
 limit = 270
 # RC time constant
 alpha = 0.1
@@ -45,6 +45,8 @@ def gesture_control():
     x_data, y_data, z_data = eval(data)
     # Sleep for every samples.
     time.sleep(1e-2)
+    Current_Acc = 0.0
+    Prev_Acc = 0.0
     if x_data is not None:
         # https://en.wikipedia.org/wiki/Low-pass_filter
         # simple Low pass filter algorithm
@@ -52,8 +54,10 @@ def gesture_control():
         Current_Acc = np.abs((float(x_data ** 2 + y_data ** 2 + z_data ** 2)))
         delta = Current_Acc - Last_Acc
         Prev_Acc = Prev_Acc + alpha * delta
-        if sensitivity <= Prev_Acc <= limit:
+        print Prev_Acc
+        if Prev_Acc >= sensitivity <= limit:
             notification()
+            print 'Mobile shaken'
 
 def voice_recognition():
     # TODO MM  2015/11/04
@@ -72,9 +76,12 @@ while True:
     # format
     # data : str containing list
     # addr : 'xxx.xxx.xxx.xxx'
-    if len(data) == 3:
-        print data
+    #import IPython;IPython.embed()
+    if len(eval(data)) == 3:
+        #print data
         gesture_control()
-    if len(data) == 1:
+    if len(eval(data)) == 1:
         print data
+        import IPython;IPython.embed()
+
         voice_recognition()
