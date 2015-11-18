@@ -7,14 +7,14 @@ __copyright__ = "Copyright (c) 2015 Mpho Mphego"
 __url__ = "mpho112.wordpress.com"
 __license__ = "Python"
 
-import RPi.GPIO as GPIO
 import time
 import os
+
+import RPi.GPIO as GPIO
 from logger import LOGGER
 from push_notification import send_notification
 from sms_notification import send_sms
 from email_notification import send_mail
-from pic_notification import take_pic
 
 USERNAME = "homeauto112@gmail.com"
 PASSWORD = "Livhuwani$12"

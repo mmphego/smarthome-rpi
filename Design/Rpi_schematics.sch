@@ -36,7 +36,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "9 sep 2015"
+Date "10 nov 2015"
 Rev ""
 Comp ""
 Comment1 ""
@@ -66,8 +66,6 @@ F 3 "~" H 5900 2750 60  0000 C CNN
 	1    6000 2950
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	4700 4000 5500 4000
 $Comp
 L +3.3V #PWR?
 U 1 1 55BCDFAE
@@ -81,50 +79,21 @@ F 3 "" H 4850 3750 60  0000 C CNN
 $EndComp
 $Comp
 L GND #PWR?
-U 1 1 55BCDFC1
-P 4750 4300
-F 0 "#PWR?" H 4750 4300 30  0001 C CNN
-F 1 "GND" H 4750 4230 30  0001 C CNN
-F 2 "" H 4750 4300 60  0000 C CNN
-F 3 "" H 4750 4300 60  0000 C CNN
-	1    4750 4300
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR?
 U 1 1 55BCDFD0
-P 5450 4200
-F 0 "#PWR?" H 5450 4200 30  0001 C CNN
-F 1 "GND" H 5450 4130 30  0001 C CNN
-F 2 "" H 5450 4200 60  0000 C CNN
-F 3 "" H 5450 4200 60  0000 C CNN
-	1    5450 4200
+P 5000 4300
+F 0 "#PWR?" H 5000 4300 30  0001 C CNN
+F 1 "GND" H 5000 4230 30  0001 C CNN
+F 2 "" H 5000 4300 60  0000 C CNN
+F 3 "" H 5000 4300 60  0000 C CNN
+	1    5000 4300
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	4700 4200 4750 4200
-Wire Wire Line
-	4750 4200 4750 4300
-Wire Wire Line
-	5500 4100 5450 4100
-Wire Wire Line
-	5450 4100 5450 4200
-Wire Wire Line
-	4700 3900 4850 3900
-Wire Wire Line
-	4850 3900 4850 3750
 Text GLabel 5150 2700 0    39   Output ~ 0
 Door Bell LED
-Wire Wire Line
-	5500 2700 5150 2700
 Text GLabel 6600 3000 2    39   Output ~ 0
 Door Bell Button
-Wire Wire Line
-	6600 3000 6300 3000
 Text GLabel 5150 2500 0    39   Output ~ 0
 Coffermaker
-Wire Wire Line
-	5150 2500 5500 2500
 $Comp
 L +3,3V #PWR?
 U 1 1 55F08746
@@ -136,10 +105,6 @@ F 3 "" H 5400 2100 60  0000 C CNN
 	1    5400 2100
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	5400 2100 5400 2200
-Wire Wire Line
-	5400 2200 5500 2200
 $Comp
 L +5V #PWR?
 U 1 1 55F0876B
@@ -151,17 +116,8 @@ F 3 "" H 6350 2100 60  0000 C CNN
 	1    6350 2100
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	6350 2100 6350 2300
-Wire Wire Line
-	6350 2200 6300 2200
-Wire Wire Line
-	6350 2300 6300 2300
-Connection ~ 6350 2200
 Text GLabel 6600 2700 2    39   Output ~ 0
 Closet Door Button
-Wire Wire Line
-	6600 2700 6300 2700
 $Comp
 L CONN_4 P?
 U 1 1 55F0916F
@@ -184,10 +140,6 @@ F 3 "" H 7050 3800 60  0000 C CNN
 	1    7050 3800
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	7050 3800 7050 3900
-Wire Wire Line
-	7050 3900 7100 3900
 $Comp
 L GND #PWR?
 U 1 1 55F091D1
@@ -199,12 +151,6 @@ F 3 "" H 7000 4300 60  0000 C CNN
 	1    7000 4300
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	7000 4300 7000 4200
-Wire Wire Line
-	7000 4200 7100 4200
-Wire Wire Line
-	7100 4000 6300 4000
 $Comp
 L R R?
 U 1 1 55F09299
@@ -227,15 +173,6 @@ F 3 "~" H 6750 4200 30  0000 C CNN
 	1    6750 4200
 	0    -1   -1   0   
 $EndComp
-Wire Wire Line
-	7000 4100 7100 4100
-Wire Wire Line
-	6300 4100 6500 4100
-Wire Wire Line
-	6500 4200 6450 4200
-Wire Wire Line
-	6450 4200 6450 4100
-Connection ~ 6450 4100
 $Comp
 L CONN_4 P?
 U 1 1 55F09595
@@ -258,10 +195,6 @@ F 3 "" H 7500 3200 60  0000 C CNN
 	1    7500 3200
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	7500 3200 7500 3300
-Wire Wire Line
-	7500 3300 7550 3300
 $Comp
 L GND #PWR?
 U 1 1 55F095A3
@@ -273,12 +206,6 @@ F 3 "" H 7450 3700 60  0000 C CNN
 	1    7450 3700
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	7450 3700 7450 3600
-Wire Wire Line
-	7450 3600 7550 3600
-Wire Wire Line
-	7550 3400 6750 3400
 $Comp
 L R R?
 U 1 1 55F095AC
@@ -301,17 +228,6 @@ F 3 "~" H 7200 3600 30  0000 C CNN
 	1    7200 3600
 	0    -1   -1   0   
 $EndComp
-Wire Wire Line
-	7450 3500 7550 3500
-Connection ~ 6950 3600
-Wire Wire Line
-	6950 3500 6950 3900
-Wire Wire Line
-	6950 3900 6300 3900
-Wire Wire Line
-	6750 3400 6750 3700
-Wire Wire Line
-	6750 3700 6300 3700
 $Comp
 L GND #PWR?
 U 1 1 55F09674
@@ -323,8 +239,6 @@ F 3 "" H 6450 3800 60  0000 C CNN
 	1    6450 3800
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	6450 3800 6300 3800
 $Comp
 L GND #PWR?
 U 1 1 55F096A8
@@ -340,10 +254,119 @@ Text GLabel 5150 2300 0    39   Output ~ 0
 Arduino SDA
 Text GLabel 5150 2400 0    39   Output ~ 0
 Arduino SCL
+$Comp
+L CONN_3 K?
+U 1 1 5642521C
+P 4350 3350
+F 0 "K?" V 4300 3350 50  0000 C CNN
+F 1 "IR" V 4400 3350 40  0000 C CNN
+F 2 "" H 4350 3350 60  0000 C CNN
+F 3 "" H 4350 3350 60  0000 C CNN
+	1    4350 3350
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	4700 4000 5500 4000
+Wire Wire Line
+	4700 4200 5000 4200
+Wire Wire Line
+	5000 4100 5500 4100
+Wire Wire Line
+	4700 3900 4850 3900
+Wire Wire Line
+	4850 3900 4850 3750
+Wire Wire Line
+	5500 2700 5150 2700
+Wire Wire Line
+	6600 3000 6300 3000
+Wire Wire Line
+	5150 2500 5500 2500
+Wire Wire Line
+	5400 2100 5400 2200
+Wire Wire Line
+	5400 2200 5500 2200
+Wire Wire Line
+	6350 2100 6350 2300
+Wire Wire Line
+	6350 2200 6300 2200
+Wire Wire Line
+	6350 2300 6300 2300
+Connection ~ 6350 2200
+Wire Wire Line
+	6600 2700 6300 2700
+Wire Wire Line
+	7050 3800 7050 3900
+Wire Wire Line
+	7050 3900 7100 3900
+Wire Wire Line
+	7000 4300 7000 4200
+Wire Wire Line
+	7000 4200 7100 4200
+Wire Wire Line
+	7100 4000 6300 4000
+Wire Wire Line
+	7000 4100 7100 4100
+Wire Wire Line
+	6300 4100 6500 4100
+Wire Wire Line
+	6500 4200 6450 4200
+Wire Wire Line
+	6450 4200 6450 4100
+Connection ~ 6450 4100
+Wire Wire Line
+	7500 3200 7500 3300
+Wire Wire Line
+	7500 3300 7550 3300
+Wire Wire Line
+	7450 3700 7450 3600
+Wire Wire Line
+	7450 3600 7550 3600
+Wire Wire Line
+	7550 3400 6750 3400
+Wire Wire Line
+	7450 3500 7550 3500
+Connection ~ 6950 3600
+Wire Wire Line
+	6950 3500 6950 3900
+Wire Wire Line
+	6950 3900 6300 3900
+Wire Wire Line
+	6750 3400 6750 3700
+Wire Wire Line
+	6750 3700 6300 3700
+Wire Wire Line
+	6450 3800 6300 3800
 Wire Wire Line
 	5150 2400 5500 2400
 Wire Wire Line
 	5150 2300 5500 2300
 Wire Wire Line
 	5350 2600 5500 2600
+Wire Wire Line
+	4950 3900 5500 3900
+Wire Wire Line
+	4800 3250 4700 3250
+Wire Wire Line
+	4800 3050 4800 3250
+Wire Wire Line
+	4950 3900 4950 3450
+Wire Wire Line
+	4950 3450 4700 3450
+Wire Wire Line
+	4700 3350 5000 3350
+$Comp
+L +3.3V #PWR?
+U 1 1 56425445
+P 4800 3100
+F 0 "#PWR?" H 4800 3060 30  0001 C CNN
+F 1 "+3.3V" H 4800 3210 30  0000 C CNN
+F 2 "" H 4800 3100 60  0000 C CNN
+F 3 "" H 4800 3100 60  0000 C CNN
+	1    4800 3100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5000 3350 5000 4300
+Connection ~ 5000 4200
+Connection ~ 5000 4100
 $EndSCHEMATC

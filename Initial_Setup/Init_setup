@@ -1,3 +1,6 @@
+#!/bin/bash
+
+# Copying files.
 sudo cp /etc/network/interfaces /etc/network/interface.bak
 sudo cp ../Backup_configs/interfaces /etc/network/
 
@@ -7,3 +10,5 @@ sudo cp ../Backup_configs/rc.local /etc/
 sudo cp /etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf.bk
 sudo cp ../Backup_configs/wpa_supplicant.conf /etc/wpa_supplicant/
 
+# Cloning gits.
+bash ../Apts/Git_Clone

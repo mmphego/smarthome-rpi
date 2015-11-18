@@ -1,4 +1,5 @@
 git
+motion
 libffi-dev
 libssl-dev
 liblircclient-dev

@@ -1,0 +1,13 @@
+# http://ozzmaker.com/2013/10/24/how-to-control-the-gpio-on-a-raspberry-pi-with-an-ir-remote/
+sudo apt-get install lirc liblircclient-dev
+sudo su
+echo 'lirc_dev' >> /etc/modules
+echo 'lirc_rpi gpio_in_pin=19' >> /etc/modules
+reboot
+
+sudo /etc/init.d/lirc stop
+mode2 -d /dev/lirc0
+
+
+#Record IR codes from your remote
+irrecord -d /dev/lirc0 ~/lircd.conf
