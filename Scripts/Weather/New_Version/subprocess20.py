@@ -20,9 +20,9 @@ except ImportError:
     pip.main(['install', 'gTTS'])
 
 coffeemaker = 4 #GPIO0
-end = ' Thats all for now. Have a nice day. Good bye!'
+end = " That's all for now. Have a nice day. Good bye!"
 
-GPIO.setwarnings(False)
+GPIO.setwarnings(True)
 GPIO.setmode(GPIO.BCM)
 time.sleep(0.01)
 GPIO.setup(coffeemaker, GPIO.OUT)
