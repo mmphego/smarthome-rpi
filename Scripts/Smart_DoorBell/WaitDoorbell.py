@@ -20,7 +20,7 @@ USERNAME = "homeauto112@gmail.com"
 PASSWORD = "Livhuwani$12"
 MAILTO  = "mpho112@gmail.com"
 SUB = 'Doorbell notification!'
-MESSAGE = 'Someone was at the door at {}'.format(strftime('%b %d %Y'))
+MESSAGE = 'Someone was at the door at {}'.format(time.strftime('%b %d %Y'))
 FILE = 'image.jpg'
 
 led = 17 #GPIO0

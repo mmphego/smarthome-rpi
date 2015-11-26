@@ -11,8 +11,17 @@ droid = android.Android()
 try:
     droid.ttsSpeak("Please enter server's IP address")
     time.sleep(.5)
-    #hostname = "192.168.1.173"
-    hostname = str(droid.dialogGetInput(title='IP Address').result)
+    hostname = "192.168.1.173"
+    # TODO save IP to file and compare, if changed request user to input IP
+    with open('/sdcard/com.hipipal.qpyplus/scripts/ip.txt', 'w') as f:
+        Prev_IP = str(droid.dialogGetInput(title='IP Address').result)
+        f.write(Prev_IP)
+
+    with open('/sdcard/com.hipipal.qpyplus/scripts/ip.txt', 'r') as f:
+
+
+
+
     port = 5005
     message = "Connecting to hostname:{}, port:{}".format(hostname, port)
     droid.makeToast(hostname)
