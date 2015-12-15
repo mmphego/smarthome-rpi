@@ -18,7 +18,7 @@ import time
 import datetime
 import random
 
-
+wait_time = 10
 pin = 26
 data = list(dht.read_retry(dht.DHT11, pin))
 path = "../../Logs/Temp_Humid.csv"
@@ -60,8 +60,9 @@ if __name__ == "__main__":
     #the main sensor reading and plotting loop
     while True:
         # write the data to plotly
+        # TODO : Fix script to stream data to plotly.
         stream.write({'x': datetime.datetime.now(), 'y': random.randrange(1, 10)})
 
         csv_writer(data, path)
         # delay between stream posts
-        time.sleep(10)
+        time.sleep(wait_time)
