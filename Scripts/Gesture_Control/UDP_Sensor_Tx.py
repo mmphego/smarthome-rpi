@@ -13,6 +13,8 @@ data = str()
 ts = 100  # max sampling time 100ms
 time_out = 0.5
 Accelerometer = 2
+
+hostname = '255.255.255.255'
 port = 5005
 nbytes = 1024
 
@@ -36,32 +38,15 @@ try:
 except Exception:
     message = "Exiting application."
 
+try:
+    # Creating a UDP Socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+    droid.makeToast("Connected to server!")
+except Exception as e:
+    droid.ttsSpeak('Not connected to host due to {}!'.format(e))
+
 if options[result] == options[0]:
-
-    try:
-        droid.ttsSpeak("Please enter server's IP address")
-        time.sleep(time_out)
-        #hostname = "192.168.1.173"
-        # TODO save IP to file and compare, if changed request user to input IP
-        #with open('/sdcard/com.hipipal.qpyplus/scripts/ip.txt', 'w') as f:
-            #Prev_IP = str(droid.dialogGetInput(title='IP Address').result)
-            #f.write(Prev_IP)
-        hostname = str(droid.dialogGetInput(title='IP Address').result)
-        message = "Connecting to hostname:{}, port:{}".format(hostname, port)
-        droid.makeToast(hostname)
-    except Exception as e:
-        droid.ttsSpeak('Failed to get IP address.')
-
-
-    try:
-        # Creating a UDP Socket
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        # Connecting to Host (Usually not required since it is UDP)
-        s.connect((hostname, port))
-        droid.makeToast("Connected to server!")
-    except Exception as e:
-        droid.ttsSpeak('Not connected to host due to {}!'.format(e))
-        droid.makeToast('Failed: {}'.format(e))
 
     # start sensing Accelerometer at 100ms
     droid.startSensingTimed(Accelerometer, ts)
@@ -81,25 +66,9 @@ if options[result] == options[0]:
 elif options[result] == options[1]:
 
     try:
-        # TODO Add an IP checker, If it has changed ttsSpeak else use one from file
-       # droid.ttsSpeak("Please enter server's IP address")
-        time.sleep(time_out)
-        hostname = "192.168.0.103"
-        #hostname = str(droid.dialogGetInput(title='IP Address').result)
         message = "Connecting to hostname:{}, port:{}".format(hostname, port)
-        droid.makeToast(hostname)
     except Exception as e:
         droid.ttsSpeak('Failed to get IP address.')
-
-    try:
-        # Creating a UDP Socket
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        # Connecting to Host (Usually not required since it is UDP)
-        s.connect((hostname, port))
-        droid.makeToast("Connected to server!")
-    except Exception as e:
-        droid.ttsSpeak('Not connected to host due to {}'.format(e))
-        droid.makeToast('Failed: {}'.format(e))
 
     while True:
         # Using Android API for Google Voice and Recognizing command

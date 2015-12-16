@@ -42,7 +42,9 @@ try:
 
     sock = socket.socket(socket.AF_INET,  # Internet
                          socket.SOCK_DGRAM)  # UDP
-    sock.bind((UDP_IP, UDP_PORT))
+
+    #sock.bind((UDP_IP, UDP_PORT))
+    sock.bind(('', UDP_PORT))
     LOGGER.info("Connected to host.")
     print("Connected to host.")
 except Exception as e:
