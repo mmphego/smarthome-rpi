@@ -1,0 +1,14 @@
+# /etc/modules: kernel modules to load at boot time.
+#
+# This file contains the names of kernel modules that should be loaded
+# at boot time, one per line. Lines beginning with "#" are ignored.
+# Parameters can be specified after the module name.
+ 
+snd-bcm2835
+ipv6
+i2c-dev
+i2c-bcm2708
+#bcm2708_wdog
+##Uncomment inorder to configure Linux Infrared Remote Control.
+lirc_dev
+lirc_rpi gpio_in_pin=19 gpio_out_pin=13
