@@ -1,4 +1,0 @@
-#!/bin/bash
-cp  /home/mmphego/mnt/dbelab04/src/mkat_fpga/mkat_fpga_tests/mkat_fpga_tests.test_cbf.test_CBF.test_channelisation.channel_response.svg /home/mmphego/mnt/dbelab04/Daily_systems_check/Images
-cd /home/mmphego/mnt/dbelab04/Daily_systems_check/Images ;
-inkscape -z mkat_fpga_tests.test_cbf.test_CBF.test_channelisation.channel_response.svg image.eps --export-eps=image.eps

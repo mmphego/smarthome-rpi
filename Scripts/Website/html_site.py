@@ -67,9 +67,6 @@ def html():
             <p id='time' style='float:right;'>DATE:      <br>TIME:     <br>DOY:      </p>
             </div>
 
-    <div id='Arduino Int Temp' style='height:290px;width:590px;border:2px solid #a1a1a1'>
-            <img src='http://IP_Here:8080/render/?width=586&height=290&yMin=50&yMax=&lineMode=connected&hideLegend=true&bgcolor=000000&fgcolor=FFFFFF&minorY=4&title=Arduino%20Internal%20Temp&from=-9hours&fontSize=12&target=rpi.data.internalTemp' class ='Image'>
-            </div>
 
     <div id='Arduin' style='height:290px;width:330px;'>
     <center>
@@ -102,14 +99,13 @@ def html():
     <script src='http://IP_Here/Images/js/jquery.js'></script>
     <script src='http://IP_Here/Images/js/index.js'></script>
 
-    <div id='Room Temp' style='height:290px;width:590px;'>
-            <img src='http://IP_Here:8080/render/?width=586&height=290&_salt=1420028512.521&yMax=30&minorY=4&lineMode=connected&fgcolor=FFFFFF&bgcolor=000000&colorList=green%2Cred&title=Room%20Temp&from=-9hours&lineWidth=2&fontSize=12&target=rpi.data.roomTemp&vtitle=Temperature(C)&hideLegend=true' class ='Image'>
-            </div>
+<div>
+    <a href="https://plot.ly/~MphoMphego/64/" target="_blank" title="" style="display: block; text-align: center;"><img src="https://plot.ly/~MphoMphego/64.png" alt="" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+    <script data-plotly="MphoMphego:64"  src="https://plot.ly/embed.js" async></script>
+</div>
 
 
-    <div id='RPi Temperature' style='height:290px;width:590px;'>
-            <img src='http://IP_Here:8080/render/?width=586&height=290&_salt=1419628583.929&minorY=4&from=-9hours&connectedLimit=&fgcolor=FFFFFF&bgcolor=000000&lineWidth=2&title=RPi%20Temp&hideLegend=true&yMax=&fontSize=12&areaMode=first&lineMode=connected&drawNullAsZero=false&graphOnly=false&yStep=&colorList=green&target=rpi.data.internalRPiTemp' class='Image'>
-            </div>
+
 
     <div id='Buttons' style='height:290px;width:330px;font-size: 20pt;border:2px solid #a1a1a1'>
     <form method='get' action='parsing_get.wsgi'>

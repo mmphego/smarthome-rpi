@@ -8,4 +8,5 @@ try:
         for row in reader:
             varHum, varTemp = row
 except Exception as errmsg:
-    raise RuntimeError('Failed to read file due to {}'.format(errmsg))
+    varHum, varTemp = [0, 0]
+    #raise RuntimeError('Failed to read file due to {}'.format(errmsg))
