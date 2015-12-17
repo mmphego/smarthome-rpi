@@ -31,10 +31,10 @@ arduino_output = {'relay1_on_off': 1, 'relay1_off': 10, 'relay1_on': 11,
                   }
 locals().update(arduino_output)
 
-#try:
-    #serial_comm = serial.Serial('/dev/ttyACM0', baud)
-#except serial.SerialException:
-    #serial_comm = serial.Serial('/dev/ttyACM1', baud)
+try:
+    serial_comm = serial.Serial('/dev/ttyACM0', baud)
+except serial.SerialException:
+    serial_comm = serial.Serial('/dev/ttyACM1', baud)
 
 try:
     LOGGER.info("Listening on IP:{}:{} ".format(UDP_IP, UDP_PORT))
@@ -78,52 +78,52 @@ def voice_recognition(data):
     # insert code here to switch on lights
 
     if data == "bedroom light on" or data == "bedroom on":
-        #serial_comm.write(relay1_on)
+        serial_comm.write(relay1_on)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "bedroom light off" or data == "bedroom off":
-        #serial_comm.write(relay1_off)
+        serial_comm.write(relay1_off)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "kitchen light on" or data == "kitchen on":
-        #serial_comm.write(relay2_on)
+        serial_comm.write(relay2_on)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "kitchen light off" or data == "kitchen off":
-        #serial_comm.write(relay2_off)
+        serial_comm.write(relay2_off)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "dining light on" or data == "dining light off":
-        #serial_comm.write(relay3_on)
+        serial_comm.write(relay3_on)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "dining light off" or data == "dining off":
-        #serial_comm.write(relay3_off)
+        serial_comm.write(relay3_off)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "tv room light on" or data == "tv room light off":
-        #serial_comm.write(relay4_on)
+        serial_comm.write(relay4_on)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "tv room light off" or data == "tv room off":
-        #serial_comm.write(relay4_off)
+        serial_comm.write(relay4_off)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "all lights on" or data == "lights on":
-        #serial_comm.write(relay5_on)
+        serial_comm.write(relay5_on)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "all lights off" or data == "lights off":
-        #serial_comm.write(relay5_off)
+        serial_comm.write(relay5_off)
         print data
         LOGGER.info('Data: {}'.format(data))
 
