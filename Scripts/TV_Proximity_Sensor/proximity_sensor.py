@@ -1,5 +1,16 @@
 import os
 import time
+import serial
+import lirc
+"""
+USAGE: Create ~/.lircrc and copy below code
+begin
+    prog = irexec
+    button = KEY_1
+    config = echo "You pressed one"
+    repeat = 0
+end
+"""
 try:
     from logger import LOGGER
 except Exception as e:
@@ -11,7 +22,7 @@ except ImportError:
     import pip
     pip.main(['install', 'hcsr04sensor'])
 
-
+BAUD = 9600
 class TimerClass(object):
     def __init__(self):
         self._threshold = 20.0
@@ -20,6 +31,12 @@ class TimerClass(object):
         self._unit = 'metric'  # choices (metric or imperial)
         self._temperature = 20  # Celcius for metric, Fahrenheit for imperial
         self._round_to = 1  # report a cleaner rounded output.
+        self.relay6_off = 60
+        self.infrared = lirc.init('irexec')
+        try:
+            self.serial_com = serial.Serial('/dev/ttyACM0', BAUD)
+        except serial.SerialException:
+            self.serial_com = serial.Serial('/dev/ttyACM1', BAUD)
 
     def notification(self):
         """
@@ -29,14 +46,18 @@ class TimerClass(object):
         os.system('mpg123 close_to_tv.mp3')
         LOGGER.info('Someone was close to the TV.')
 
-
     def tv_Off(self):
         # TODO: MM 2015/11/04
         # Add IR instructions to switch TV off here
         LOGGER.info('TV was switched off')
-        time.sleep(60)
-        LOGGER.info('TV was switched on')
-
+        try:
+            print 'use lirc'
+            while True:
+            btn = lirc.nextcode()
+            if btn != []:
+                print btn
+        except:
+            self.serial_com.write(self.relay6_off)
 
     def distance(self):
         """
@@ -68,7 +89,7 @@ class TimerClass(object):
                     self.tv_Off()
                     self.count = 0
 
-                else :
+                else:
                     pass
 
             else:

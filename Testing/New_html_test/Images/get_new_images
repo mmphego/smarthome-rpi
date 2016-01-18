@@ -1,0 +1,4 @@
+#!/bin/bash
+
+wget -O /var/www/Images/weather.png  http://www.yr.no/place/South_Africa/Western_Cape/Cape_Town/meteogram.png
+#http://www.yr.no/place/South_Africa/Gauteng/Pretoria/meteogram.png
