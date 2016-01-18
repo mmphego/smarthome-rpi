@@ -37,6 +37,7 @@ class TimerClass(object):
             self.serial_com = serial.Serial('/dev/ttyACM0', BAUD)
         except serial.SerialException:
             self.serial_com = serial.Serial('/dev/ttyACM1', BAUD)
+
     def notification(self):
         """
         This will sound a siren or notification to move away
