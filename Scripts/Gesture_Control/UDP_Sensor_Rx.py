@@ -11,16 +11,34 @@ sock.connect(('8.8.8.8', 0))  # connecting to a UDP address doesn't send packets
 # Getting systems IP
 UDP_IP = sock.getsockname()[0]
 UDP_PORT = 5005
+LOGGER.info("Listening on IP:{}:{} ".format(UDP_IP, UDP_PORT))
+print("Listening on IP:{}:{} ".format(UDP_IP, UDP_PORT))
 
 # Range 30 - 60
 sensitivity = 25
 limit = 270
-# RC time constant
+max_limit = float(sensitivity + limit + 100)
+# Low pass filter RC time constant
 alpha = 0.1
 x_data, y_data, z_data = [None] * 3
 
-LOGGER.info("Listening on IP:{}:{} ".format(UDP_IP, UDP_PORT))
-print("Listening on IP:{}:{} ".format(UDP_IP, UDP_PORT))
+baud = 9600
+arduino_output = {'relay1_off' : '2',
+                  'relay1_on'  : '1',
+                  'relay2_off' : '4',
+                  'relay2_on'  : '3',
+                  'relay3_off' : '6',
+                  'relay3_on'  : '5',
+                  'relay4_off' : '8',
+                  'relay4_on'  : '7'
+                  }
+locals().update(arduino_output)
+
+try:
+    serial_comm = serial.Serial('/dev/ttyACM0', baud, timeout=10)
+except serial.SerialException:
+    serial_comm = serial.Serial('/dev/ttyACM1', baud, timeout=10)
+
 try:
     sock = socket.socket(socket.AF_INET,  # Internet
                          socket.SOCK_DGRAM)  # UDP
@@ -35,6 +53,7 @@ except Exception as e:
 
 
 def gesture_control():
+    #print 'Accelerometer: ',data
     x_data, y_data, z_data = eval(data)
     # Sleep for every samples.
     time.sleep(1e-2)
@@ -48,14 +67,34 @@ def gesture_control():
         delta = Current_Acc - Last_Acc
         Prev_Acc = Prev_Acc + alpha * delta
         if Prev_Acc >= sensitivity <= limit:
-            LOGGER.info('Mobile Shaken')
-            print 'Mobile shaken'
+            LOGGER.info('Mobile Shaken Relay On')
+            print ('Mobile Shaken Relay On')
+            serial_comm.write(relay1_on)
+        #ToDo: read log file, if shaken before twice ,3rd time will go off
+
 
 
 def voice_recognition():
     # TODO MM  2015/11/04
     # insert code here to switch on lights
     if data == "kitchen light on" or data == "kitchen light off":
+        import IPython;IPython.embed()
+        serial_comm.write(relay1_on)
+        print data
+        LOGGER.info('Data: {}'.format(data))
+
+    elif data == "bedroom light off" or data == "bedroom off":
+        serial_comm.write(relay1_off)
+        print data
+        LOGGER.info('Data: {}'.format(data))
+
+    elif data == "kitchen light on" or data == "kitchen on":
+        serial_comm.write(relay2_on)
+        print data
+        LOGGER.info('Data: {}'.format(data))
+
+    elif data == "kitchen light off" or data == "kitchen off":
+        serial_comm.write(relay2_off)
         print data
         LOGGER.info('Data: {}'.format(data))
 

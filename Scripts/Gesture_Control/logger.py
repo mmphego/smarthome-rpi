@@ -8,7 +8,7 @@ Tracking events that happen when some software runs
 LOGGER = logging.getLogger('Gesture Control')
 LOGGER.setLevel(logging.DEBUG) # log all escalated at and above DEBUG
 
-fh = logging.FileHandler('../../Logs/Shake_Detect_Logger.csv')
+fh = logging.FileHandler('/home/pi/Logs/Shake_Detect_Logger.csv')
 fh.setLevel(logging.DEBUG) # ensure all messages are logged to file
 
 # create a formatter and set the formatter for the handler.

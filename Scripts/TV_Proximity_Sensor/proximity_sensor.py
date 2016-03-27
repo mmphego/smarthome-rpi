@@ -37,6 +37,15 @@ class TimerClass(object):
         time.sleep(60)
         LOGGER.info('TV was switched on')
 
+        try:
+            print 'use lirc'
+            while True:
+                btn = lirc.nextcode()
+                if btn != []:
+                    print btn
+        except:
+            self.serial_com.write(self.relay6_off)
+
 
     def distance(self):
         """

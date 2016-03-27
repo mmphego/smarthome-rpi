@@ -1,6 +1,4 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+# ~/.bashrc: executed by bash(1) for non-login shells. see /usr/share/doc/bash/examples/startup-files (in the package bash-doc) for examples
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -93,8 +91,8 @@ alias update='sudo apt-get update'
 alias upgrade='sudo apt-get --force-yes -y upgrade'
 alias wget='wget -c --tries=1000'
 alias rpi='sudo raspi-config'
-alias top='htop'
-alias kill='sudo kill -9'
+#alias top='htop'
+#alias kill='kill -9'
 alias uninstall='sudo apt-get --purge remove '
 alias cleanPC='sudo apt-get -y --force-yes autoclean && \
 sudo apt-get -y --force-yes clean && \
@@ -117,9 +115,9 @@ fi
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
+#if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+#    . /etc/bash_completion
+#fi
 export PATH=$PATH:/usr/local/java/bin
 
 unset HISTFILESIZE

@@ -1,25 +1,45 @@
-import csv
-import time
 try:
     import Adafruit_DHT as dht
 except ImportError:
     import pip
     pip.main(['install', 'Adafruit_DHT'])
 
+import time
+import urllib2
+import gc
+from logger import LOGGER
 
+wait_time = 59
 pin = 26
-data = list(dht.read_retry(dht.DHT11, pin))
-path = "../../Logs/Temp_Humid.csv"
+
+baseurl = 'https://api.thingspeak.com/update?api_key='
+apikey = 'H4KN07GGESD8XZEH'
+
+def getSensorData():
+    try:
+        humid, temp = dht.read_retry(dht.DHT11, pin)
+    except:
+        return None
+        raise RuntimeError('unable to read sensor')
+    return (str(humid), str(temp))
 
 #----------------------------------------------------------------------
-def csv_writer(data, path):
-    with open(path, "wb") as csv_file:
-        writer = csv.writer(csv_file, delimiter=',')
-        writer.writerow(data)
 
-#----------------------------------------------------------------------
-if __name__ == "__main__":
-
-    while True:
-        csv_writer(data, path)
-        time.sleep(10)
+API_URL = baseurl + apikey
+count = 0
+while True:
+    humidity, temperature = getSensorData()
+    LOGGER.info('Humidity: {}%, Temp: {}'.format(humidity, temperature))
+    try:
+        send_data = urllib2.urlopen(API_URL + '&field1={}&field2={}'.format(humidity, temperature))
+    except:
+        count += 1
+        send_data.close()
+        gc.collect()
+        if count > 5:
+            raise RuntimeError('Failed to reach url')
+            break
+            count = 0
+    time.sleep(wait_time)
+    gc.collect()
+    send_data.close()

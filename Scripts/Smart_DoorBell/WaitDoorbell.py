@@ -9,6 +9,8 @@ __license__ = "Python"
 
 import time
 import os
+import subprocess
+import gc
 
 import RPi.GPIO as GPIO
 from logger import LOGGER
@@ -16,17 +18,11 @@ from push_notification import send_notification
 from sms_notification import send_sms
 from email_notification import send_mail
 
-USERNAME = "homeauto112@gmail.com"
-PASSWORD = "Livhuwani$12"
-MAILTO  = "mpho112@gmail.com"
-SUB = 'Doorbell notification!'
-MESSAGE = 'Someone was at the door at {}'.format(strftime('%b %d %Y'))
-FILE = 'image.jpg'
 
 led = 17 #GPIO0
-button = 24 #GPIO1
+button = 18 #GPIO1
 
-GPIO.setwarnings(True)
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(led, GPIO.OUT)
 time.sleep(0.1)
@@ -40,34 +36,43 @@ GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 def send_all_notifications():
     LOGGER.info('Sending door notifications')
     GPIO.output(led, True)
+    with open(os.devnull, 'rb') as devnull:
+        subprocess.Popen('mpg123 /home/pi/Scripts/Smart_DoorBell/DoorNotify.mp3',
+                     shell=True, stdout=devnull, stderr=devnull ).communicate()
+    GPIO.output(led, False)
     send_notification()
     send_sms()
-    send_mail(MAILTO, SUB ,MESSAGE, FILE )
-    time.sleep(0.5)
-    GPIO.output(led, False)
-    os.system("mpg123 /home/pi/Scripts/Smart_DoorBell/DoorNotify.mp3")
+    send_mail()
+    success = False
 
 # define callback functions
 # this will run when an event are detected
 def buttonHandler(channel):
-    LOGGER.debug("falling edge detected, sending notifications")
-    send_all_notifications()
+    if success:
+        LOGGER.debug("falling edge detected, sending notifications")
+        print("falling edge detected, sending notifications")
+        send_all_notifications()
+
 
 try:
     # when a falling edge is detected on port 1, regardless of whatever
     # else is happening in the program, the function buttonHandler will be run
-    GPIO.add_event_detect(button, GPIO.FALLING, callback=buttonHandler, bouncetime=5000)
+    success = True
+    GPIO.add_event_detect(button, GPIO.FALLING, callback=buttonHandler, bouncetime=5500)
 except Exception:
     LOGGER.error('Unable to detect falling edge')
     raise RuntimeError('Unable to detect falling edge')
 
 try:
     LOGGER.debug("Waiting for button to be pressed")
+    print "Waiting for falling edge on port {}".format(button)
     while True:
-        time.sleep(10)
-        continue
-except Exception:
+        time.sleep(.25)
+except (Exception, KeyboardInterrupt):
+    print '************exiting*********'
+    gc.collect()
     GPIO.cleanup()       # clean up GPIO on CTRL+C exit
-finally:
-    LOGGER.debug("Clean up by resetting all GPIO")
-    GPIO.cleanup()           # clean up GPIO on normal exit
+print '************exiting*********'
+LOGGER.debug("Clean up by resetting all GPIO")
+gc.collect()
+GPIO.cleanup()           # clean up GPIO on normal exit

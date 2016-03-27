@@ -6,7 +6,7 @@ import logging
 LOGGER = logging.getLogger('TV Proximity Logger')
 LOGGER.setLevel(logging.DEBUG) # log all escalated at and above DEBUG
 
-fh = logging.FileHandler('../../Logs/TV_Proximity_log.csv')
+fh = logging.FileHandler('/home/pi/Logs/TV_Proximity_log.csv')
 fh.setLevel(logging.DEBUG) # ensure all messages are logged to file
 
 # create a formatter and set the formatter for the handler.

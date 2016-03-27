@@ -1,7 +1,8 @@
 # Optimise Android  Rx script
 # Complete LIRC Script to include other buttons and mapping of controls
 # Get the images from plotly and embed on control site
-# Connect RPi with Arduino and test i2c protocol
-# Connect button to RPi and test Smart doorbell
-# Compile code for Arduino for Smoke detection
+# Connect RPi with Arduino and test i2c protocol - Done
+# Connect button to RPi and test Smart doorbell- Done
+# Compile code for Arduino for Smoke detection- Done
 #
+>>>>>>> Stashed changes

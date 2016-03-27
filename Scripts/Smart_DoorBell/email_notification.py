@@ -17,7 +17,14 @@ from email.MIMEText import MIMEText
 from email import Encoders
 
 
-def send_mail(to, subject, text, attach):
+USERNAME = "homeauto112@gmail.com"
+PASSWORD = "Livhuwani$12"
+MAILTO  = "mpho112@gmail.com"
+SUB = 'Doorbell notification!'
+MESSAGE = 'Someone was at the door at {}'.format(strftime('%b %d %Y'))
+FILE = 'image.jpg'
+
+def send_mail():
     LOGGER.info ("Sending Email Notification")
     take_pic()
 
@@ -25,15 +32,15 @@ def send_mail(to, subject, text, attach):
 
     msg['From'] = USERNAME
     msg['To'] = MAILTO
-    msg['Subject'] = subject
+    msg['Subject'] = SUB
 
-    msg.attach(MIMEText(text))
+    msg.attach(MIMEText(MESSAGE))
 
     part = MIMEBase('application', 'octet-stream')
-    part.set_payload(open(attach, 'rb').read())
+    part.set_payload(open(FILE, 'rb').read())
     Encoders.encode_base64(part)
     part.add_header('Content-Disposition',
-           'attachment; filename="%s"' % os.path.basename(attach))
+           'attachment; filename="%s"' % os.path.basename(FILE))
     msg.attach(part)
     try:
         mailServer = smtplib.SMTP("smtp.gmail.com", 587)
@@ -46,6 +53,5 @@ def send_mail(to, subject, text, attach):
     except Exception as e:
         LOGGER.error ("Failed to connect to email server: Error: {}".format(e))
         raise RuntimeError("Failed to connect to email server: Error: {}".format(e))
-
     finally:
         mailServer.close()
