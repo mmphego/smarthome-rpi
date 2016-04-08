@@ -1,6 +1,7 @@
 #!/usr/bin/python2
 import socket
 import time
+import serial
 import numpy as np
 
 from logger import LOGGER
@@ -11,18 +12,24 @@ sock.connect(('8.8.8.8', 0))  # connecting to a UDP address doesn't send packets
 # Getting systems IP
 UDP_IP = sock.getsockname()[0]
 UDP_PORT = 5005
+
 LOGGER.info("Listening on IP:{}:{} ".format(UDP_IP, UDP_PORT))
 print("Listening on IP:{}:{} ".format(UDP_IP, UDP_PORT))
 
+nbytes = 1024
+sleep_time = 0.01
+
 # Range 30 - 60
-sensitivity = 25
+sensitivity = 30
 limit = 270
 max_limit = float(sensitivity + limit + 100)
+
 # Low pass filter RC time constant
 alpha = 0.1
 x_data, y_data, z_data = [None] * 3
 
 baud = 9600
+
 arduino_output = {'relay1_off' : '2',
                   'relay1_on'  : '1',
                   'relay2_off' : '4',
@@ -35,15 +42,19 @@ arduino_output = {'relay1_off' : '2',
 locals().update(arduino_output)
 
 try:
-    serial_comm = serial.Serial('/dev/ttyACM0', baud, timeout=10)
+    serial_comm = serial.Serial('/dev/ttyACM0', baud, timeout=30)
 except serial.SerialException:
-    serial_comm = serial.Serial('/dev/ttyACM1', baud, timeout=10)
+    serial_comm = serial.Serial('/dev/ttyACM1', baud, timeout=30)
 
 try:
+    LOGGER.info("Listening on IP:{}:{} ".format(UDP_IP, UDP_PORT))
+    print("Listening on IP:{}:{} ".format(UDP_IP, UDP_PORT))
+
     sock = socket.socket(socket.AF_INET,  # Internet
                          socket.SOCK_DGRAM)  # UDP
-    sock.bind((UDP_IP, UDP_PORT))
-    sock.settimeout(30)
+
+    #sock.bind((UDP_IP, UDP_PORT))
+    sock.bind(('', UDP_PORT))
     LOGGER.info("Connected to host.")
     print("Connected to host.")
 except Exception as e:
@@ -56,7 +67,7 @@ def gesture_control():
     #print 'Accelerometer: ',data
     x_data, y_data, z_data = eval(data)
     # Sleep for every samples.
-    time.sleep(1e-2)
+    time.sleep(sleep_time)
     Current_Acc = 0.0
     Prev_Acc = 0.0
     if x_data is not None:
@@ -72,13 +83,10 @@ def gesture_control():
             serial_comm.write(relay1_on)
         #ToDo: read log file, if shaken before twice ,3rd time will go off
 
-
-
-def voice_recognition():
+def voice_recognition(data):
     # TODO MM  2015/11/04
     # insert code here to switch on lights
-    if data == "kitchen light on" or data == "kitchen light off":
-        import IPython;IPython.embed()
+    if data == "bedroom light on" or data == "bedroom on":
         serial_comm.write(relay1_on)
         print data
         LOGGER.info('Data: {}'.format(data))
@@ -99,36 +107,50 @@ def voice_recognition():
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "dining light on" or data == "dining light off":
+        serial_comm.write(relay3_on)
         print data
         LOGGER.info('Data: {}'.format(data))
 
-    elif data == "bedroom light on" or data == "bedroom light off":
+    elif data == "dining light off" or data == "dining off":
+        serial_comm.write(relay3_off)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "tv room light on" or data == "tv room light off":
+        serial_comm.write(relay4_on)
         print data
         LOGGER.info('Data: {}'.format(data))
 
-    elif data == "all lights on" or data == "all lights on":
+    elif data == "tv room light off" or data == "tv room off":
+        serial_comm.write(relay4_off)
+        print data
+        LOGGER.info('Data: {}'.format(data))
+
+    elif data == "all lights on" or data == "lights on":
+        serial_comm.write(relay5_on)
+        print data
+        LOGGER.info('Data: {}'.format(data))
+
+    elif data == "all lights off" or data == "lights off":
+        serial_comm.write(relay5_off)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     else:
-        print "invalid parameter"
+        print "invalid parameter: ", data
 
 
 while True:
     # TODO MM 2015/11/04
     # Combine gesture control and voice recognition
     # buffer size is 1024 bytes
-    data, addr = sock.recvfrom(1024)
+    data, addr = sock.recvfrom(nbytes)
     # format
     # data : str containing list
     # addr : 'xxx.xxx.xxx.xxx'
-    print len(data)
-    if len(data) > 50:
+    # print 'data length', len(data)
+    try:
+        eval(data)
         gesture_control()
-    else:
-        print data
-        voice_recognition()
+    except Exception:
+        voice_recognition(data)

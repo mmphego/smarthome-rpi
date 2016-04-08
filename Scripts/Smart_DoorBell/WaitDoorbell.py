@@ -18,7 +18,6 @@ from push_notification import send_notification
 from sms_notification import send_sms
 from email_notification import send_mail
 
-
 led = 17 #GPIO0
 button = 18 #GPIO1
 
@@ -52,7 +51,6 @@ def buttonHandler(channel):
         LOGGER.debug("falling edge detected, sending notifications")
         print("falling edge detected, sending notifications")
         send_all_notifications()
-
 
 try:
     # when a falling edge is detected on port 1, regardless of whatever

@@ -8,6 +8,7 @@ from pygame.locals import *
 #Create server:
 server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 # socket.SOCK_STREAM)
+# ToDo: Get local ip add from unix
 server.bind(("192.168.9.229",5000))
 server.listen(5)
 

@@ -35,11 +35,9 @@ while True:
     except:
         count += 1
         send_data.close()
-        gc.collect()
         if count > 5:
             raise RuntimeError('Failed to reach url')
             break
             count = 0
     time.sleep(wait_time)
-    gc.collect()
     send_data.close()

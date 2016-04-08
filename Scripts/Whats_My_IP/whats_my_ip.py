@@ -22,7 +22,7 @@ time.sleep(10)
 
 def check_ip():
     Prev_IP = None
-    with open('../../Logs/IP_Logger.csv', 'rb') as csv_file:
+    with open('./IP_Logger.csv', 'rb') as csv_file:
         # check if prev ip exists
         lines = csv_file.readlines()
         for i in range(-1, -len(lines) - 1, -1):
