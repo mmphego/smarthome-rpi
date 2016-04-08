@@ -50,12 +50,16 @@ class TimerClass(object):
         # TODO: MM 2015/11/04
         # Add IR instructions to switch TV off here
         LOGGER.info('TV was switched off')
+
+        time.sleep(60)
+        LOGGER.info('TV was switched on')
+
         try:
             print 'use lirc'
             while True:
-            btn = lirc.nextcode()
-            if btn != []:
-                print btn
+                btn = lirc.nextcode()
+                if btn != []:
+                    print btn
         except:
             self.serial_com.write(self.relay6_off)
 

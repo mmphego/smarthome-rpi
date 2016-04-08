@@ -12,29 +12,39 @@ sock.connect(('8.8.8.8', 0))  # connecting to a UDP address doesn't send packets
 # Getting systems IP
 UDP_IP = sock.getsockname()[0]
 UDP_PORT = 5005
+
+LOGGER.info("Listening on IP:{}:{} ".format(UDP_IP, UDP_PORT))
+print("Listening on IP:{}:{} ".format(UDP_IP, UDP_PORT))
+
 nbytes = 1024
-time_out = 300
 sleep_time = 0.01
 
 # Range 30 - 60
 sensitivity = 30
 limit = 270
+max_limit = float(sensitivity + limit + 100)
+
 # Low pass filter RC time constant
 alpha = 0.1
 x_data, y_data, z_data = [None] * 3
 
 baud = 9600
-arduino_output = {'relay1_on_off': 1, 'relay1_off': 10, 'relay1_on': 11,
-                  'relay2_off': 20, 'relay2_on': 21, 'relay3_off': 30,
-                  'relay3_on': 31, 'relay4_off': 40, 'relay4_on': 41,
-                  'relay5_off': 50, 'relay5_on': 51
+
+arduino_output = {'relay1_off' : '2',
+                  'relay1_on'  : '1',
+                  'relay2_off' : '4',
+                  'relay2_on'  : '3',
+                  'relay3_off' : '6',
+                  'relay3_on'  : '5',
+                  'relay4_off' : '8',
+                  'relay4_on'  : '7'
                   }
 locals().update(arduino_output)
 
 try:
-    serial_comm = serial.Serial('/dev/ttyACM0', baud)
+    serial_comm = serial.Serial('/dev/ttyACM0', baud, timeout=30)
 except serial.SerialException:
-    serial_comm = serial.Serial('/dev/ttyACM1', baud)
+    serial_comm = serial.Serial('/dev/ttyACM1', baud, timeout=30)
 
 try:
     LOGGER.info("Listening on IP:{}:{} ".format(UDP_IP, UDP_PORT))
@@ -54,7 +64,7 @@ except Exception as e:
 
 
 def gesture_control():
-    print 'Accelerometer: ',data
+    #print 'Accelerometer: ',data
     x_data, y_data, z_data = eval(data)
     # Sleep for every samples.
     time.sleep(sleep_time)
@@ -68,15 +78,14 @@ def gesture_control():
         delta = Current_Acc - Last_Acc
         Prev_Acc = Prev_Acc + alpha * delta
         if Prev_Acc >= sensitivity <= limit:
-            LOGGER.info('Mobile Shaken')
-            print 'Mobile shaken'
-            #serial_comm.write(relay1_on_off)
-
+            LOGGER.info('Mobile Shaken Relay On')
+            print ('Mobile Shaken Relay On')
+            serial_comm.write(relay1_on)
+        #ToDo: read log file, if shaken before twice ,3rd time will go off
 
 def voice_recognition(data):
     # TODO MM  2015/11/04
     # insert code here to switch on lights
-
     if data == "bedroom light on" or data == "bedroom on":
         serial_comm.write(relay1_on)
         print data
