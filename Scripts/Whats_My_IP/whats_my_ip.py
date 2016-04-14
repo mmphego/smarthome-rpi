@@ -20,9 +20,11 @@ to = "mpho112@gmail.com"
 time.sleep(10)
 
 
+subprocess.call(['sudo', 'chown', '-Rh', 'pi:pi', '/home/pi/Logs/IP_Logger.csv'])
+subprocess.call(['sudo', 'chmod', '-R', '+w', '/home/pi/Logs'])
 def check_ip():
     Prev_IP = None
-    with open('./IP_Logger.csv', 'rb') as csv_file:
+    with open('/home/pi/Logs/IP_Logger.csv', 'rb') as csv_file:
         # check if prev ip exists
         lines = csv_file.readlines()
         for i in range(-1, -len(lines) - 1, -1):

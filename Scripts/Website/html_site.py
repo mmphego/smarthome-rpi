@@ -17,57 +17,58 @@ def html():
     <body background='http://IP_Here/Images/stars.jpg';>
             <style>
             h1{
-            color:white;
-            font-family:Arial,Helvetica,sans-serif;
+                color:white;
+                font-family:Arial,Helvetica,sans-serif;
             }
             div{
-            float:left;
-            color:white;
-            font-family:Arial,Helvetica,sans-serif;
-            margin-top:3px;
-            margin-right:50px;
-            margin-left:50px;
-            margin-bottom:10px;
-            border:2px solid #a1a1a1;
-            padding:10px 10px;
-            background:#1A334C;
-            border-radius:25px;
-            -moz-border-radius:25px;
+                float:left;
+                color:white;
+                font-family:Arial,Helvetica,sans-serif;
+                margin-top:3px;
+                margin-right:50px;
+                margin-left:50px;
+                margin-bottom:10px;
+                border:2px solid #a1a1a1;
+                padding:10px 10px;
+                background:#1A334C;
+                border-radius:25px;
+                -moz-border-radius:25px;
             }
+
             strong{
-            float:right;
-            color:white;
-            font-family:Arial,Helvetica,sans-serif;
-            margin-top:3px;
-            margin-right:50px;
-            margin-left:50px;
-            margin-bottom:10px;
-            border:2px solid #a1a1a1;
-            padding:10px 10px;
-            background:#1A334C;
-            border-radius:25px;
-            -moz-border-radius:25px;
+                float:right;
+                color:white;
+                font-family:Arial,Helvetica,sans-serif;
+                margin-top:3px;
+                margin-right:50px;
+                margin-left:50px;
+                margin-bottom:10px;
+                border:2px solid #a1a1a1;
+                padding:10px 10px;
+                background:#1A334C;
+                border-radius:25px;
+                -moz-border-radius:25px;
             }
             p{
-            color:white;
-            font-family:Arial,Helvetica,sans-serif;
+                color:white;
+                font-family:Arial,Helvetica,sans-serif;
             }
             .Image{
-            border:2px solid #a1a1a1;
-            padding:1px 1px;
-            background:#1A334C;
-            border-radius:15px;
-            -moz-border-radius:15px;
-            -webkit-border-radius:15px;
+                border:2px solid #a1a1a1;
+                padding:1px 1px;
+                background:#1A334C;
+                border-radius:15px;
+                -moz-border-radius:15px;
+                -webkit-border-radius:15px;
             }
             </style>
 
-    <span id='Header' style='float:left;height:140px;width:1760px;font-size: 20pt'>
+    <div id='Header' style='float:left;height:140px;width:1760px;font-size: 20pt'>
             <img src='http://IP_Here/Images/download.jpg' width='450' height='135' class ='Image'>
             <p id='time' style='float:right;'>DATE:      <br>TIME:     <br>DOY:      </p>
             </div>
 
-
+<!--
     <div id='Arduin' style='height:290px;width:330px;'>
     <center>
             <section>
@@ -94,17 +95,26 @@ def html():
     var xName = """ + str(varTemp) + """
     var varName = xName;
     document.getElementById('curTemp').innerHTML = varName;
+
     </script>
+-->
 
     <script src='http://IP_Here/Images/js/jquery.js'></script>
     <script src='http://IP_Here/Images/js/index.js'></script>
 
 <div>
-    <a href="https://plot.ly/~MphoMphego/64/" target="_blank" title="" style="display: block; text-align: center;"><img src="https://plot.ly/~MphoMphego/64.png" alt="" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+    <!--
+     <a href="https://plot.ly/~MphoMphego/64/" target="_blank" title="" style="display: block; text-align: center;"><img src="https://plot.ly/~MphoMphego/64.png" alt="" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
     <script data-plotly="MphoMphego:64"  src="https://plot.ly/embed.js" async></script>
+    -->
+    <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/103450/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Temp&type=line"></iframe>
+
+
 </div>
+<div>
+    <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/103450/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Humidity&type=line"></iframe>
 
-
+</div>
 
 
     <div id='Buttons' style='height:290px;width:330px;font-size: 20pt;border:2px solid #a1a1a1'>
@@ -129,17 +139,23 @@ def html():
     </center>
     </p></form>
     </div>
+    <!--
     <div id='RPi CPU Usage' style='height:290px;width:590px;'>
-            <img src='http://IP_Here:8080/render/?width=586&height=290&from=-9hours&fgcolor=FFFFFF&bgcolor=000000&fontSize=13&title=RPi%20CPU&minorY=4&connectedLimit=&hideLegend=true&lineMode=connected&areaMode=stacked&target=carbon.rpi.system.loadAvg_15min&target=carbon.rpi.system.loadAvg_5min&target=carbon.rpi.system.loadAvg_1min' class ='Image'>
-            </div>
+    -->
+    <div>
+        <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/103450/charts/3?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=CPU+Temp&type=line"></iframe>
+    </div>
+
 
     </body>
-    <div id='Network Bandwidth' style='height:180px;width:820px;'>
+    <!--
+        <div id='Network Bandwidth' style='height:180px;width:820px;'>
             <img src='http://IP_Here:8080/render/?width=810&height=180&_salt=1419807028.849&fgcolor=000000&bgcolor=FFFFFF&hideLegend=true&minorY=4&title=Network%20Speed&from=-9hours&target=collectd.graph_host.interface-eth0.if_packets.rx&target=collectd.graph_host.interface-eth0.if_packets.tx&lineMode=connected&areaMode=stacked' width='815' height='175' class ='Image'>
             </div>
+    -->
 
     <div id='Weather' style='height:180px;width:820px;'>
-    <img src='http://IP_Here/Images/weather.png' width='815' height='180' class='Image'>
+    <img src='http://www.yr.no/place/South_Africa/Western_Cape/Cape_Town/meteogram.png' width='815' height='180' class='Image'>
     </div>
     <script>
             var currentTime = new Date()

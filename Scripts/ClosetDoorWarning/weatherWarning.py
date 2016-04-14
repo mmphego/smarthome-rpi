@@ -12,7 +12,7 @@ import csv
 from collections import deque
 from logger import LOGGER
 
-csv_file = '../../Scripts/Weather/New_Version/Weather_Logger.csv'
+csv_file = '/home/pi/Scripts/Weather/New_Version/Weather_Logger.csv'
 
 
 def get_last_row(csv_filename):

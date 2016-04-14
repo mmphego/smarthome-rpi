@@ -22,39 +22,28 @@ try:
 except serial.SerialException:
     serial_com = serial.Serial('/dev/ttyACM1', BAUD)
 
-## for RPI version 1, use "bus = smbus.SMBus(0)"
-#bus = smbus.SMBus(1)
-## This is the address we setup in the Arduino Program
-#address = 0x04
-
-#def writeNumber(value):
-    #bus.write_byte(address, value)
-    #time.sleep(0.1)
-    #return -1
-##    return int(value)
-
-#def readNumber():
-    #number = bus.read_byte(address)
-    #time.sleep(0.1)
-    #return int(number)
-
-#while True:
-time.sleep(0.1)
-#var = input("Enter 1 - 9: ")
-print ("parsed argument: %s" % str(sys.argv[1]))
-var = int(sys.argv[1])
-#print type(int(a))
-#var = a
-if not var:
-    print "Please Enter 1 - 9"
-#    continue
-time.sleep(0.1)
-#writeNumber(var)
+serial_com.close()
+time.sleep(0.2)
+serial_com.open()
+time.sleep(0.2)
+var = str(sys.argv[1])
+time.sleep(0.2)
 serial_com.write(var)
-
-print "RPI: Hi Arduino, I sent you ", var
-# sleep one second
 time.sleep(0.1)
 
-received_data = serial_com.readline()
-print "Arduino: Hey RPI, I received a digit ", received_data
+#print ("parsed argument: %s" % str(sys.argv[1]))
+#var = str(sys.argv[1])
+
+#if not var:
+#    print "Please Enter 1 - 9"
+#time.sleep(0.5)
+
+#import IPython;IPython.embed()
+#serial_com.write(var)
+
+#print "RPI: Hi Arduino, I sent you ", var
+# sleep one second
+#time.sleep(0.1)
+
+#received_data = serial_com.readline()
+#print "Arduino: Hey RPI, I received a digit ", received_data

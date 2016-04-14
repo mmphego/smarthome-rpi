@@ -7,9 +7,10 @@ except ImportError:
 import time
 import urllib2
 import gc
+import os
 from logger import LOGGER
 
-wait_time = 59
+wait_time = 30
 pin = 26
 
 baseurl = 'https://api.thingspeak.com/update?api_key='
@@ -29,9 +30,11 @@ API_URL = baseurl + apikey
 count = 0
 while True:
     humidity, temperature = getSensorData()
-    LOGGER.info('Humidity: {}%, Temp: {}'.format(humidity, temperature))
+    ostemp = os.popen('vcgencmd measure_temp').readline()
+    cpu_temp = (ostemp.replace("temp=", "").replace("'C\n", ""))
+    LOGGER.info('Humidity: {}%, Temp: {}, CPU_Temp: {}'.format(humidity, temperature, cpu_temp))
     try:
-        send_data = urllib2.urlopen(API_URL + '&field1={}&field2={}'.format(humidity, temperature))
+        send_data = urllib2.urlopen(API_URL + '&field1={}&field2={}&field3={}'.format(humidity, temperature, cpu_temp))
     except:
         count += 1
         send_data.close()
@@ -41,3 +44,4 @@ while True:
             count = 0
     time.sleep(wait_time)
     send_data.close()
+gc.collect()

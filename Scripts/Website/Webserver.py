@@ -7,10 +7,24 @@ __url__ = "mpho112.wordpress.com"
 __copyright__ = "Copyright (c) 2015 Mpho Mphego"
 __license__ = "Python/HTML"
 
+import sys
+import os
 from wsgiref.simple_server import make_server
 from urlparse import parse_qsl
-import os
 from html_site import html
+
+sys.path.insert(1, '/home/pi/Scripts/Relay_Control/')
+from relay_control import *
+
+rst_counter = 0
+def gesture_switch_on(pin):
+        global rst_counter
+        rst_counter += 1
+        relay_on(pin)
+def gesture_switch_off(pin):
+        global rst_counter
+        rst_counter = 0
+        relay_off(pin)
 
 
 def application(environ, start_response):
@@ -18,11 +32,36 @@ def application(environ, start_response):
     d = parse_qsl(environ['QUERY_STRING'])
 
     try:
-        if (d[0][0]=="led1"): os.system("home_auto 1 > /dev/null 2>&1")
-        if (d[0][0]=="led2"): os.system("home_auto 2 > /dev/null 2>&1")
-        if (d[0][0]=="led3"): os.system("home_auto 3 > /dev/null 2>&1")
-        if (d[0][0]=="led4"): os.system("home_auto 4 > /dev/null 2>&1")
-        if (d[0][0]=="led5"): os.system("home_auto 5 > /dev/null 2>&1")
+        if (d[0][0]=="led1"):
+            gesture_switch_on(relay1)
+            if rst_counter > 1:
+                gesture_switch_off(relay1)
+        if (d[0][0]=="led2"):
+            gesture_switch_on(relay2)
+            if rst_counter > 1:
+                gesture_switch_off(relay2)
+
+        if (d[0][0]=="led3"):
+            gesture_switch_on(relay3)
+            if rst_counter > 1:
+                gesture_switch_off(relay3)
+
+        if (d[0][0]=="led4"):
+            gesture_switch_on(relay4)
+            if rst_counter > 1:
+                gesture_switch_off(relay4)
+
+        if (d[0][0]=="led5"):
+            gesture_switch_on(relay1)
+            relay_on(relay2)
+            relay_on(relay3)
+            relay_on(relay4)
+            if rst_counter > 1:
+                gesture_switch_off(relay1)
+                gesture_switch_off(relay2)
+                gesture_switch_off(relay3)
+                gesture_switch_off(relay4)
+
     except:
         pass
     response_body = html()

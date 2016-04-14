@@ -3,8 +3,13 @@ import socket
 import time
 import serial
 import numpy as np
+import subprocess
+import sys
 
 from logger import LOGGER
+sys.path.insert(1, '/home/pi/Scripts/Relay_Control/')
+from relay_control import *
+
 
 sock = socket.socket(socket.AF_INET,  # Internet
                      socket.SOCK_DGRAM)  # UDP
@@ -13,8 +18,18 @@ sock.connect(('8.8.8.8', 0))  # connecting to a UDP address doesn't send packets
 UDP_IP = sock.getsockname()[0]
 UDP_PORT = 5005
 
-LOGGER.info("Listening on IP:{}:{} ".format(UDP_IP, UDP_PORT))
-print("Listening on IP:{}:{} ".format(UDP_IP, UDP_PORT))
+## GPIO setup
+rst_counter = 0
+#relays_conf = {
+            #'relay1': 0,
+            #'relay2': 2,
+            #'relay3': 21,
+            #'relay4': 22,
+            #}
+#locals().update(relays_conf)
+#gpio_control = '/usr/local/bin/gpio'
+#for relay, gpio in relays_conf.iteritems():
+    #subprocess.check_call([gpio_control, 'mode', '{}'.format(gpio), 'out'])
 
 nbytes = 1024
 sleep_time = 0.01
@@ -28,23 +43,6 @@ max_limit = float(sensitivity + limit + 100)
 alpha = 0.1
 x_data, y_data, z_data = [None] * 3
 
-baud = 9600
-
-arduino_output = {'relay1_off' : '2',
-                  'relay1_on'  : '1',
-                  'relay2_off' : '4',
-                  'relay2_on'  : '3',
-                  'relay3_off' : '6',
-                  'relay3_on'  : '5',
-                  'relay4_off' : '8',
-                  'relay4_on'  : '7'
-                  }
-locals().update(arduino_output)
-
-try:
-    serial_comm = serial.Serial('/dev/ttyACM0', baud, timeout=30)
-except serial.SerialException:
-    serial_comm = serial.Serial('/dev/ttyACM1', baud, timeout=30)
 
 try:
     LOGGER.info("Listening on IP:{}:{} ".format(UDP_IP, UDP_PORT))
@@ -57,11 +55,29 @@ try:
     sock.bind(('', UDP_PORT))
     LOGGER.info("Connected to host.")
     print("Connected to host.")
+
 except Exception as e:
     LOGGER.error('Unable to start UDP sockets due to {}.'.format(e))
     sock.close()
     raise RuntimeError('Unable to start UDP sockets due to {}.'.format(e))
 
+#def relay_off(pin):
+    #subprocess.check_call([gpio_control, 'write', '{}'.format(pin), '1'])
+    ##return False
+
+#def relay_on(pin):
+    #subprocess.check_call([gpio_control, 'write', '{}'.format(pin), '0'])
+    ##return True
+
+def gesture_switch_on():
+    global rst_counter
+    rst_counter += 1
+    relay_on(relay1)
+
+def gesture_switch_off():
+    global rst_counter
+    rst_counter = 0
+    relay_off(relay1)
 
 def gesture_control():
     #print 'Accelerometer: ',data
@@ -80,75 +96,73 @@ def gesture_control():
         if Prev_Acc >= sensitivity <= limit:
             LOGGER.info('Mobile Shaken Relay On')
             print ('Mobile Shaken Relay On')
-            serial_comm.write(relay1_on)
-        #ToDo: read log file, if shaken before twice ,3rd time will go off
+            gesture_switch_on()
+            if rst_counter > 2:
+                gesture_switch_off()
 
 def voice_recognition(data):
-    # TODO MM  2015/11/04
-    # insert code here to switch on lights
     if data == "bedroom light on" or data == "bedroom on":
-        serial_comm.write(relay1_on)
+        relay_on(relay1)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "bedroom light off" or data == "bedroom off":
-        serial_comm.write(relay1_off)
+        relay_off(relay1)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "kitchen light on" or data == "kitchen on":
-        serial_comm.write(relay2_on)
+        relay_on(relay2)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "kitchen light off" or data == "kitchen off":
-        serial_comm.write(relay2_off)
+        relay_off(relay2)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "dining light on" or data == "dining light off":
-        serial_comm.write(relay3_on)
+        relay_on(relay3)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "dining light off" or data == "dining off":
-        serial_comm.write(relay3_off)
+        relay_on(relay3)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "tv room light on" or data == "tv room light off":
-        serial_comm.write(relay4_on)
+        relay_on(relay4)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "tv room light off" or data == "tv room off":
-        serial_comm.write(relay4_off)
+        relay_off(relay4)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "all lights on" or data == "lights on":
-        serial_comm.write(relay5_on)
+        for relay, gpio in relays_conf.iteritems():
+            relay_on(gpio)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "all lights off" or data == "lights off":
-        serial_comm.write(relay5_off)
+        for relay, gpio in relays_conf.iteritems():
+            relay_off(gpio)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     else:
         print "invalid parameter: ", data
 
-
 while True:
-    # TODO MM 2015/11/04
-    # Combine gesture control and voice recognition
-    # buffer size is 1024 bytes
     data, addr = sock.recvfrom(nbytes)
-    # format
-    # data : str containing list
-    # addr : 'xxx.xxx.xxx.xxx'
-    # print 'data length', len(data)
+    """ format
+        data : str containing list
+        addr : 'xxx.xxx.xxx.xxx'
+        print 'data length', len(data)
+    """
     try:
         eval(data)
         gesture_control()

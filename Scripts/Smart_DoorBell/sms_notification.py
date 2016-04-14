@@ -1,9 +1,15 @@
 import time
-from logger import LOGGER
-from smsapi.client import SmsAPI
-from smsapi.responses import ApiError
+#from logger import LOGGER
+try:
+    import smsapi
+except ImportError:
+    import pip
+    pip.main(['install', 'smsapi'])
+finally:
+    from smsapi.client import SmsAPI
+    from smsapi.responses import ApiError
 
-LOGGER.info('Sending SMS notification')
+#LOGGER.info('Sending SMS notification')
 
 def send_SMSAPI(sendto, message):
     username = 'mpho112@gmail.com'
@@ -35,3 +41,5 @@ def send_sms():
     resp = send_SMSAPI('+27761431543',
         'The was someone at the door on {}'.format(time.strftime("%c")))
     return resp
+
+import IPython;IPython.embed()
