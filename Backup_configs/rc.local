@@ -11,14 +11,13 @@
 #
 # By default this script does nothing.
 
-# Send the IP address to email
-_IP=$(hostname -I) || true
-if [ "$_IP" ]; then
-  python /home/pi/Scripts/Whats_My_IP/whats_my_ip.py
-fi
-#bash /home/pi/DataCrawler/startCarbon.sh
-python /home/pi/Scripts/Data_Logger/TempDataLog.py
-python /home/pi/Scripts/ClosetDoorWarning/WaitClosetDoor.py
-python /home/pi/Scripts/Smart_DoorBell/WaitDoorbell.py 
-
+# Print the IP address
+#_IP=$(hostname -I) || true
+#if [ "$_IP" ]; then
+(sleep 10; python /home/pi/Scripts/Whats_My_IP/whats_my_ip.py)&
+#fi
+(sleep 12;python /home/pi/Scripts/Gesture_Control/UDP_Sensor_Rx.py)& > /dev/null
+(sleep 13; python /home/pi/Scripts/Smart_DoorBell/WaitDoorbell.py)& >/dev/null
+(sleep 15; python /home/pi/Scripts/Temp_Relay_Cont/Indoor_Temp_Logger.py)& >/dev/null
+(sleep 16;python /home/pi/Scripts/TV_Proximity_Sensor/proximity_sensor.py)& >/dev/null
 exit 0
