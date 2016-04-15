@@ -8,6 +8,8 @@ import time
 import urllib2
 import gc
 import os
+import dweepy
+import psutil
 from logger import LOGGER
 
 wait_time = 30
@@ -28,13 +30,24 @@ def getSensorData():
 
 API_URL = baseurl + apikey
 count = 0
+
+sensor_name_1 = 'raspberry_pi_cputemp'
+sensor_name_2 = 'DHT11_Temp'
+sensor_name_3 = 'DHT11_Humidity'
 while True:
     humidity, temperature = getSensorData()
     ostemp = os.popen('vcgencmd measure_temp').readline()
     cpu_temp = (ostemp.replace("temp=", "").replace("'C\n", ""))
     LOGGER.info('Humidity: {}%, Temp: {}, CPU_Temp: {}'.format(humidity, temperature, cpu_temp))
     try:
-        send_data = urllib2.urlopen(API_URL + '&field1={}&field2={}&field3={}'.format(humidity, temperature, cpu_temp))
+        send_data = urllib2.urlopen(API_URL +
+            '&field1={}&field2={}&field3={}&field4={}&field5={}'.format(
+            humidity, temperature, cpu_temp, psutil.net_io_counters().bytes_sent,
+            psutil.net_io_counters().bytes_recv))
+        dweepy.dweet_for(sensor_name_1, {'CPU_Temp': cpu_temp})
+        dweepy.dweet_for(sensor_name_2, {'Ambi_Temp': temperature})
+        dweepy.dweet_for(sensor_name_3, {'Ambi_Hum': humidity})
+
     except:
         count += 1
         send_data.close()

@@ -3,16 +3,15 @@ from temp_log import varHum, varTemp
 
 def html():
     html = """
-
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <meta name='HandheldFriendly' content='true'>
-    <meta name='viewport' content='width=device-width, height=device-height, user-scalable=yes'>
-    <meta http-equiv='refresh' content ='300; url = http://IP_Here:8000/'  charset='UTF-8'>
-    <TITLE>Mpho's Home Automation Control Center</TITLE>
-    <link rel='stylesheet' href='http://IP_Here/Images/css/style.css' media='screen' type='text/css' />
-    <style type='text/css'></style></head>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name='HandheldFriendly' content='true'>
+<meta name='viewport' content='width=device-width, height=device-height, user-scalable=yes'>
+<meta http-equiv='refresh' content ='300; url = http://IP_Here:8000/'  charset='UTF-8'>
+<TITLE>Mpho's Home Automation Control Center</TITLE>
+<link rel='stylesheet' href='http://IP_Here/Images/css/style.css' media='screen' type='text/css' />
+<style type='text/css'></style></head>
 
     <body background='http://IP_Here/Images/stars.jpg';>
             <style>
@@ -20,6 +19,7 @@ def html():
                 color:white;
                 font-family:Arial,Helvetica,sans-serif;
             }
+<!--
             div{
                 float:left;
                 color:white;
@@ -34,6 +34,7 @@ def html():
                 border-radius:25px;
                 -moz-border-radius:25px;
             }
+-->
 
             strong{
                 float:right;
@@ -102,8 +103,10 @@ def html():
     <script src='http://IP_Here/Images/js/jquery.js'></script>
     <script src='http://IP_Here/Images/js/index.js'></script>
 
-<div>
-    <!--
+<div style='height:270px;width:460px;right:1%;top:18%;position:absolute;text-align:center;'>
+ <!--
+    style="background-color:#eee; height:270px;width:460px;float:right;right: 100; text-align: center; ">
+
      <a href="https://plot.ly/~MphoMphego/64/" target="_blank" title="" style="display: block; text-align: center;"><img src="https://plot.ly/~MphoMphego/64.png" alt="" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
     <script data-plotly="MphoMphego:64"  src="https://plot.ly/embed.js" async></script>
     -->
@@ -111,13 +114,24 @@ def html():
 
 
 </div>
-<div>
+<!--
+<div  style="background-color:#eee; height:270px;width:460px;float:left;">
+-->
+<div style='height:270px;width:460px;left:0%;top:18%;position:absolute;text-align:center;'>
+<!--
+style="background-color:#eee; height:270px;width:460px;float:left; text-align: center; ">
+-->
     <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/103450/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Humidity&type=line"></iframe>
 
 </div>
 
 
-    <div id='Buttons' style='height:290px;width:330px;font-size: 20pt;border:2px solid #a1a1a1'>
+    <div id='Buttons'
+    style='height:340px;width:380px;right:37%;top:32%;position:absolute;text-align:center;border:2px solid #a1a1a1;font-size:25pt'>
+<!--
+        style='height:290px;width:330px;font-size:20pt;text-align:center;border:2px solid #a1a1a1'>
+-->
+
     <form method='get' action='parsing_get.wsgi'>
     <p><center>
             <TABLE>
@@ -139,24 +153,30 @@ def html():
     </center>
     </p></form>
     </div>
-    <!--
-    <div id='RPi CPU Usage' style='height:290px;width:590px;'>
-    -->
-    <div>
+
+    <div id='RPi CPU Usage' style='height:270px;width:460px;left:0%;top:48%;position:absolute;text-align:center;'>
         <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/103450/charts/3?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=CPU+Temp&type=line"></iframe>
     </div>
 
+    <div style='height:270px;width:460px;right:1%;top:48%;position:absolute;text-align:center;'>
 
-    </body>
+    </div>
+
+
     <!--
         <div id='Network Bandwidth' style='height:180px;width:820px;'>
             <img src='http://IP_Here:8080/render/?width=810&height=180&_salt=1419807028.849&fgcolor=000000&bgcolor=FFFFFF&hideLegend=true&minorY=4&title=Network%20Speed&from=-9hours&target=collectd.graph_host.interface-eth0.if_packets.rx&target=collectd.graph_host.interface-eth0.if_packets.tx&lineMode=connected&areaMode=stacked' width='815' height='175' class ='Image'>
             </div>
     -->
 
-    <div id='Weather' style='height:180px;width:820px;'>
-    <img src='http://www.yr.no/place/South_Africa/Western_Cape/Cape_Town/meteogram.png' width='815' height='180' class='Image'>
+    <div id='Network Bandwidth' style='height:200px;width:860px;right:0;position:fixed;text-align:center;bottom:0;'>
     </div>
+
+    <div id='Weather' style='height:200px;width:860px;left: 0; position: fixed;text-align: center; bottom: 0;'>
+    <img src='http://www.yr.no/place/South_Africa/Western_Cape/Cape_Town/meteogram.png' width='850' height='190' class='Image'>
+    </div>
+</body>
+
     <script>
             var currentTime = new Date()
             var month = currentTime.getMonth() + 1
@@ -180,5 +200,6 @@ def html():
             x.innerHTML='DATE: ' + day + '-' + month + '-' + year + '<br>'+'TIME: ' + hours + ':'+ minutes + '<br>'+' DOY: ' + doy;    // Change the content
             </script>
     </html>
+
     """
     return html.replace('IP_Here',get_ip())

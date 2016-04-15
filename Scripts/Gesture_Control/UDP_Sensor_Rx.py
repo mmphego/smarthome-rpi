@@ -94,10 +94,12 @@ def gesture_control():
         delta = Current_Acc - Last_Acc
         Prev_Acc = Prev_Acc + alpha * delta
         if Prev_Acc >= sensitivity <= limit:
-            LOGGER.info('Mobile Shaken Relay On')
-            print ('Mobile Shaken Relay On')
+            LOGGER.info ('Mobile Shaken: Relay ON')
+            print ('Mobile Shaken: Relay ON')
             gesture_switch_on()
-            if rst_counter > 2:
+            if rst_counter > 1:
+                LOGGER.info ('Mobile Shaken: Relay OFF')
+                print ('Mobile Shaken: Relay OFF')
                 gesture_switch_off()
 
 def voice_recognition(data):
