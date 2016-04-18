@@ -130,3 +130,4 @@ shopt -s histappend
 #if [ "$TERM" != "screen" ]; then
 #  screen -xRR
 #fi
+export CONFIGFILE=/home/pi/startups/config.yml

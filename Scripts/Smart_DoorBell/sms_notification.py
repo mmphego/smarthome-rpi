@@ -8,12 +8,13 @@ except ImportError:
 finally:
     from smsapi.client import SmsAPI
     from smsapi.responses import ApiError
+from yamlConfigFile import configFile
 
 #LOGGER.info('Sending SMS notification')
 
 def send_SMSAPI(sendto, message):
-    username = 'mpho112@gmail.com'
-    password = '!nerd001'
+    username = configFile()['Email2']
+    password = configFile()['Email2Password']
     api = SmsAPI()
 
     api.set_username(username)
@@ -38,8 +39,6 @@ def send_SMSAPI(sendto, message):
 
 def send_sms():
 
-    resp = send_SMSAPI('+27761431543',
+    resp = send_SMSAPI(configFile()['CellNo'],
         'The was someone at the door on {}'.format(time.strftime("%c")))
     return resp
-
-import IPython;IPython.embed()

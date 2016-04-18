@@ -37,15 +37,22 @@ class TimerClass(object):
         This will sound a siren or notification to move away
         :return: <nothing>
         """
-        os.system('mpg123 close_to_tv.mp3')
+        #os.system('mpg123 close_to_tv.mp3')
+        #print 'Warning: Too close to the TV: {} cm.'.format(self.distance())
         #LOGGER.info('Someone was close to the TV.')
+        pass
+
+    def tv_On(self):
+        #print ('TV was switched on')
+        pass
 
     def tv_Off(self):
+        #print ('TV was switched off')
+        pass
+
         # TODO: MM 2015/11/04
         # Add IR instructions to switch TV off here
         #LOGGER.info('TV was switched off')
-
-        time.sleep(60)
         #LOGGER.info('TV was switched on')
 
         #try:
@@ -74,23 +81,25 @@ class TimerClass(object):
         """
         :type self: None
         """
-        self.count = 0
+        count = 0
+        tvoff = False
         while True:
-            #if self.distance() <= self._threshold:
-                #print 'Too close to the TV: {} cm.'.format(self.distance())
-                #self.count += 1
-                #if self.count == 3:
-                    #self.notification()
-
-                #elif self.count > 3:
-                    #self.tv_Off()
-                    #self.count = 0
-
-                #else:
-                    #pass
-
-            #else:
-            print 'Distance {}cm is fine.'.format(self.distance())
+            time.sleep(.05)
+            if self.distance() <= self._threshold:
+                count += 1
+                if count == 2   :
+                    self.notification()
+                elif count > 3:
+                    self.tv_Off()
+                    tvoff = True
+                    count = 0
+                else:
+                    pass
+            else:
+                if tvoff:
+                    self.tv_On()
+                    tvoff = False
+                #print 'Distance {}cm is fine.'.format(self.distance())
 
 
 thread = TimerClass()

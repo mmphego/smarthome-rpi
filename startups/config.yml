@@ -1,0 +1,32 @@
+# Personal Details
+username: Poh
+Email: homeauto112@gmail.com
+EmailPassword: Livhuwani$12
+Email2: mpho112@gmail.com
+Email2Password: '!nerd001'
+CellNo: +27761431543
+
+# Mac address of mobile device(s) to be detected
+PresenceDetector:
+    macaddress: bc:6e:64:df:d7:d9
+
+# geographic location
+geography:
+    city: Cape Town
+    country: SA
+    code: 7405
+    coord: -34.0475, 18.4525
+
+PushNotifications:
+    # https://pushover.net register
+    Pushover_api_key: aBvnvKsL6YSDxDdkDkQehkoGH4m6oo
+    Pushover_cl_key: uUJ7mE5whHv8273LFF9c38niv1w8gj
+    # Notify my android
+    notify_my_android_api_key: 297e7eed874775b89d8820bbfcefa3caa81b1a71e46e7eae
+    # Instapush
+    Instapush_api_key: 570ca43c5659e387177fbb6a
+    Instapush_sec_key: c31ad2606ce78cf6b52284cb24e72722
+
+APIs:
+    openWeatherAPI: 220de03e6993731b3b2ea2b9cfb19033
+    thingspeak: H4KN07GGESD8XZEH

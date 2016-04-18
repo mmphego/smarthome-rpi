@@ -19,15 +19,17 @@ finally:
     from pushover import init, Client, time
     from pynma import PyNMA
     from instapush import Instapush, App
+from yamlConfigFile import configFile
 
+Api_Keys = configFile()['PushNotifications']
 message = "Hello!, Someone is at the door at {}".format(time.ctime())
 alert = "There is someone at the door."
 
 # https://pushover.net
 def send_pushover():
     LOGGER.info('Sending Pushover notification')
-    pover_api_key = 'aBvnvKsL6YSDxDdkDkQehkoGH4m6oo'
-    pover_cl_key = 'uUJ7mE5whHv8273LFF9c38niv1w8gj'
+    pover_api_key = Api_Keys['Pushover_api_key']
+    pover_cl_key =  Api_Keys['Pushover_cl_key']
     try:
         init(pover_api_key)
         client = Client(pover_cl_key).send_message(message,
@@ -42,7 +44,8 @@ def send_pushover():
 
 def send_nma():
     LOGGER.info('Sending nma notification')
-    nma_api_key = '297e7eed874775b89d8820bbfcefa3caa81b1a71e46e7eae'
+
+    nma_api_key = Api_Keys['notify_my_android_api_key']
     p = PyNMA(apikey = nma_api_key)
     reply = p.push(application='alert', event=alert, description=message)
     if str(reply[nma_api_key]['type']) == 'success':
@@ -52,8 +55,9 @@ def send_nma():
 
 def send_instapush():
     LOGGER.info('Sending instapush notification')
-    instapush_api_key = '570ca43c5659e387177fbb6a'
-    instapush_secret_key = 'c31ad2606ce78cf6b52284cb24e72722'
+
+    instapush_api_key = Api_Keys['Instapush_api_key']
+    instapush_secret_key = Api_Keys['Instapush_sec_key']
     insta_notify = App(appid=instapush_api_key , secret=instapush_secret_key)
     notify = insta_notify.notify(event_name='alert', trackers={'message':message})
     if notify['error']:

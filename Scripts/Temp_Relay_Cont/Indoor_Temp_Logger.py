@@ -11,12 +11,13 @@ import os
 import dweepy
 import psutil
 from logger import LOGGER
+from yamlConfigFile import configFile
 
 wait_time = 30
 pin = 26
 
 baseurl = 'https://api.thingspeak.com/update?api_key='
-apikey = 'H4KN07GGESD8XZEH'
+apikey = configFile()['APIs']['thingspeak']
 
 def getSensorData():
     try:

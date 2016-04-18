@@ -15,11 +15,16 @@ from email.MIMEMultipart import MIMEMultipart
 from email.MIMEBase import MIMEBase
 from email.MIMEText import MIMEText
 from email import Encoders
+from yamlConfigFile import configFile
 
-
-USERNAME = "homeauto112@gmail.com"
-PASSWORD = "Livhuwani$12"
-MAILTO  = "mpho112@gmail.com"
+try:
+    USERNAME = configFile()['Email']
+    PASSWORD = configFile()['EmailPassword']
+    MAILTO =configFile()['Email2']
+except :
+    USERNAME = "homeauto112@gmail.com"
+    PASSWORD = "Livhuwani$12"
+    MAILTO  = "mpho112@gmail.com"
 SUB = 'Doorbell notification!'
 MESSAGE = 'Someone was at the door at {}'.format(strftime('%b %d %Y'))
 FILE = 'image.jpg'
