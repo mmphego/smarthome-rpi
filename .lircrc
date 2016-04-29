@@ -1,6 +1,34 @@
 begin
     prog = irexec
     button = KEY_1
-    config = echo "You pressed one"
+    config = echo "You pressed 1"
+    repeat = 0
+end
+
+begin
+    prog = irexec
+    button = KEY_2
+    config = echo "You pressed 2"
+    repeat = 0
+end
+
+begin
+    prog = irexec
+    button = KEY_3
+    config = echo "You pressed 3"
+    repeat = 0
+end
+
+begin
+    prog = irexec
+    button = KEY_4
+    config = echo "You pressed 4"
+    repeat = 0
+end
+
+begin
+    prog = irexec
+    button = 0KEY_POWER
+    config = echo "You pressed on/off"
     repeat = 0
 end

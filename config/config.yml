@@ -26,6 +26,8 @@ PushNotifications:
     # Instapush
     Instapush_api_key: 570ca43c5659e387177fbb6a
     Instapush_sec_key: c31ad2606ce78cf6b52284cb24e72722
+    # PushBulled
+    Pushbullet: o.F6la6BKr9QMvjr4v3TrJAK0FXbKV463n
 
 APIs:
     openWeatherAPI: 220de03e6993731b3b2ea2b9cfb19033

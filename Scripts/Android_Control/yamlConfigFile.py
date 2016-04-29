@@ -8,7 +8,7 @@ def configFile():
             with open(config_link) as ymlfile:
                 cfg = yaml.load(ymlfile)
     else:
-        config_link = '/home/pi/startups/config.yml'
+        config_link = '/home/pi/config/config.yml'
         if os.path.isfile(config_link):
             with open(config_link) as ymlfile:
                 cfg = yaml.load(ymlfile)

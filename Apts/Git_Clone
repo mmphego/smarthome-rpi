@@ -3,3 +3,4 @@ git clone git@github.com:adafruit/Adafruit_Python_DHT.git
 git clone git://git.drogon.net/wiringPi
 git clone git@github.com:mmphego/Home-Auto-Pi.git
 git clone https://github.com/jasperproject/jasper-client.git
+git@github.com:randomchars/pushbullet.py.git

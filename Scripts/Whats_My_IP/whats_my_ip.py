@@ -3,25 +3,41 @@ __author__ = "Mpho Mphego"
 __version__ = "$Revision: 1.3$"
 __description__ = "Finds IP on startup and email the user if it changed."
 
-import subprocess
 import smtplib
 import datetime
 import urllib2
 import csv
 import time
+import subprocess
+
 from logger import LOGGER
 from email.mime.text import MIMEText
-
+from pushbullet import Pushbullet
+from yamlConfigFile import configFile
+import IPython;IPython.embed()
 # TODO: MM: 2015-10-15: Include button for RPI, send IP upon being pressed
-user = "homeauto112@gmail.com"
-password = "Livhuwani$12"
-to = "mpho112@gmail.com"
+
+user = configFile()['Email']
+password = configFile()['EmailPassword']
+to = configFile()['Email2']
+api_key = configFile()['PushNotifications']['Pushbullet']
 # Wait till RPi settles
 time.sleep(10)
 
-
-subprocess.call(['sudo', 'chown', '-Rh', 'pi:pi', '/home/pi/Logs/IP_Logger.csv'])
+subprocess.call(['sudo', 'chown', '-Rh', 'pi:pi', '/home/pi/Logs/'])
 subprocess.call(['sudo', 'chmod', '-R', '+w', '/home/pi/Logs'])
+
+def pushNotification(apikey, new_ip_add=None):
+
+    notify_success = False
+    try:
+        pb = Pushbullet(apikey)
+    except:
+        return False
+    else:
+        notify_success = pb.push_note('New RPi IP', new_ip_add)['active']
+    return notify_success
+
 def check_ip():
     Prev_IP = None
     with open('/home/pi/Logs/IP_Logger.csv', 'rb') as csv_file:
@@ -39,6 +55,7 @@ def check_ip():
     New_IP = Send_IP.ip_addr
     if New_IP != Prev_IP:
         LOGGER.info('Email sent with new ip: {}'.format(New_IP))
+        pushNotification(api_key, New_IP)
         Send_IP.send_mail()
     else:
         LOGGER.info("IP Address hasn't changed")
@@ -57,8 +74,8 @@ class Find_IP(object):
             self.mail_server.starttls()
             self.mail_server.login(self.gmail_user, self.gmail_password)
 
-        except Exception as e:
-            LOGGER.info("Failed to connnect. Error: {}".format(e))
+        except:
+            LOGGER.exception("Failed to connnect.")
             exit()
 
     def find_ip(self):

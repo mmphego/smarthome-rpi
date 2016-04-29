@@ -11,4 +11,4 @@ sudo cp /etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplica
 sudo cp ../Backup_configs/wpa_supplicant.conf /etc/wpa_supplicant/
 
 # Cloning gits.
-bash ../Apts/Git_Clone
+bash /home/pi/Apts/Git_Clone

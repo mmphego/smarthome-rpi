@@ -1,5 +1,7 @@
 import os
 import time
+import multiprocessing
+
 #import lirc
 """
 USAGE: Create ~/.lircrc and copy below code
@@ -15,11 +17,12 @@ end
 #except Exception as e:
     #print 'Failed due to {}'.format(e)
 
-try:
-    import hcsr04sensor.sensor as sensor
-except ImportError:
-    import pip
-    pip.main(['install', 'hcsr04sensor'])
+#try:
+#    import hcsr04sensor.sensor as sensor
+#except ImportError:
+#    import pip
+#    pip.main(['install', 'hcsr04sensor'])
+import sensor
 
 BAUD = 9600
 class TimerClass(object):
@@ -38,16 +41,16 @@ class TimerClass(object):
         :return: <nothing>
         """
         #os.system('mpg123 close_to_tv.mp3')
-        #print 'Warning: Too close to the TV: {} cm.'.format(self.distance())
+        print 'Warning: Too close to the TV: {} cm.'.format(self.distance())
         #LOGGER.info('Someone was close to the TV.')
         pass
 
     def tv_On(self):
-        #print ('TV was switched on')
+        print ('TV was switched on')
         pass
 
     def tv_Off(self):
-        #print ('TV was switched off')
+        print ('TV was switched off')
         pass
 
         # TODO: MM 2015/11/04
@@ -69,6 +72,7 @@ class TimerClass(object):
         :return: Float
         """
         #  Create a distance reading with the hcsr04 sensor module
+        time.sleep(.001)
         value = sensor.Measurement(self._trig_pin, self._echo_pin,
                                    self._temperature, self._unit,
                                    self._round_to)
@@ -84,7 +88,7 @@ class TimerClass(object):
         count = 0
         tvoff = False
         while True:
-            time.sleep(.05)
+            time.sleep(0.01)
             if self.distance() <= self._threshold:
                 count += 1
                 if count == 2   :
@@ -99,7 +103,7 @@ class TimerClass(object):
                 if tvoff:
                     self.tv_On()
                     tvoff = False
-                #print 'Distance {}cm is fine.'.format(self.distance())
+                print 'Distance {}cm is fine.'.format(self.distance())
 
 
 thread = TimerClass()

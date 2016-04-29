@@ -110,7 +110,7 @@ def html():
      <a href="https://plot.ly/~MphoMphego/64/" target="_blank" title="" style="display: block; text-align: center;"><img src="https://plot.ly/~MphoMphego/64.png" alt="" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
     <script data-plotly="MphoMphego:64"  src="https://plot.ly/embed.js" async></script>
     -->
-    <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/103450/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Temp&type=line"></iframe>
+    <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/103450/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Temp&type=spline"></iframe>
 
 
 </div>
@@ -121,7 +121,7 @@ def html():
 <!--
 style="background-color:#eee; height:270px;width:460px;float:left; text-align: center; ">
 -->
-    <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/103450/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Humidity&type=line"></iframe>
+    <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/103450/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Humidity&type=spline"></iframe>
 
 </div>
 
@@ -155,10 +155,11 @@ style="background-color:#eee; height:270px;width:460px;float:left; text-align: c
     </div>
 
     <div id='RPi CPU Usage' style='height:270px;width:460px;left:0%;top:48%;position:absolute;text-align:center;'>
-        <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/103450/charts/3?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=CPU+Temp&type=line"></iframe>
+        <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/103450/charts/3?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=CPU+Temp&type=spline"></iframe>
     </div>
 
     <div style='height:270px;width:460px;right:1%;top:48%;position:absolute;text-align:center;'>
+        <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/103450/charts/6?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Gas+Sensor&type=spline&yaxis=Gas+Level"></iframe>
 
     </div>
 
