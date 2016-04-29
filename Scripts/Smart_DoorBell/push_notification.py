@@ -38,8 +38,11 @@ def send_pushbullet():
         LOGGER.error ('Unable to connect to pushover server')
         raise RuntimeError ('Unable to connect to pushover server')
     else:
-        notify_success = pb.push_note(alert, message)['active']
+        #notify_success = pb.push_note(alert, message)['active']
+        with open("/home/pi/Scripts/Smart_DoorBell/image.jpg", "rb") as pic:
+            file_data = pb.upload_file(pic, "picture.jpg")
 
+        push = pb.push_file(**file_data)
     if notify_success:
         return True
     else:
@@ -73,4 +76,3 @@ def send_notifications():
         if not send_nma():
             if not send_instapush():
                 return False
-send_pushbullet()

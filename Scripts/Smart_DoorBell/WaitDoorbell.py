@@ -39,6 +39,7 @@ def send_all_notifications():
         subprocess.Popen('mpg123 /home/pi/Scripts/Smart_DoorBell/DoorNotify.mp3',
                      shell=True, stdout=devnull, stderr=devnull ).communicate()
 #    GPIO.output(led, False)
+
     push_notification.send_notifications()
     #send_sms()
     send_mail()
