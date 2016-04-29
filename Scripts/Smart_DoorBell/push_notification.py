@@ -7,7 +7,7 @@ __copyright__ = "Copyright (c) 2015 Mpho Mphego"
 __url__ = "mpho112.wordpress.com"
 __license__ = "Python"
 
-#from logger import LOGGER
+from logger import LOGGER
 try:
     import pushover, pynma, instapush
 except ImportError:
@@ -19,6 +19,8 @@ finally:
     from pushover import init, Client, time
     from pynma import PyNMA
     from instapush import Instapush, App
+    from pushbullet import Pushbullet
+
 from yamlConfigFile import configFile
 
 Api_Keys = configFile()['PushNotifications']
@@ -26,18 +28,19 @@ message = "Hello!, Someone is at the door at {}".format(time.ctime())
 alert = "There is someone at the door."
 
 # https://pushover.net
-def send_pushover():
-    LOGGER.info('Sending Pushover notification')
-    pover_api_key = Api_Keys['Pushover_api_key']
-    pover_cl_key =  Api_Keys['Pushover_cl_key']
+def send_pushbullet():
+    LOGGER.info('Sending Pushbullet notification')
+    api_key = configFile()['PushNotifications']['Pushbullet']
+    notify_success = False
     try:
-        init(pover_api_key)
-        client = Client(pover_cl_key).send_message(message,
-            title = alert)
+       pb = Pushbullet(api_key)
     except :
         LOGGER.error ('Unable to connect to pushover server')
         raise RuntimeError ('Unable to connect to pushover server')
-    if client.answer['status'] == True:
+    else:
+        notify_success = pb.push_note(alert, message)['active']
+
+    if notify_success:
         return True
     else:
         return False
@@ -66,7 +69,8 @@ def send_instapush():
         return True
 
 def send_notifications():
-    if not send_pushover():
+    if not send_pushbullet():
         if not send_nma():
             if not send_instapush():
                 return False
+send_pushbullet()

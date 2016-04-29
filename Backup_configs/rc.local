@@ -16,8 +16,8 @@
 #if [ "$_IP" ]; then
 (sleep 10; python /home/pi/Scripts/Whats_My_IP/whats_my_ip.py)&
 #fi
-(sleep 12;python /home/pi/Scripts/Gesture_Control/UDP_Sensor_Rx.py)& > /dev/null
+(sleep 12; python /home/pi/Scripts/Gesture_Control/UDP_Sensor_Rx.py)& > /dev/null
 (sleep 13; python /home/pi/Scripts/Smart_DoorBell/WaitDoorbell.py)& >/dev/null
-(sleep 15; python /home/pi/Scripts/Temp_Relay_Cont/Indoor_Temp_Logger.py)& >/dev/null
-(sleep 16;python /home/pi/Scripts/TV_Proximity_Sensor/proximity_sensor.py)& >/dev/null
+(sleep 15; python /home/pi/Scripts/Sensor_Loggers/Indoor_Temp_Logger.py)& >/dev/null
+(sleep 16; python /home/pi/Scripts/TV_Proximity_Sensor/proximity_sensor_v2.py)& >/dev/null
 exit 0

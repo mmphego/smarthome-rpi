@@ -27,7 +27,7 @@ except :
     MAILTO  = "mpho112@gmail.com"
 SUB = 'Doorbell notification!'
 MESSAGE = 'Someone was at the door at {}'.format(strftime('%b %d %Y'))
-FILE = 'image.jpg'
+FILE = '/home/pi/Scripts/Smart_DoorBell/image.jpg'
 
 def send_mail():
     LOGGER.info ("Sending Email Notification")
