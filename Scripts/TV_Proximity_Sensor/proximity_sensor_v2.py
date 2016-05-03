@@ -1,10 +1,10 @@
-import os
-import time
-import subprocess
-import multiprocessing
 import numpy as np
+import subprocess
+import time
 
-#import lirc
+from yamlConfigFile import configFile
+
+# import lirc
 """
 USAGE: Create ~/.lircrc and copy below code
 begin
@@ -14,26 +14,30 @@ begin
     repeat = 0
 end
 """
-#try:
-    #from logger import LOGGER
-#except Exception as e:
-    #print 'Failed due to {}'.format(e)
+
+
+# try:
+# from logger import LOGGER
+# except Exception as e:
+# print 'Failed due to {}'.format(e)
 
 class TimerClass(object):
     def __init__(self):
         self.sleep_time = 1
         self._threshold = 20.
-        self.sample_size = 3
-        #self.infrared = lirc.init('irexec')
+        self.sample_size = configFile()['TVProximity']['NoSamples']
+        # self.infrared = lirc.init('irexec')
 
     def notification(self):
         """
         This will sound a siren or notification to move away
         :return: <nothing>
         """
-        #os.system('mpg123 close_to_tv.mp3')
+        with open(subprocess.os.devnull, 'rb') as devnull:
+            subprocess.Popen('mpg123 /home/pi/Scripts/Smart_DoorBell/DoorNotify.mp3',
+                             shell=True, stdout=devnull, stderr=devnull, ).communicate()
         print 'Warning: Too close to the TV: {} cm.'.format(self.distance())
-        #LOGGER.info('Someone was close to the TV.')
+        # LOGGER.info('Someone was close to the TV.')
         pass
 
     def tv_On(self):
@@ -80,7 +84,7 @@ class TimerClass(object):
         while True:
             if self.distance() <= self._threshold:
                 count += 1
-                if count == 2   :
+                if count == 2:
                     self.notification()
                 elif count > 3:
                     self.tv_Off()
@@ -92,8 +96,9 @@ class TimerClass(object):
                 if tvoff:
                     self.tv_On()
                     tvoff = False
-                #print 'Distance {}cm is fine.'.format(self.distance())
+                    # print 'Distance {}cm is fine.'.format(self.distance())
             time.sleep(self.sleep_time)
+
 
 thread = TimerClass()
 thread.run()

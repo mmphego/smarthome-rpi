@@ -17,20 +17,16 @@ from email.MIMEText import MIMEText
 from email import Encoders
 from yamlConfigFile import configFile
 
-try:
-    USERNAME = configFile()['Email']
-    PASSWORD = configFile()['EmailPassword']
-    MAILTO =configFile()['Email2']
-except :
-    USERNAME = "homeauto112@gmail.com"
-    PASSWORD = "Livhuwani$12"
-    MAILTO  = "mpho112@gmail.com"
+USERNAME = configFile()['Email']
+PASSWORD = configFile()['EmailPassword']
+MAILTO = configFile()['Email2']
 SUB = 'Doorbell notification!'
 MESSAGE = 'Someone was at the door at {}'.format(strftime('%b %d %Y'))
 FILE = '/home/pi/Scripts/Smart_DoorBell/image.jpg'
 
+
 def send_mail():
-    LOGGER.info ("Sending Email Notification")
+    LOGGER.info("Sending Email Notification")
     take_pic()
 
     msg = MIMEMultipart()
@@ -45,7 +41,7 @@ def send_mail():
     part.set_payload(open(FILE, 'rb').read())
     Encoders.encode_base64(part)
     part.add_header('Content-Disposition',
-           'attachment; filename="%s"' % os.path.basename(FILE))
+                    'attachment; filename="%s"' % os.path.basename(FILE))
     msg.attach(part)
     try:
         mailServer = smtplib.SMTP("smtp.gmail.com", 587)
@@ -56,7 +52,7 @@ def send_mail():
         mailServer.sendmail(USERNAME, MAILTO, msg.as_string())
         # Should be mailServer.quit(), but that crashes...
     except Exception as e:
-        LOGGER.error ("Failed to connect to email server: Error: {}".format(e))
+        LOGGER.error("Failed to connect to email server: Error: {}".format(e))
         raise RuntimeError("Failed to connect to email server: Error: {}".format(e))
-    finally:
+    else:
         mailServer.close()

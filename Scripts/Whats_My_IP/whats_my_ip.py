@@ -6,7 +6,6 @@ __description__ = "Finds IP on startup and email the user if it changed."
 import smtplib
 import datetime
 import urllib2
-import csv
 import time
 import subprocess
 
@@ -14,7 +13,6 @@ from logger import LOGGER
 from email.mime.text import MIMEText
 from pushbullet import Pushbullet
 from yamlConfigFile import configFile
-import IPython;IPython.embed()
 # TODO: MM: 2015-10-15: Include button for RPI, send IP upon being pressed
 
 user = configFile()['Email']
