@@ -7,7 +7,6 @@
 import os
 import subprocess
 import time
-import yaml
 from logger import LOGGER
 from yamlConfigFile import configFile
 

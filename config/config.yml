@@ -35,3 +35,5 @@ APIs:
 
 TVProximity:
     NoSamples: 3
+    # Distance in cm
+    Distance: 20
