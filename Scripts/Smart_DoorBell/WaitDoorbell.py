@@ -53,8 +53,8 @@ def send_all_notifications():
 # this will run when an event are detected
 def buttonHandler(channel):
     if success:
-        LOGGER.debug("falling edge detected, sending notifications")
-        print("falling edge detected, sending notifications")
+        LOGGER.info("falling edge detected, sending notifications")
+#        print("falling edge detected, sending notifications")
         send_all_notifications()
 
 
@@ -69,8 +69,8 @@ finally:
     GPIO.add_event_detect(button, GPIO.FALLING, callback=buttonHandler, bouncetime=5500)
 
 try:
-    #LOGGER.debug("Waiting for button to be pressed")
-    print "Waiting for falling edge on port {}".format(button)
+    LOGGER.info("Waiting for button to be pressed")
+    #print "Waiting for falling edge on port {}".format(button)
     while True:
         time.sleep(.25)
 except (Exception, KeyboardInterrupt):
