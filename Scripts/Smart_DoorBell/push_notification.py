@@ -7,6 +7,7 @@ __copyright__ = "Copyright (c) 2015 Mpho Mphego"
 __url__ = "mpho112.wordpress.com"
 __license__ = "Python"
 
+import os
 from logger import LOGGER
 try:
     import pushover, pynma, instapush
@@ -15,6 +16,7 @@ except ImportError:
     pip.main(['install', 'python-pushover'])
     pip.main(['install', 'pynma'])
     pip.main(['install', 'instapush'])
+    pip.main(['install', 'pushbullet.py'])
 finally:
     from pushover import init, Client, time
     from pynma import PyNMA
@@ -26,21 +28,27 @@ from yamlConfigFile import configFile
 Api_Keys = configFile()['PushNotifications']
 message = "Hello!, Someone is at the door at {}".format(time.ctime())
 alert = "There is someone at the door."
+image_path = "/home/pi/Scripts/Smart_DoorBell/image.jpg"
 
-# https://pushover.net
+# https://pushbullet.net
 def send_pushbullet():
     LOGGER.info('Sending Pushbullet notification')
     api_key = configFile()['PushNotifications']['Pushbullet']
-    notify_success = False
+    push_success = False
     try:
        pb = Pushbullet(api_key)
     except :
         LOGGER.error ('Unable to connect to pushover server')
         raise RuntimeError ('Unable to connect to pushover server')
     else:
-        notify_success = pb.push_note(alert, message)['active']
+        if os.path_exists(image_path):
+            with open(image_path, "rb") as pic:
+                file_data = pb.upload_file(pic, "picture.jpg")
+            push_success = pb.push_file(**file_data)['active']
+        else:
+            push_success = pb.push_note(alert, message)['active']
 
-    if notify_success:
+    if push_success:
         return True
     else:
         return False
@@ -73,4 +81,3 @@ def send_notifications():
         if not send_nma():
             if not send_instapush():
                 return False
-send_pushbullet()

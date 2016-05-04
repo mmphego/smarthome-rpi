@@ -1,63 +1,55 @@
-import os
-import time
-import subprocess
-import multiprocessing
 import numpy as np
+import subprocess
+import time
 
-#import lirc
-"""
-USAGE: Create ~/.lircrc and copy below code
-begin
-    prog = irexec
-    button = KEY_1
-    config = echo "You pressed one"
-    repeat = 0
-end
-"""
-#try:
-    #from logger import LOGGER
-#except Exception as e:
-    #print 'Failed due to {}'.format(e)
+try:
+    from logger import LOGGER
+except ImportError:
+    LOGGER = None
+from datetime import datetime
+from yamlConfigFile import configFile
+from pushnotify import send_pushbullet
+
+
+api_key = configFile()['PushNotifications']['Pushbullet']
+
 
 class TimerClass(object):
     def __init__(self):
         self.sleep_time = 1
-        self._threshold = 20.
-        self.sample_size = 3
-        #self.infrared = lirc.init('irexec')
+        self._threshold = configFile()['TVProximity']['Distance']
+        self.sample_size = configFile()['TVProximity']['NoSamples']
 
-    def notification(self):
+    def notification(self, notify=False):
         """
         This will sound a siren or notification to move away
         :return: <nothing>
         """
-        #os.system('mpg123 close_to_tv.mp3')
-        print 'Warning: Too close to the TV: {} cm.'.format(self.distance())
-        #LOGGER.info('Someone was close to the TV.')
-        pass
+        if notify:
+            with open(subprocess.os.devnull, 'rb') as devnull:
+                subprocess.Popen('mpg123 /home/pi/Scripts/TV_Proximity/close_to_tv.mp3',
+                                shell=True, stdout=devnull, stderr=devnull, ).communicate()
+            print 'Warning: Too close to the TV: {} cm.'.format(self.distance())
+            time.sleep(10)
+            return True
 
     def tv_On(self):
-        print ('TV was switched on')
-        pass
+        alert = 'TV Proximity Notification'
+        message = 'TV was switched on at {}'.format(str(datetime.now()))
+        print (message)
+        send_pushbullet(api_key, alert, message)
+        # TODO: Configure relay via Arduino
 
     def tv_Off(self):
-        print ('TV was switched off')
-        pass
+        alert = 'TV Proximity Notification'
+        message = 'TV was switched Off at {}'.format(str(datetime.now()))
+        print (message)
+        send_pushbullet(api_key, alert, message)
+        if LOGGER is not None:
+            LOGGER.info('Someone was too close to the TV and TV was switched off.')
+        # TODO: Configure relay via Arduino
 
-        # TODO: MM 2015/11/04
-        # Add IR instructions to switch TV off here
-        #LOGGER.info('TV was switched off')
-        #LOGGER.info('TV was switched on')
-
-        #try:
-            #print 'use lirc'
-            #while True:
-                #btn = lirc.nextcode()
-                #if btn != []:
-                    #print btn
-        #except:
-            #pass
-    def distance(self, ):
+    def distance(self):
         """
         Gets distance in Centimeter and returns it.
         :return: Float
@@ -80,8 +72,9 @@ class TimerClass(object):
         while True:
             if self.distance() <= self._threshold:
                 count += 1
-                if count == 2   :
-                    self.notification()
+                if count == 2:
+                    if self.notification(notify=True):
+                        count += 1
                 elif count > 3:
                     self.tv_Off()
                     tvoff = True
@@ -92,8 +85,9 @@ class TimerClass(object):
                 if tvoff:
                     self.tv_On()
                     tvoff = False
-                #print 'Distance {}cm is fine.'.format(self.distance())
+                #print 'Distance {}cm.'.format(round(self.distance()))
             time.sleep(self.sleep_time)
+
 
 thread = TimerClass()
 thread.run()

@@ -32,3 +32,8 @@ PushNotifications:
 APIs:
     openWeatherAPI: 220de03e6993731b3b2ea2b9cfb19033
     thingspeak: H4KN07GGESD8XZEH
+
+TVProximity:
+    NoSamples: 3
+    # Distance in cm
+    Distance: 20

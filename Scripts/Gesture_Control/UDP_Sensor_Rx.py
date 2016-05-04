@@ -18,18 +18,7 @@ sock.connect(('8.8.8.8', 0))  # connecting to a UDP address doesn't send packets
 UDP_IP = sock.getsockname()[0]
 UDP_PORT = 5005
 
-## GPIO setup
 rst_counter = 0
-#relays_conf = {
-            #'relay1': 0,
-            #'relay2': 2,
-            #'relay3': 21,
-            #'relay4': 22,
-            #}
-#locals().update(relays_conf)
-#gpio_control = '/usr/local/bin/gpio'
-#for relay, gpio in relays_conf.iteritems():
-    #subprocess.check_call([gpio_control, 'mode', '{}'.format(gpio), 'out'])
 
 nbytes = 1024
 sleep_time = 0.01
@@ -61,13 +50,13 @@ except Exception as e:
     sock.close()
     raise RuntimeError('Unable to start UDP sockets due to {}.'.format(e))
 
-#def relay_off(pin):
-    #subprocess.check_call([gpio_control, 'write', '{}'.format(pin), '1'])
-    ##return False
+def relay_off(pin):
+    subprocess.check_call([gpio_control, 'write', '{}'.format(pin), '1'])
+    #return False
 
-#def relay_on(pin):
-    #subprocess.check_call([gpio_control, 'write', '{}'.format(pin), '0'])
-    ##return True
+def relay_on(pin):
+    subprocess.check_call([gpio_control, 'write', '{}'.format(pin), '0'])
+    #return True
 
 def gesture_switch_on():
     global rst_counter

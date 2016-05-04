@@ -17,32 +17,36 @@ from logger import LOGGER
 import push_notification
 from sms_notification import send_sms
 from email_notification import send_mail
+from pic_notification import take_pic
 
-#led = 17 #GPIO0
-button = 18 #GPIO1
+# led = 17 #GPIO0
+button = 18  # GPIO1
 
 GPIO.setwarnings(True)
 GPIO.setmode(GPIO.BCM)
-#GPIO.setup(led, GPIO.OUT)
+# GPIO.setup(led, GPIO.OUT)
 time.sleep(0.1)
-#GPIO.output(led, False)
+# GPIO.output(led, False)
 
 # GPIO 1 set up as inputs, pulled up to avoid false detection.
 # Both ports are wired to connect to GND on button press.
 # So we'll be setting up falling edge detection for both
 GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
+
 def send_all_notifications():
     LOGGER.info('Sending door notifications')
-#    GPIO.output(led, True)
+    #    GPIO.output(led, True)
     with open(os.devnull, 'rb') as devnull:
         subprocess.Popen('mpg123 /home/pi/Scripts/Smart_DoorBell/DoorNotify.mp3',
-                     shell=True, stdout=devnull, stderr=devnull ).communicate()
-#    GPIO.output(led, False)
+                         shell=True, stdout=devnull, stderr=devnull).communicate()
+    #   GPIO.output(led, False)
+    take_pic()
     push_notification.send_notifications()
-    #send_sms()
+    # send_sms()
     send_mail()
     success = False
+
 
 # define callback functions
 # this will run when an event are detected
@@ -51,6 +55,7 @@ def buttonHandler(channel):
         LOGGER.debug("falling edge detected, sending notifications")
         print("falling edge detected, sending notifications")
         send_all_notifications()
+
 
 try:
     # when a falling edge is detected on port 1, regardless of whatever
@@ -69,8 +74,9 @@ try:
 except (Exception, KeyboardInterrupt):
     print '************exiting*********'
     gc.collect()
-    GPIO.cleanup()       # clean up GPIO on CTRL+C exit
-#print '************exiting*********'
-LOGGER.debug("Clean up by resetting all GPIO")
-gc.collect()
-GPIO.cleanup()           # clean up GPIO on normal exit
+    GPIO.cleanup()  # clean up GPIO on CTRL+C exit
+# print '************exiting*********'
+finally:
+    LOGGER.debug("Clean up by resetting all GPIO")
+    gc.collect()
+    GPIO.cleanup()  # clean up GPIO on normal exit
