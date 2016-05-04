@@ -13,8 +13,9 @@ import subprocess
 import gc
 
 import RPi.GPIO as GPIO
-from logger import LOGGER
 import push_notification
+
+from logger import LOGGER
 from sms_notification import send_sms
 from email_notification import send_mail
 from pic_notification import take_pic
@@ -43,7 +44,7 @@ def send_all_notifications():
     #   GPIO.output(led, False)
     take_pic()
     push_notification.send_notifications()
-    # send_sms()
+    send_sms()
     send_mail()
     success = False
 
@@ -63,16 +64,17 @@ try:
     success = True
     GPIO.add_event_detect(button, GPIO.FALLING, callback=buttonHandler, bouncetime=5500)
 except Exception:
-    LOGGER.error('Unable to detect falling edge')
-    raise RuntimeError('Unable to detect falling edge')
+    LOGGER.exception('Unable to detect falling edge')
+finally:
+    GPIO.add_event_detect(button, GPIO.FALLING, callback=buttonHandler, bouncetime=5500)
 
 try:
-    LOGGER.debug("Waiting for button to be pressed")
+    #LOGGER.debug("Waiting for button to be pressed")
     print "Waiting for falling edge on port {}".format(button)
     while True:
         time.sleep(.25)
 except (Exception, KeyboardInterrupt):
-    print '************exiting*********'
+    #print '************exiting*********'
     gc.collect()
     GPIO.cleanup()  # clean up GPIO on CTRL+C exit
 # print '************exiting*********'
