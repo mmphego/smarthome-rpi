@@ -37,3 +37,10 @@ TVProximity:
     NoSamples: 3
     # Distance in cm
     Distance: 20
+    
+RelaysSetup:
+    Relay1: 0
+    Relay2: 2
+    Relay3: 21
+    Relay4: 22
+
