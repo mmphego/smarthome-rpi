@@ -1,30 +1,34 @@
 #!/usr/local/bin/python
 
-# Reading an analogue sensor with
-# a single GPIO pin
+import RPi.GPIO as GPIO
+import time
 
-import RPi.GPIO as GPIO, time
+from numpy import average
 
-# Tell the GPIO library to use
-# Broadcom GPIO references
-GPIO.setmode(GPIO.BCM)
+class LDR(object):
+    def __init__(self):
+        self.sampler = 3
+        self.LDRPin = 16
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(self.LDRPin, GPIO.OUT)
 
-# Define function to measure charge time
-def RCtime (PiPin):
-  measurement = 0
-  # Discharge capacitor
-  GPIO.setup(PiPin, GPIO.OUT)
-  GPIO.output(PiPin, GPIO.LOW)
-  time.sleep(0.1)
+        GPIO.output(self.LDRPin, GPIO.LOW)
+        time.sleep(0.1)
+        GPIO.setup(self.LDRPin, GPIO.IN)
 
-  GPIO.setup(PiPin, GPIO.IN)
-  # Count loops until voltage across
-  # capacitor reads high on GPIO
-  while (GPIO.input(PiPin) == GPIO.LOW):
-    measurement += 1
+    def RCtime(self):
+        value = 0
+        # Measure timing using LDRPin
+        while (GPIO.input(LDRPin) == GPIO.TRUE):
+            # Count loops until voltage across
+            # capacitor reads high on GPIO
+            value += 1
+        samples = []
+        for i in xrange(self.sampler):
+            samples.append(value)
+        return  average(samples)
 
-  return measurement
+get_ldr = LDR()
 
-# Main program loop
 while True:
-  print RCtime(4) # Measure timing using GPIO4
+    print get_ldr.RCtime()

@@ -10,7 +10,6 @@ from datetime import datetime
 from yamlConfigFile import configFile
 from pushnotify import send_pushbullet
 
-
 api_key = configFile()['PushNotifications']['Pushbullet']
 
 
