@@ -41,6 +41,6 @@ int main(void) {
         setup();
 
         getCM();
-
+        delayMicroseconds(10);
         return 0;
 }

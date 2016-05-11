@@ -171,6 +171,7 @@ style="background-color:#eee; height:270px;width:460px;float:left; text-align: c
     -->
 
     <div id='Network Bandwidth' style='height:200px;width:860px;right:0;position:fixed;text-align:center;bottom:0;'>
+    <iframe width="850" height="190" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/103450/charts/7?average=10&bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=1000&type=spline"></iframe>
     </div>
 
     <div id='Weather' style='height:200px;width:860px;left: 0; position: fixed;text-align: center; bottom: 0;'>
