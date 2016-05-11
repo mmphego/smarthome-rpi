@@ -12,9 +12,14 @@ import os
 from wsgiref.simple_server import make_server
 from urlparse import parse_qsl
 from html_site import html
+from yamlConfigFile import configFile
 
 sys.path.insert(1, '/home/pi/Scripts/Relay_Control/')
 from relay_control import *
+try:
+    locals().update(relays_conf)
+except:
+    pass
 
 rst_counter = 0
 def gesture_switch_on(pin):
@@ -33,34 +38,38 @@ def application(environ, start_response):
 
     try:
         if (d[0][0]=="led1"):
-            gesture_switch_on(relay1)
+            gesture_switch_on(Relay1)
             if rst_counter > 1:
-                gesture_switch_off(relay1)
+                gesture_switch_off(Relay1)
         if (d[0][0]=="led2"):
-            gesture_switch_on(relay2)
+            gesture_switch_on(Relay2)
             if rst_counter > 1:
-                gesture_switch_off(relay2)
+                gesture_switch_off(Relay2)
 
         if (d[0][0]=="led3"):
-            gesture_switch_on(relay3)
+            gesture_switch_on(Relay3)
             if rst_counter > 1:
-                gesture_switch_off(relay3)
+                gesture_switch_off(Relay3)
 
         if (d[0][0]=="led4"):
-            gesture_switch_on(relay4)
+            gesture_switch_on(Relay4)
             if rst_counter > 1:
-                gesture_switch_off(relay4)
+                gesture_switch_off(Relay4)
 
         if (d[0][0]=="led5"):
-            gesture_switch_on(relay1)
-            relay_on(relay2)
-            relay_on(relay3)
-            relay_on(relay4)
+            gesture_switch_on(Relay1)
+            relay_on(Relay2)
+            relay_on(Relay3)
+            relay_on(Relay4)
             if rst_counter > 1:
-                gesture_switch_off(relay1)
-                gesture_switch_off(relay2)
-                gesture_switch_off(relay3)
-                gesture_switch_off(relay4)
+                gesture_switch_off(Relay1)
+                gesture_switch_off(Relay2)
+                gesture_switch_off(Relay3)
+                gesture_switch_off(Relay4)
+                relay_off(Relay1)
+                relay_off(Relay2)
+                relay_off(Relay3)
+                relay_off(Relay4)
 
     except:
         pass

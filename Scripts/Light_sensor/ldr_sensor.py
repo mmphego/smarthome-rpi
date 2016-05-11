@@ -1,34 +1,23 @@
-#!/usr/local/bin/python
+#!/usr/bin/env python
 
-import RPi.GPIO as GPIO
-import time
-
+import RPi.GPIO as GPIO, time, os
 from numpy import average
 
-class LDR(object):
-    def __init__(self):
-        self.sampler = 3
-        self.LDRPin = 16
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self.LDRPin, GPIO.OUT)
+GPIO.setmode(GPIO.BCM)
 
-        GPIO.output(self.LDRPin, GPIO.LOW)
-        time.sleep(0.1)
-        GPIO.setup(self.LDRPin, GPIO.IN)
+def RCtime (RCpin):
+    reading = 0
+    GPIO.setup(RCpin, GPIO.OUT)
+    GPIO.output(RCpin, GPIO.LOW)
+    time.sleep(0.1)
 
-    def RCtime(self):
-        value = 0
-        # Measure timing using LDRPin
-        while (GPIO.input(LDRPin) == GPIO.TRUE):
-            # Count loops until voltage across
-            # capacitor reads high on GPIO
-            value += 1
-        samples = []
-        for i in xrange(self.sampler):
-            samples.append(value)
-        return  average(samples)
+    GPIO.setup(RCpin, GPIO.IN)
+    # This takes about 1 millisecond per loop cycle
+    samples = []
+    while (GPIO.input(RCpin) == GPIO.LOW):
+        reading += 1
+        samples.append(reading)
+    return average(samples)/10.
 
-get_ldr = LDR()
-
-while True:
-    print get_ldr.RCtime()
+def cleanup():
+    GPIO.cleanup()

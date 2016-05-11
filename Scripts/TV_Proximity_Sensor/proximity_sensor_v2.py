@@ -15,7 +15,7 @@ api_key = configFile()['PushNotifications']['Pushbullet']
 
 class TimerClass(object):
     def __init__(self):
-        self.sleep_time = 1
+        self.sleep_time = configFile()['TVProximity']['RefreshRate']
         self._threshold = configFile()['TVProximity']['Distance']
         self.sample_size = configFile()['TVProximity']['NoSamples']
 
@@ -28,21 +28,21 @@ class TimerClass(object):
             with open(subprocess.os.devnull, 'rb') as devnull:
                 subprocess.Popen('mpg123 /home/pi/Scripts/TV_Proximity/close_to_tv.mp3',
                                 shell=True, stdout=devnull, stderr=devnull, ).communicate()
-            print 'Warning: Too close to the TV: {} cm.'.format(self.distance())
+            #print 'Warning: Too close to the TV: {} cm.'.format(self.distance())
             time.sleep(10)
             return True
 
     def tv_On(self):
         alert = 'TV Proximity Notification'
         message = 'TV was switched on at {}'.format(str(datetime.now()))
-        print (message)
+        #print (message)
         send_pushbullet(api_key, alert, message)
         # TODO: Configure relay via Arduino
 
     def tv_Off(self):
         alert = 'TV Proximity Notification'
         message = 'TV was switched Off at {}'.format(str(datetime.now()))
-        print (message)
+        #print (message)
         send_pushbullet(api_key, alert, message)
         if LOGGER is not None:
             LOGGER.info('Someone was too close to the TV and TV was switched off.')
@@ -55,7 +55,7 @@ class TimerClass(object):
         """
         samples = []
         for i in xrange(self.sample_size):
-            time.sleep(0.01)
+            time.sleep(self.sleep_time)
             _distance = float(subprocess.Popen(
                 'sudo /home/pi/Scripts/TV_Proximity_Sensor/proximity_sensor',
                 shell=True, stdout=subprocess.PIPE, ).communicate()[0])
@@ -85,7 +85,7 @@ class TimerClass(object):
                     self.tv_On()
                     tvoff = False
                 #print 'Distance {}cm.'.format(round(self.distance()))
-            time.sleep(self.sleep_time)
+            #time.sleep(self.sleep_time)
 
 
 thread = TimerClass()

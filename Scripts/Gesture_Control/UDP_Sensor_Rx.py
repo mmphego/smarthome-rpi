@@ -61,12 +61,12 @@ def relay_on(pin):
 def gesture_switch_on():
     global rst_counter
     rst_counter += 1
-    relay_on(relay1)
+    relay_on(Relay1)
 
 def gesture_switch_off():
     global rst_counter
     rst_counter = 0
-    relay_off(relay1)
+    relay_off(Relay1)
 
 def gesture_control():
     #print 'Accelerometer: ',data
