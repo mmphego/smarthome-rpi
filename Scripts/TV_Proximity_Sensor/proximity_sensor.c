@@ -39,8 +39,7 @@ int getCM() {
 
 int main(void) {
         setup();
-
+        delay(0.5);
         getCM();
-        delayMicroseconds(10);
         return 0;
 }

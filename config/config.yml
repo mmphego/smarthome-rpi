@@ -38,6 +38,7 @@ TVProximity:
     # Distance in cm
     Distance: 20
     RefreshRate: 1
+    WaitTime: 10
 
 RelaysSetup:
     Relay1: 0

@@ -130,8 +130,8 @@ try:
 
         try:
             send_data = urllib2.urlopen(API_URL +
-                '&field1={}&field2={}&field3={}&field4={}&field5={}'.format(
-                humidity, temperature, cpu_temp, smoke, light))
+                '&field1={}&field2={}&field3={}&field4={}&field5={}&field6={}&field7={}'.format(
+                humidity, temperature, cpu_temp, 0,0, smoke, light))
             #dweepy.dweet_for(sensor_name_1, {'CPU_Temp': cpu_temp})
             #dweepy.dweet_for(sensor_name_2, {'Ambi_Temp': temperature})
             #dweepy.dweet_for(sensor_name_3, {'Ambi_Hum': humidity})
