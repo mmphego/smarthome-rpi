@@ -41,6 +41,7 @@ except Exception:
 try:
     # Creating a UDP Socket
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
     droid.makeToast("Connected to server!")
 except Exception as e:
@@ -56,7 +57,7 @@ if options[result] == options[0]:
         try:
             time.sleep(time_out)
             s.sendto(sensor_data, (hostname, port))
-            s.settimeout(time_out)
+            #s.settimeout(time_out)
         except Exception as e:
             droid.makeToast(' Could not connect to host, Error: {}'.format(e))
             droid.ttsSpeak('Failed to send data to host!')

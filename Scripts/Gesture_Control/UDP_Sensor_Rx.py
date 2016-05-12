@@ -93,42 +93,42 @@ def gesture_control():
 
 def voice_recognition(data):
     if data == "bedroom light on" or data == "bedroom on":
-        relay_on(relay1)
+        relay_on(Relay1)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "bedroom light off" or data == "bedroom off":
-        relay_off(relay1)
+        relay_off(Relay1)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "kitchen light on" or data == "kitchen on":
-        relay_on(relay2)
+        relay_on(Relay2)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "kitchen light off" or data == "kitchen off":
-        relay_off(relay2)
+        relay_off(Relay2)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "dining light on" or data == "dining light off":
-        relay_on(relay3)
+        relay_on(Relay3)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "dining light off" or data == "dining off":
-        relay_on(relay3)
+        relay_on(Relay3)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "tv room light on" or data == "tv room light off":
-        relay_on(relay4)
+        relay_on(Relay4)
         print data
         LOGGER.info('Data: {}'.format(data))
 
     elif data == "tv room light off" or data == "tv room off":
-        relay_off(relay4)
+        relay_off(Relay4)
         print data
         LOGGER.info('Data: {}'.format(data))
 
