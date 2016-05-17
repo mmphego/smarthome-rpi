@@ -11,7 +11,7 @@ import json
 from yamlConfigFile import configFile
 #from logger import LOGGER
 
-api_key = configFile['APIs']['openWeatherAPI']
+api_key = configFile()['APIs']['openWeatherAPI']
 # get current city using geo ip location
 geoip = urllib2.Request('http://ip-api.com/json')
 geoip_read = json.loads(urllib2.urlopen(geoip).read())
@@ -83,3 +83,5 @@ wtr = ('Weather conditions for today, ' + conditions +
     ' with a current temperature of ' + current)
 frc = (', a low of ' + todays_low_str + ' and a high of  '
     + todays_high_str + ' .  ')
+
+print wtr + frc

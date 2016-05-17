@@ -59,6 +59,7 @@ class TimerClass(object):
             _distance = float(subprocess.Popen(
                 'sudo /home/pi/Scripts/TV_Proximity_Sensor/proximity_sensor',
                 shell=True, stdout=subprocess.PIPE, ).communicate()[0])
+            #print 'X:',_distance
             samples.append(_distance)
         return np.average(samples)
 
@@ -84,8 +85,8 @@ class TimerClass(object):
                 if tvoff:
                     self.tv_On()
                     tvoff = False
-            #    print 'Distance {}cm.'.format(round(self.distance()))
-            #time.sleep(self.sleep_time)
+               # print 'Distance {}cm.'.format(round(self.distance()))
+            time.sleep(0.01)
 
 
 thread = TimerClass()

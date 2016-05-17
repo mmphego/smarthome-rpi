@@ -34,10 +34,13 @@ APIs:
     thingspeak: H4KN07GGESD8XZEH
 
 TVProximity:
-    NoSamples: 3
-    # Distance in cm
+    # Number of samples until average is calculated
+    NoSamples: 2
+    # Distance of object in cm
     Distance: 20
+    # Sleep time between samples to decrease RPi resources 
     RefreshRate: 1
+    # Wait time until next check
     WaitTime: 10
 
 RelaysSetup:

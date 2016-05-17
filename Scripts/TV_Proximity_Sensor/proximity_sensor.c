@@ -41,5 +41,6 @@ int main(void) {
         setup();
         delay(0.5);
         getCM();
+        delay(0.5);
         return 0;
 }
