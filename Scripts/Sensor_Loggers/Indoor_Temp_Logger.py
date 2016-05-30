@@ -95,7 +95,6 @@ def notification_check():
 
 try:
     while True:
-
         smoke = getGasSensorData()
         light = getLightLevels(ldr_pin)
         humidity, temperature = getSensorData()
@@ -107,26 +106,26 @@ try:
         print ('Humidity: {}%, Temp: {}, CPU_Temp: {}, Smoke_Level: {}, Light_Levels: {}'.format(
             humidity, temperature, cpu_temp, smoke, light))
 
-        if float(temperature) > 35.:
-            alert = 'Temperature Nofication'
-            message = 'Temperature is at {}degrees'.format(temperature)
-            notification(alert, message)
-            if rst_counter > 1:
-                notification_check()
+        #if float(temperature) > 35.:
+            #alert = 'Temperature Nofication'
+            #message = 'Temperature is at {}degrees'.format(temperature)
+            #notification(alert, message)
+            #if rst_counter > 1:
+                #notification_check()
 
-        if float(humidity) > 50.:
-            alert = 'Humidity Nofication'
-            message = 'Humidity is at {}%'.format(humidity)
-            notification(alert, message)
-            if rst_counter > 1:
-                notification_check()
+        #if float(humidity) > 50.:
+            #alert = 'Humidity Nofication'
+            #message = 'Humidity is at {}%'.format(humidity)
+            #notification(alert, message)
+            #if rst_counter > 1:
+                #notification_check()
 
-        if float(smoke) > 450.:
-            alert = 'Smoke Nofication'
-            message = 'Smoke is at {}'.format(smoke)
-            notification(alert, message)
-            if rst_counter > 1:
-                notification_check()
+        #if float(smoke) > 450.:
+            #alert = 'Smoke Nofication'
+            #message = 'Smoke is at {}'.format(smoke)
+            #notification(alert, message)
+            #if rst_counter > 1:
+                #notification_check()
 
         try:
             send_data = urllib2.urlopen(API_URL +

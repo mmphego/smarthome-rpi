@@ -11,11 +11,13 @@ import RPi.GPIO as GPIO
 import time
 import weatherWarning
 from logger import LOGGER
+from yamlConfigFile import configFile
 
 #led = 22 #GPIO0
-button = 18 #GPIO1
+#button = 18 #GPIO1
+button = int(configFile()['RPi_GPIO']['closetDoor'])
 
-GPIO.setwarnings(True)
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 # GPIO.setup(led, GPIO.OUT)
 # time.sleep(0.1)
@@ -46,7 +48,8 @@ try:
     while True:
         time.sleep(10)
         continue
-except Exception:
+except:
+    GPIO.cleanup()           # clean up GPIO on normal exit
     raise RuntimeError('Error occured')
 LOGGER.info('clean up GPIO on normal exit')
 GPIO.cleanup()           # clean up GPIO on normal exit

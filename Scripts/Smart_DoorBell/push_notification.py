@@ -41,7 +41,7 @@ def send_pushbullet():
         LOGGER.error ('Unable to connect to pushover server')
         raise RuntimeError ('Unable to connect to pushover server')
     else:
-        if os.path_exists(image_path):
+        if os.path.exists(image_path):
             with open(image_path, "rb") as pic:
                 file_data = pb.upload_file(pic, "picture.jpg")
             push_success = pb.push_file(**file_data)['active']

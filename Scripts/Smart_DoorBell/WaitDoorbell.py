@@ -41,7 +41,7 @@ def send_all_notifications():
     with open(os.devnull, 'rb') as devnull:
         subprocess.Popen('mpg123 /home/pi/Scripts/Smart_DoorBell/DoorNotify.mp3',
                          shell=True, stdout=devnull, stderr=devnull).communicate()
-    #   GPIO.output(led, False)
+    # GPIO.output(led, False)
     take_pic()
     push_notification.send_notifications()
     send_sms()
@@ -54,7 +54,7 @@ def send_all_notifications():
 def buttonHandler(channel):
     if success:
         LOGGER.info("falling edge detected, sending notifications")
-#        print("falling edge detected, sending notifications")
+        print("falling edge detected, sending notifications")
         send_all_notifications()
 
 
@@ -63,22 +63,23 @@ try:
     # else is happening in the program, the function buttonHandler will be run
     success = True
     GPIO.add_event_detect(button, GPIO.FALLING, callback=buttonHandler, bouncetime=5500)
-except Exception:
+except:
     LOGGER.exception('Unable to detect falling edge')
-finally:
-    GPIO.add_event_detect(button, GPIO.FALLING, callback=buttonHandler, bouncetime=5500)
+    # raise RuntimeError('Unable to detect falling edge')
+# finally:
+#    GPIO.add_event_detect(button, GPIO.FALLING, callback=buttonHandler, bouncetime=5500)
 
 try:
     LOGGER.info("Waiting for button to be pressed")
-    #print "Waiting for falling edge on port {}".format(button)
+    # print "Waiting for falling edge on port {}".format(button)
     while True:
         time.sleep(.25)
 except (Exception, KeyboardInterrupt):
-    #print '************exiting*********'
+    # print '************exiting*********'
     gc.collect()
     GPIO.cleanup()  # clean up GPIO on CTRL+C exit
-# print '************exiting*********'
 finally:
+    print '************exiting*********'
     LOGGER.debug("Clean up by resetting all GPIO")
     gc.collect()
     GPIO.cleanup()  # clean up GPIO on normal exit

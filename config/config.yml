@@ -38,7 +38,7 @@ TVProximity:
     NoSamples: 2
     # Distance of object in cm
     Distance: 20
-    # Sleep time between samples to decrease RPi resources 
+    # Sleep time between samples to decrease RPi resources
     RefreshRate: 1
     # Wait time until next check
     WaitTime: 10
@@ -48,3 +48,6 @@ RelaysSetup:
     Relay2: 2
     Relay3: 21
     Relay4: 22
+
+RPi_GPIO:
+    closetDoor: 23
