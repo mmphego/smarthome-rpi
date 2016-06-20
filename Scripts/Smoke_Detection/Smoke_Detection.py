@@ -38,3 +38,5 @@ def get_gas_sensor():
         sensor_val = serial_com.readline().strip().split()
         if len(sensor_val) == 3:
             return int(sensor_val[-1])
+
+#print get_gas_sensor()

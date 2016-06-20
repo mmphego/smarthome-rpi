@@ -10,8 +10,14 @@ import time
 from logger import LOGGER
 from yamlConfigFile import configFile
 
+play_over_ssh = configFile()['remote_audio_conf'] # cmd
+remote_play = configFile()['remote_play']  #  Bool
+mp3_file = '/home/pi/Scripts/PresenceDetector/Welcome_Home.mp3'
+mp3_playr = '/usr/bin/mpg123'
+
+
 try:
-    mac_address = configFile()['PresenceDetector']['macaddress']
+    mac_address = configFile()['PresenceDetector']['macaddress_2']
     if mac_address == str():
         raise KeyError
 except KeyError:
@@ -24,7 +30,7 @@ def get_ip(mac_add):
             'sudo arp-scan --interface wlan0 -l | grep {} | cut -f 1'
                 .format(mac_add), shell=True, stdout=subprocess.PIPE, )
         mob_ip = process.communicate()[0].strip()
-        time.sleep(.5)
+        time.sleep(.01)
         if mob_ip != '':
             break
     return mob_ip
@@ -43,7 +49,11 @@ def ping_mob_ip(mobile_ip):
                 if count > 2:
                     print 'Mobile detected'
                     LOGGER.info("Mobile detected: IP, {}".format(mobile_ip))
-                    #subprocess.Popen('mpg123 Welcome_Home.mp3', shell=True, stdout=subprocess.PIPE,)
+                    if remote_play:
+                        subprocess.call ('cat {} | {}'.format(mp3_file, play_over_ssh), shell=True)
+                    else:
+                        subprocess.Popen('{} {}'.format(mp3_playr, mp3_file), shell=True,
+                                        stdout=subprocess.PIPE,)
                     # TODO MM 2015/11/04
                     # Switch on lights
                     count = 0

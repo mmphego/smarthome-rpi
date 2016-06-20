@@ -47,6 +47,7 @@ def getGasSensorData():
     try:
         if Smoke_Detection.get_gas_sensor() is not None:
             smoke_val = Smoke_Detection.get_gas_sensor()
+            print smoke_val
         else:
             smoke_val = 0
     except:

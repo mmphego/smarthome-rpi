@@ -45,6 +45,7 @@ def send_pushbullet():
             with open(image_path, "rb") as pic:
                 file_data = pb.upload_file(pic, "picture.jpg")
             push_success = pb.push_file(**file_data)['active']
+            push_success = pb.push_note(alert, message)['active']
         else:
             push_success = pb.push_note(alert, message)['active']
 

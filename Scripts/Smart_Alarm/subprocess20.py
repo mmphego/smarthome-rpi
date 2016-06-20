@@ -14,6 +14,7 @@ import feedparser
 from better_spoken_time3 import gmt, day
 from get_url_weather9 import wtr, frc
 from get_url_news8 import news
+from yamlConfigFile import configFile
 
 try:
     import gtts
@@ -23,10 +24,17 @@ except ImportError:
 finally:
     from gtts import gTTS
 #coffeemaker = 4 #GPIO0
-end = " That's all for now. Have a nice day."
+end = 'That is all for now Have a nice day.'
 # url = 'http://feeds.feedburner.com/brainyquote/QUOTEBR'
 url_quote = 'https://www.quotesdaddy.com/feed/tagged/Inspirational'
 rss = feedparser.parse(url_quote)
+
+play_over_ssh = configFile()['remote_audio_conf']
+remote_play = configFile()['remote_play']
+
+mp3_playr = '/usr/bin/mpg123'
+morning_alarm = '/home/pi/Scripts/Smart_Alarm/morning_alarm.mp3'
+
 #GPIO.setwarnings(True)
 #GPIO.setmode(GPIO.BCM)
 #time.sleep(0.01)
@@ -35,9 +43,12 @@ rss = feedparser.parse(url_quote)
 # Turn all of the parts into a single string
 
 if rss['status'] == 200:
-    quote = '. And todays quote: ' + str(rss['entries'][0]['summary'])
+    try:
+        quote = '. And todays quote ' + str(rss['entries'][0]['summary']).replace('-', '')
+    except:
+        quote = '. And todays quote ' + str(rss['entries'][0]['summary'])
 else:
-    quote = ''
+    quote = 'No quote today'
 
 try:
     words = str(gmt + day + wtr + frc + news + quote + end)
@@ -48,18 +59,28 @@ words = words.replace('"', '').strip().split('. ')
 
 try:
     for i,line in enumerate(words):
-        tts = gTTS(text=line, lang='en')
+        tts = gTTS(text=line, lang='en-us')
         tts.save('{}.mp3'.format(i))
+except:
+    subprocess.check_output("echo " + words + " | festival --tts ", shell=True)
     # Play the mp3s returned
-    [subprocess.call ('mpg123 {}.mp3 '.format(mp3_file), shell=True)
-                        for mp3_file in range(i)]
+try:
+    if remote_play:
+        subprocess.call('cat {} | {}'.format(morning_alarm, play_over_ssh), shell=True)
+        for mp3_file in xrange(len(words)):
+            subprocess.call ('cat {}.mp3 | {}'.format(mp3_file, play_over_ssh), shell=True)
+            subprocess.call ('rm {}.mp3'.format(mp3_file), shell=True)
+    else:
+        subprocess.call('{} {}'.format(mp3_playr, morning_alarm), shell=True)
+        for mp3_file in xrange(len(words)):
+            subprocess.call('{} {}.mp3 '.format(mp3_playr, mp3_file), shell=True)
 
 # festival is now called in case of error reaching Google
 except subprocess.CalledProcessError:
     subprocess.check_output("echo " + words + " | festival --tts ", shell=True)
 
 # Cleanup any mp3 files created in this directory.
-subprocess.call ('sudo rm *.mp3', shell=True)
+
 
 # Enabling GPIO for relay switch to turn on coffee maker
 #GPIO.output(coffeemaker, True)

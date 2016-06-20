@@ -8,7 +8,8 @@ CellNo: +27761431543
 
 # Mac address of mobile device(s) to be detected
 PresenceDetector:
-    macaddress: bc:6e:64:df:d7:d9
+    macaddress_1: bc:6e:64:df:d7:d9
+    macaddress_2: bc:44:86:dd:8c:fc
 
 # geographic location
 geography:
@@ -51,3 +52,6 @@ RelaysSetup:
 
 RPi_GPIO:
     closetDoor: 23
+
+remote_play: True
+remote_audio_conf: sshpass -p \'!nerd001\' ssh mmphego@192.168.1.235 play -t mp3 -

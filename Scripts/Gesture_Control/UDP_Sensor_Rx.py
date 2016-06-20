@@ -24,7 +24,8 @@ nbytes = 1024
 sleep_time = 0.01
 
 # Range 30 - 60
-sensitivity = 30
+# Dependent on the type of sensor used in the device
+sensitivity = 24
 limit = 270
 max_limit = float(sensitivity + limit + 100)
 
@@ -82,23 +83,28 @@ def gesture_control():
         Current_Acc = np.abs((float(x_data ** 2 + y_data ** 2 + z_data ** 2)))
         delta = Current_Acc - Last_Acc
         Prev_Acc = Prev_Acc + alpha * delta
+        #print Prev_Acc
         if Prev_Acc >= sensitivity <= limit:
-            LOGGER.info ('Mobile Shaken: Relay ON')
-            print ('Mobile Shaken: Relay ON')
+            LOGGER.info ('Mobile Shaken: Relay OFF')
+            print ('Mobile Shaken: Relay OFF')
             gesture_switch_on()
             if rst_counter > 1:
-                LOGGER.info ('Mobile Shaken: Relay OFF')
-                print ('Mobile Shaken: Relay OFF')
+                LOGGER.info ('Mobile Shaken: Relay On')
+                print ('Mobile Shaken: Relay On')
                 gesture_switch_off()
 
 def voice_recognition(data):
-    if data == "bedroom light on" or data == "bedroom on":
-        relay_on(Relay1)
+    if data == "on" or data == "bedroom on":
+    #if data == "bedroom light on" or data == "bedroom on":
+    #    relay_on(Relay1)
+        relay_off(Relay1)
         print data
         LOGGER.info('Data: {}'.format(data))
 
-    elif data == "bedroom light off" or data == "bedroom off":
-        relay_off(Relay1)
+    #elif data == "bedroom light off" or data == "bedroom off":
+        #relay_off(Relay1)
+    elif data == "off" or data == "bedroom off":
+        relay_on(Relay1)
         print data
         LOGGER.info('Data: {}'.format(data))
 

@@ -10,12 +10,13 @@ import feedparser
 
 # Today's news from News24.com
 try:
-    rss = feedparser.parse('http://feeds.news24.com/articles/News24/SouthAfrica/rss')
+    #rss = feedparser.parse('http://feeds.news24.com/articles/News24/SouthAfrica/rss')
+    rss = feedparser.parse('http://feeds.news24.com/articles/news24/TopStories/rss')
     newsfeed = (rss.entries[0]['description'] + " " + rss.entries[1]['description']
         + " " + rss.entries[2]['description'] + " " + rss.entries[3]['description']
             + " " + rss.entries[4]['description'] + " " + rss.entries[5]['description'])
 
-    news = ' And now, For the latest news around the country.  ' + newsfeed
+    news = ' And now, For the latest news around the country.  ' + newsfeed  + '. courtesy of news twenty four dot com'
 
 except rss.bozo:
     news = 'Failed to reach News24'

@@ -1,7 +1,7 @@
 import numpy as np
 import subprocess
 import time
-
+import sys
 try:
     from logger import LOGGER
 except ImportError:
@@ -9,8 +9,15 @@ except ImportError:
 from datetime import datetime
 from yamlConfigFile import configFile
 from pushnotify import send_pushbullet
+sys.path.insert(1, '/home/pi/Scripts/Relay_Control/')
+from relay_control import *
 
-mp3_file = '/usr/bin/mpg123 /home/pi/Scripts/TV_Proximity_Sensor/close_to_tv.mp3'
+mp3_player = '/usr/bin/mpg123 '
+mp3_file = '/home/pi/Scripts/TV_Proximity_Sensor/close_to_tv.mp3'
+play_over_ssh = configFile()['remote_audio_conf'] # cmd
+remote_play = configFile()['remote_play']  #  Bool
+
+
 class TimerClass(object):
     def __init__(self):
         self.sleep_time = configFile()['TVProximity']['RefreshRate']
@@ -24,24 +31,32 @@ class TimerClass(object):
         :return: <nothing>
         """
         if notify:
-            with open(subprocess.os.devnull, 'rb') as devnull:
-                subprocess.Popen(mp3_file,
-                                shell=True, stdout=devnull, stderr=devnull, ).communicate()
-            #print 'Warning: Too close to the TV: {} cm.'.format(self.distance())
+            if remote_play:
+                subprocess.call ('cat {} | {}'.format(mp3_file, play_over_ssh), shell=True)
+            else:
+                with open(subprocess.os.devnull, 'rb') as devnull:
+                    subprocess.Popen(mp3_player + mp3_file,
+                                     shell=True, stdout=devnull,
+                                     stderr=devnull, ).communicate()
+            ##print 'Warning: Too close to the TV: {} cm.'.format(self.distance())
+            alert = 'TV Proximity Warning notification'
+            message = 'The person was warned at {}'.format(str(datetime.now()))
+            send_pushbullet(alert, message)
             time.sleep(self.wait_time)
             return True
 
     def tv_On(self):
         alert = 'TV Proximity Notification'
         message = 'TV was switched on at {}'.format(str(datetime.now()))
-        #print (message)
         send_pushbullet(alert, message)
+        #relay_off(Relay1)
         # TODO: Configure relay via Arduino
 
     def tv_Off(self):
         alert = 'TV Proximity Notification'
         message = 'TV was switched Off at {}'.format(str(datetime.now()))
         #print (message)
+        #relay_on(Relay1)
         send_pushbullet(alert, message)
         if LOGGER is not None:
             LOGGER.info('Someone was too close to the TV and TV was switched off.')

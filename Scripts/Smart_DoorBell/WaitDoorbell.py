@@ -19,6 +19,7 @@ from logger import LOGGER
 from sms_notification import send_sms
 from email_notification import send_mail
 from pic_notification import take_pic
+from yamlConfigFile import configFile
 
 # led = 17 #GPIO0
 button = 18  # GPIO1
@@ -34,12 +35,19 @@ time.sleep(0.1)
 # So we'll be setting up falling edge detection for both
 GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
+mp3_file =  '/home/pi/Scripts/Smart_DoorBell/DoorNotify.mp3'
+mp3_ply = '/usr/bin/mpg123'
+play_over_ssh = configFile()['remote_audio_conf']
+remote_play = configFile()['remote_play']
 
 def send_all_notifications():
     LOGGER.info('Sending door notifications')
     #    GPIO.output(led, True)
-    with open(os.devnull, 'rb') as devnull:
-        subprocess.Popen('mpg123 /home/pi/Scripts/Smart_DoorBell/DoorNotify.mp3',
+    #with open(os.devnull, 'rb') as devnull:
+    if remote_play:
+        subprocess.call('cat {} | {}'.format(mp3_file, play_over_ssh), shell=True)
+    else:
+        subprocess.Popen(mp3_ply + mp3_file,
                          shell=True, stdout=devnull, stderr=devnull).communicate()
     # GPIO.output(led, False)
     take_pic()
@@ -62,7 +70,7 @@ try:
     # when a falling edge is detected on port 1, regardless of whatever
     # else is happening in the program, the function buttonHandler will be run
     success = True
-    GPIO.add_event_detect(button, GPIO.FALLING, callback=buttonHandler, bouncetime=5500)
+    GPIO.add_event_detect(button, GPIO.FALLING, callback=buttonHandler, bouncetime=100)
 except:
     LOGGER.exception('Unable to detect falling edge')
     # raise RuntimeError('Unable to detect falling edge')

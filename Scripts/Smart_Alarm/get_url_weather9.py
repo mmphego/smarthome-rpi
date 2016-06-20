@@ -84,4 +84,4 @@ wtr = ('Weather conditions for today, ' + conditions +
 frc = (', a low of ' + todays_low_str + ' and a high of  '
     + todays_high_str + ' .  ')
 
-print wtr + frc
+#print wtr + frc
