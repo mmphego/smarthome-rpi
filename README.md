@@ -1,4 +1,3 @@
-HomeAutoPi
 # Raspberry Pi Smart Home Automation Project
         
 ======
