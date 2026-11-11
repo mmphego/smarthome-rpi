@@ -2,7 +2,7 @@
 # Purpose of this script is to ping a certain static IP(android mobile) is destination is
 # reachable set a  gpio pin and activate flite(voice response) else if it not detected
 # gpio will remain off
-# Created by Mpho Mphego (mpho112@gmail.com)
+# Created by Mpho Mphego
 # http://pastebin.com/nLkaZ308
 import os
 import subprocess
